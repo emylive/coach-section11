@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-03-20T15:00:11.091211",
+    "last_updated": "2026-03-20T15:49:17.184940",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.86"
@@ -132,10 +132,10 @@
       "unavailable": 0
     },
     "phase_context": {
-      "phase": "Deload",
-      "phase_week": 2,
-      "amber_threshold": 2,
-      "modifier_applied": "default"
+      "phase": "Build",
+      "phase_week": 1,
+      "amber_threshold": 3,
+      "modifier_applied": "build_loosened"
     },
     "race_week_defers": false,
     "modification": {
@@ -403,10 +403,10 @@
       "note": "No planned workouts in period"
     },
     "phase_detection": {
-      "phase": "Deload",
-      "confidence": "medium",
+      "phase": "Build",
+      "confidence": "low",
       "reason_codes": [
-        "PLAN_GAP_NEXT_WEEK"
+        "BUILD_RESUMING_AFTER_DELOAD_TENTATIVE"
       ],
       "basis": {
         "stream_1": {
@@ -420,20 +420,20 @@
           "hard_sessions_planned": 0,
           "race_proximity": 36,
           "next_week_load": null,
-          "plan_coverage_current_week": 0.0,
+          "plan_coverage_current_week": 0.8,
           "plan_coverage_next_week": 0.0
         },
         "data_quality": "good",
         "stream_agreement": null
       },
       "previous_phase": "Deload",
-      "phase_duration_weeks": 2,
+      "phase_duration_weeks": 1,
       "dossier_declared": null,
       "dossier_agreement": null
     },
-    "phase_detected": "Deload",
+    "phase_detected": "Build",
     "phase_triggers": [
-      "PLAN_GAP_NEXT_WEEK"
+      "BUILD_RESUMING_AFTER_DELOAD_TENTATIVE"
     ],
     "seasonal_context": "Late Base / Build",
     "benchmark_indoor": {
@@ -456,7 +456,7 @@
     "p_max": 525,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-03-20T15:00:11.089713",
+    "calculation_timestamp": "2026-03-20T15:49:17.183451",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -1188,6 +1188,54 @@
   ],
   "planned_workouts": [
     {
+      "id": 99656180,
+      "date": "2026-03-22",
+      "name": "Sortie Longue Ste Baume",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": null,
+      "duration_hours": 0.0,
+      "duration_formatted": "0s",
+      "workout_summary": null,
+      "description": "- 2h15m 65-75% HR Trail Vallonne\n- Inclure 600m D+\n- Marche active dans les pentes > 15%"
+    },
+    {
+      "id": 99656784,
+      "date": "2026-03-22",
+      "name": "Sortie Longue Ste Baume",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": null,
+      "duration_hours": 0.0,
+      "duration_formatted": "0s",
+      "workout_summary": null,
+      "description": "- 135m 65-75% HR Trail Vallonne\n- Inclure 600m D+\n- Marche active dans les pentes raides"
+    },
+    {
+      "id": 99657423,
+      "date": "2026-03-22",
+      "name": "Sortie Longue Ste Baume",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": null,
+      "duration_hours": 0.0,
+      "duration_formatted": "0s",
+      "workout_summary": null,
+      "description": "- 02:15:00 65-75% HR\n- Terrain Trail Vallonne\n- Objectif 600m D+\n- Marche active dans les pentes raides"
+    },
+    {
+      "id": 99658767,
+      "date": "2026-03-22",
+      "name": "Sortie Longue Ste Baume",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": null,
+      "duration_hours": 0.0,
+      "duration_formatted": "0s",
+      "workout_summary": null,
+      "description": "- 135m Z2 Trail Vallonne\n- 600m D+ Objectif\n- Marche active pentes raides"
+    },
+    {
       "id": 96359070,
       "date": "2026-03-31",
       "name": "60m Recovery by LeCoach App",
@@ -1474,7 +1522,7 @@
     "success": 7,
     "patternA": 7,
     "patternB": 0,
-    "bail_no_workout_doc": 3,
+    "bail_no_workout_doc": 7,
     "bail_no_match": 12
   },
   "weekly_summary": {
