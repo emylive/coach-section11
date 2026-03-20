@@ -75,7 +75,7 @@ on:
       confirm:
         description: 'Execute write (false = preview only)'
         required: false
-        default: 'false'
+        default: 'true'
         type: choice
         options:
           - 'false'
