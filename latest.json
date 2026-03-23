@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-03-23T06:59:01.351426",
+    "last_updated": "2026-03-23T08:02:30.816081",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.86"
@@ -216,7 +216,7 @@
       }
     },
     "current_metrics": {
-      "weight_kg": 62.599,
+      "weight_kg": 61.849,
       "resting_hr": 55,
       "hrv": null,
       "sleep_quality": null,
@@ -436,7 +436,7 @@
     "p_max": 525,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-03-23T06:59:01.349886",
+    "calculation_timestamp": "2026-03-23T08:02:30.814566",
     "data_quality": {
       "hrv_data_points": 6,
       "rhr_data_points": 6,
@@ -493,7 +493,8 @@
           "z7_time": 0
         }
       },
-      "has_intervals": true
+      "has_intervals": true,
+      "description": "CoachWatts Workout Analysis\n\nF\u00e9licitations pour cette longue sortie en trail, une performance impressionnante avec 274 minutes et 1540m de d\u00e9nivel\u00e9 ! Votre gestion de l'effort en d\u00e9but de parcours a \u00e9t\u00e9 tr\u00e8s conservatrice, avec une fr\u00e9quence cardiaque majoritairement en Zone 1, ce qui est excellent pour une \u00e9preuve d'endurance. Nous allons examiner comment maintenir une meilleure constance sur la dur\u00e9e lors de vos prochaines aventures.\n\n\ud83d\udd17 https://CoachWatts.com - AI Endurance Coaching"
     },
     {
       "id": "i133353323",
@@ -538,7 +539,8 @@
           "z7_time": 0
         }
       },
-      "has_intervals": false
+      "has_intervals": false,
+      "description": "CoachWatts Workout Analysis\n\nQuelle belle s\u00e9ance de Pilates, ax\u00e9e sur le contr\u00f4le et la conscience corporelle! Votre fr\u00e9quence cardiaque est rest\u00e9e agr\u00e9ablement basse, ce qui est parfait pour ce type d'activit\u00e9 qui favorise la force du tronc et la flexibilit\u00e9. C'\u00e9tait une excellente occasion de vous concentrer sur la technique et le bien-\u00eatre sans pression cardiovasculaire.\n\n\ud83d\udd17 https://CoachWatts.com - AI Endurance Coaching"
     },
     {
       "id": "i133216011",
@@ -592,7 +594,8 @@
           "z7_time": 0
         }
       },
-      "has_intervals": true
+      "has_intervals": true,
+      "description": "CoachWatts Workout Analysis\n\nF\u00e9licitations pour cette excellente course d'endurance! Vous avez d\u00e9montr\u00e9 une gestion de l'effort et une consistance impressionnantes, maintenant une cadence stable et une allure r\u00e9guli\u00e8re. C'est une s\u00e9ance tr\u00e8s solide qui pose de bonnes bases pour vos progr\u00e8s futurs.\n\n\ud83d\udd17 https://CoachWatts.com - AI Endurance Coaching"
     },
     {
       "id": "i132818998",
@@ -1037,7 +1040,7 @@
     },
     {
       "date": "2026-03-23",
-      "weight_kg": null,
+      "weight_kg": 61.849,
       "resting_hr": null,
       "hrv_rmssd": null,
       "hrv_sdnn": null,
