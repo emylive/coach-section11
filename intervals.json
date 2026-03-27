@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-27T10:33:15.289343",
+  "generated_at": "2026-03-27T11:27:34.031723",
   "version": "3.86",
   "scan_hours": 72,
   "retention_days": 8,
@@ -671,6 +671,25 @@
           "zone": 2,
           "training_load": 9.028617,
           "decoupling": 11.457981
+        }
+      ]
+    },
+    {
+      "activity_id": "i135122705",
+      "date": "2026-03-27",
+      "type": "Run",
+      "name": "Lunch Course \u00e0 pied",
+      "interval_summary": [
+        "1x 1m57s 105bpm"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "117s@105bpm",
+          "duration_secs": 117,
+          "avg_hr": 105,
+          "max_hr": 114,
+          "zone": 1
         }
       ]
     }
