@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-31T17:37:54.819876",
+  "generated_at": "2026-03-31T18:36:04.797776",
   "version": "3.86",
   "scan_hours": 72,
   "retention_days": 8,
@@ -1107,6 +1107,44 @@
           "zone": 2,
           "training_load": 4.0923443,
           "decoupling": -0.7477523
+        }
+      ]
+    },
+    {
+      "activity_id": "i136262642",
+      "date": "2026-03-31",
+      "type": "Run",
+      "name": "Evening Course \u00e0 pied",
+      "interval_summary": [
+        "1x 6m35s 6:38",
+        "1x 3m23s 7:44"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "395s@226w86rpm",
+          "duration_secs": 395,
+          "avg_power": 226,
+          "max_power": 246,
+          "avg_hr": 148,
+          "max_hr": 156,
+          "avg_cadence": 86.4467,
+          "zone": 2,
+          "training_load": 14.0989065,
+          "decoupling": 2.1895483
+        },
+        {
+          "type": "WORK",
+          "label": "203s@236w86rpm",
+          "duration_secs": 203,
+          "avg_power": 236,
+          "max_power": 252,
+          "avg_hr": 152,
+          "max_hr": 156,
+          "avg_cadence": 85.91626,
+          "zone": 3,
+          "training_load": 7.8515887,
+          "decoupling": -0.9290885
         }
       ]
     }
