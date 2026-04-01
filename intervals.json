@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-01T14:15:45.089559",
+  "generated_at": "2026-04-01T15:49:42.783489",
   "version": "3.86",
   "scan_hours": 72,
   "retention_days": 8,
@@ -1227,6 +1227,55 @@
           "zone": 2,
           "training_load": 60.332783,
           "decoupling": -10.367013
+        }
+      ]
+    },
+    {
+      "activity_id": "i136464878",
+      "date": "2026-04-01",
+      "type": "Run",
+      "name": "Retour avec louisa",
+      "interval_summary": [
+        "1x 2m40s 11:27",
+        "1x 4m53s 9:39"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "160s@261w87rpm",
+          "duration_secs": 160,
+          "avg_power": 261,
+          "max_power": 306,
+          "avg_hr": 126,
+          "max_hr": 139,
+          "avg_cadence": 87.23189,
+          "zone": 1,
+          "training_load": 2.6687667
+        },
+        {
+          "type": "RECOVERY",
+          "duration_secs": 80,
+          "avg_power": 290,
+          "max_power": 343,
+          "avg_hr": 142,
+          "max_hr": 159,
+          "avg_cadence": 87.725,
+          "zone": 2,
+          "training_load": 4.386722,
+          "decoupling": 1.9950888
+        },
+        {
+          "type": "WORK",
+          "label": "293s@136w64rpm",
+          "duration_secs": 293,
+          "avg_power": 136,
+          "max_power": 301,
+          "avg_hr": 132,
+          "max_hr": 159,
+          "avg_cadence": 64.49829,
+          "zone": 1,
+          "training_load": 5.8113704,
+          "decoupling": -38.90833
         }
       ]
     }
