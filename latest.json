@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-04-01T16:44:12.936167",
+    "last_updated": "2026-04-01T17:36:36.526566",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.86"
@@ -88,7 +88,7 @@
   ],
   "readiness_decision": {
     "recommendation": "modify",
-    "priority": 1,
+    "priority": 2,
     "signals": {
       "hrv": {
         "status": "amber",
@@ -114,19 +114,23 @@
       "ri": {
         "status": "amber",
         "value": 0.79
+      },
+      "tsb": {
+        "status": "green",
+        "value": -14.4
       }
     },
     "signal_summary": {
-      "green": 3,
+      "green": 4,
       "amber": 2,
       "red": 0,
       "unavailable": 0
     },
     "phase_context": {
-      "phase": "Build",
-      "phase_week": 1,
-      "amber_threshold": 3,
-      "modifier_applied": "build_loosened"
+      "phase": "Deload",
+      "phase_week": 2,
+      "amber_threshold": 2,
+      "modifier_applied": "default"
     },
     "race_week_defers": false,
     "modification": {
@@ -140,7 +144,7 @@
         "cap_zone": null
       }
     },
-    "reason": "P1 acute overload (modify). TSB -27.81 < -25 with HRV -18.8% below baseline.",
+    "reason": "P2 signal count. 2 amber (hrv, ri) >= threshold 2.",
     "alarm_refs": []
   },
   "history": {
@@ -190,10 +194,10 @@
   },
   "current_status": {
     "fitness": {
-      "ctl": 64.53,
-      "atl": 92.34,
-      "tsb": -27.81,
-      "ramp_rate": 7.69,
+      "ctl": 61.66,
+      "atl": 76.1,
+      "tsb": -14.44,
+      "ramp_rate": 4.81,
       "fitness_source": "From Intervals.icu API (reflects completed workouts)"
     },
     "thresholds": {
@@ -395,22 +399,21 @@
     },
     "consistency_index": 0.0,
     "consistency_details": {
-      "planned_days": 2,
+      "planned_days": 1,
       "completed_days": 1,
       "matched_days": 0,
       "planned_dates": [
-        "2026-03-26",
-        "2026-04-01"
+        "2026-03-26"
       ],
       "completed_dates": [
         "2026-03-29"
       ]
     },
     "phase_detection": {
-      "phase": "Build",
-      "confidence": "low",
+      "phase": "Deload",
+      "confidence": "medium",
       "reason_codes": [
-        "BUILD_RESUMING_AFTER_DELOAD_TENTATIVE"
+        "BUILD_HISTORY_REDUCED_LOAD"
       ],
       "basis": {
         "stream_1": {
@@ -421,23 +424,23 @@
         },
         "stream_2": {
           "planned_tss_delta": null,
-          "hard_sessions_planned": 1,
+          "hard_sessions_planned": 0,
           "race_proximity": 24,
           "next_week_load": null,
-          "plan_coverage_current_week": 0.2,
+          "plan_coverage_current_week": 0.0,
           "plan_coverage_next_week": 1.2
         },
         "data_quality": "good",
         "stream_agreement": null
       },
       "previous_phase": "Deload",
-      "phase_duration_weeks": 1,
+      "phase_duration_weeks": 2,
       "dossier_declared": null,
       "dossier_agreement": null
     },
-    "phase_detected": "Build",
+    "phase_detected": "Deload",
     "phase_triggers": [
-      "BUILD_RESUMING_AFTER_DELOAD_TENTATIVE"
+      "BUILD_HISTORY_REDUCED_LOAD"
     ],
     "seasonal_context": "Late Base / Build",
     "benchmark_indoor": {
@@ -460,13 +463,13 @@
     "p_max": 525,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-04-01T16:44:12.934506",
+    "calculation_timestamp": "2026-04-01T17:36:36.525091",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
       "activities_7d": 10,
       "activities_28d": 45,
-      "planned_workouts_7d": 2,
+      "planned_workouts_7d": 1,
       "ftp_history_days": {
         "indoor": 0,
         "outdoor": 0
@@ -1270,18 +1273,6 @@
   ],
   "planned_workouts": [
     {
-      "id": 96359071,
-      "date": "2026-04-01",
-      "name": "4x4m 115% FTP by LeCoach App",
-      "type": "WORKOUT",
-      "sport_type": "Ride",
-      "planned_tss": 122,
-      "duration_hours": 2.0,
-      "duration_formatted": "2h",
-      "workout_summary": "5m @96W | 3\u00d730s @169W / 30s rec | 5m @101W | 4\u00d74m @194W / 4m rec | 1h15m @109W",
-      "description": "-5m ramp 50-65% FTP\n\n3x\n-30s 100% FTP\n-30s 55% FTP\n\n-5m 60% FTP\n\n4x\n-4m 115% FTP\n-4m 65% FTP\n\n-75m 65% FTP"
-    },
-    {
       "id": 89752181,
       "date": "2026-04-07",
       "name": "Aff\u00fbtage S-2",
@@ -1507,9 +1498,9 @@
     }
   ],
   "workout_summary_stats": {
-    "attempted": 15,
-    "success": 6,
-    "patternA": 6,
+    "attempted": 14,
+    "success": 5,
+    "patternA": 5,
     "patternB": 0,
     "bail_no_workout_doc": 3,
     "bail_no_match": 9
