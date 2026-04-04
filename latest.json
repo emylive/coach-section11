@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-04-04T14:57:34.551503",
+    "last_updated": "2026-04-04T15:28:32.563525",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.86"
@@ -265,7 +265,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 32391,
+      "steps": 32590,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -422,7 +422,7 @@
           "hard_sessions_planned": 0,
           "race_proximity": 21,
           "next_week_load": null,
-          "plan_coverage_current_week": 0.0,
+          "plan_coverage_current_week": 0.2,
           "plan_coverage_next_week": 1.2
         },
         "data_quality": "good",
@@ -458,7 +458,7 @@
     "p_max": 525,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-04-04T14:57:34.549868",
+    "calculation_timestamp": "2026-04-04T15:28:32.561914",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -1246,7 +1246,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 32391,
+      "steps": 32590,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -1259,76 +1259,88 @@
   ],
   "planned_workouts": [
     {
-      "id": 89752181,
-      "date": "2026-04-07",
-      "name": "Aff\u00fbtage S-2",
+      "id": 102446692,
+      "date": "2026-04-05",
+      "name": "Recovery Run",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": null,
+      "duration_hours": 0.75,
+      "duration_formatted": "45m",
+      "workout_summary": null,
+      "description": "- 45m easy"
+    },
+    {
+      "id": 102446693,
+      "date": "2026-04-06",
+      "name": "OFF",
       "type": "NOTE",
       "sport_type": null,
       "planned_tss": null,
       "duration_hours": 0.0,
       "duration_formatted": "0s",
       "workout_summary": null,
-      "description": "All\u00e8gement 40%. Sortie 12km/400D+. HRV >52ms vis\u00e9e."
+      "description": "- OFF"
     },
     {
-      "id": 96359075,
+      "id": 102446695,
       "date": "2026-04-07",
-      "name": "60m Recovery by LeCoach App",
+      "name": "Endurance Z2",
       "type": "WORKOUT",
-      "sport_type": "Ride",
-      "planned_tss": 30,
+      "sport_type": "Run",
+      "planned_tss": null,
       "duration_hours": 1.0,
       "duration_formatted": "1h",
       "workout_summary": null,
-      "description": "-5m ramp 50-65% FTP\n-50m 55% FTP\n-5m 50% FTP"
+      "description": "- 60m easy steady"
     },
     {
-      "id": 96359052,
+      "id": 102446696,
       "date": "2026-04-08",
-      "name": "3x10m 100% FTP 65RPM by LeCoach App",
+      "name": "Hill Repeats Short",
       "type": "WORKOUT",
-      "sport_type": "Ride",
-      "planned_tss": 115,
-      "duration_hours": 1.83,
-      "duration_formatted": "1h50m",
-      "workout_summary": "5m @96W | 3\u00d730s @169W / 30s rec | 5m @101W | 3\u00d710m @169W / 5m rec | 52m @109W",
-      "description": "-5m ramp 50-65% FTP\n\n3x\n-30s 100% FTP\n-30s 55% FTP\n\n-5m 60% FTP\n\n3x\n-10m 100% FTP 65RPM\n-5m 65% FTP\n\n-52m 65% FTP"
+      "sport_type": "TrailRun",
+      "planned_tss": null,
+      "duration_hours": 0.87,
+      "duration_formatted": "52m",
+      "workout_summary": null,
+      "description": "- 20m easy\n- 2m steady\n- 3m easy\n- 2m steady\n- 3m easy\n- 2m steady\n- 3m easy\n- 2m steady\n- 3m easy\n- 2m steady\n- 10m easy"
     },
     {
-      "id": 96359076,
+      "id": 102446697,
       "date": "2026-04-09",
-      "name": "2x20m 82% FTP by LeCoach App",
+      "name": "OFF or Easy Jog",
       "type": "WORKOUT",
-      "sport_type": "Ride",
-      "planned_tss": 165,
-      "duration_hours": 3.5,
-      "duration_formatted": "3h30m",
-      "workout_summary": "5m @96W | 2\u00d720m @138W / 10m rec | 2h25m @109W",
-      "description": "-5m ramp 50-65% FTP\n\n2x\n-20m 82% FTP\n-10m 65% FTP\n\n-145m 65% FTP"
+      "sport_type": "Run",
+      "planned_tss": null,
+      "duration_hours": 0.75,
+      "duration_formatted": "45m",
+      "workout_summary": null,
+      "description": "- 45m very easy (optional)"
     },
     {
-      "id": 96359100,
+      "id": 102446698,
       "date": "2026-04-10",
-      "name": "240m Aerobic Endurance by LeCoach App",
+      "name": "Endurance Run",
       "type": "WORKOUT",
-      "sport_type": "Ride",
-      "planned_tss": 192,
-      "duration_hours": 4.0,
-      "duration_formatted": "4h",
+      "sport_type": "Run",
+      "planned_tss": null,
+      "duration_hours": 1.17,
+      "duration_formatted": "1h10m",
       "workout_summary": null,
-      "description": "-5m ramp 50-65% FTP\n-230m 70% FTP\n-5m 60% FTP"
+      "description": "- 70m steady easy"
     },
     {
-      "id": 96359077,
+      "id": 102446699,
       "date": "2026-04-11",
-      "name": "222m Trail Specific by LeCoach App",
+      "name": "Long Run Light",
       "type": "WORKOUT",
-      "sport_type": "Ride",
-      "planned_tss": 177,
-      "duration_hours": 3.7,
-      "duration_formatted": "3h42m",
+      "sport_type": "TrailRun",
+      "planned_tss": null,
+      "duration_hours": 2.0,
+      "duration_formatted": "2h",
       "workout_summary": null,
-      "description": "-5m ramp 50-65% FTP\n-212m 70% FTP\n-5m 60% FTP"
+      "description": "- 120m easy steady"
     },
     {
       "id": 89752185,
@@ -1485,12 +1497,12 @@
     }
   ],
   "workout_summary_stats": {
-    "attempted": 14,
-    "success": 5,
-    "patternA": 5,
+    "attempted": 15,
+    "success": 3,
+    "patternA": 3,
     "patternB": 0,
     "bail_no_workout_doc": 3,
-    "bail_no_match": 9
+    "bail_no_match": 12
   },
   "weekly_summary": {
     "total_training_hours": 9.61,
