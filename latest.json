@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-04-08T08:06:52.297480",
+    "last_updated": "2026-04-08T09:17:16.833591",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.86"
@@ -449,7 +449,7 @@
     "p_max": 525,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-04-08T08:06:52.295982",
+    "calculation_timestamp": "2026-04-08T09:17:16.832067",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -1018,16 +1018,16 @@
   ],
   "planned_workouts": [
     {
-      "id": 102446696,
+      "id": 102446698,
       "date": "2026-04-08",
-      "name": "Hill Repeats Short",
+      "name": "Endurance Run",
       "type": "WORKOUT",
-      "sport_type": "TrailRun",
+      "sport_type": "Run",
       "planned_tss": null,
-      "duration_hours": 0.87,
-      "duration_formatted": "52m",
+      "duration_hours": 1.17,
+      "duration_formatted": "1h10m",
       "workout_summary": null,
-      "description": "- 20m easy\n- 2m steady\n- 3m easy\n- 2m steady\n- 3m easy\n- 2m steady\n- 3m easy\n- 2m steady\n- 3m easy\n- 2m steady\n- 10m easy"
+      "description": "- 70m steady easy"
     },
     {
       "id": 102446697,
@@ -1042,16 +1042,16 @@
       "description": "- 45m very easy (optional)"
     },
     {
-      "id": 102446698,
+      "id": 102446696,
       "date": "2026-04-10",
-      "name": "Endurance Run",
+      "name": "Hill Repeats Short",
       "type": "WORKOUT",
-      "sport_type": "Run",
+      "sport_type": "TrailRun",
       "planned_tss": null,
-      "duration_hours": 1.17,
-      "duration_formatted": "1h10m",
+      "duration_hours": 0.87,
+      "duration_formatted": "52m",
       "workout_summary": null,
-      "description": "- 70m steady easy"
+      "description": "- 20m easy\n- 2m steady\n- 3m easy\n- 2m steady\n- 3m easy\n- 2m steady\n- 3m easy\n- 2m steady\n- 3m easy\n- 2m steady\n- 10m easy"
     },
     {
       "id": 102446699,
