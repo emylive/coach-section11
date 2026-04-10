@@ -3,60 +3,78 @@
 Intervals.icu → GitHub/Local JSON Export
 Exports training data for LLM access.
 Supports both automated GitHub sync and manual local export.
+  
+Version 3.99 - DFA a1 Protocol: per-session dfa block in intervals.json (artifact-filtered avg,
+  4-zone TIZ split with HR/power cross-references, drift, LT1/LT2 crossing-band estimates,
+  quality gates). New generic streams fetcher infrastructure (_fetch_activity_streams). dfa_a1_profile
+  in latest.json capability block (latest_session + trailing_by_sport with confidence + validation
+  flags). Always emits dfa block when streams fetched, even if quality.sufficient is False, so the
+  AI can distinguish "no AlphaHRV" from "AlphaHRV ran but unusable". Intervals retention 8d → 14d
+  to support drift analysis across multiple AlphaHRV sessions. Sport scope: all interval families;
+  threshold mapping (1.0/0.5) cycling-validated, other sports flagged validated=False.
+  Requires AlphaHRV Connect IQ data field, direct Garmin sync (Strava strips dev fields).
 
-Version 3.86 - Primary sport TSS filtering for phase detection: planned_tss_delta and next_week_tss_delta
-  now filter to primary sport (numerator from planned workouts, denominator from weekly history).
-  Prevents cross-training TSS (e.g. SkiErg ~9 TSS/session) from contaminating phase classification.
-  - _format_events: sport_type passthrough from raw event type field
-  - _build_weekly_tier: primary_sport + primary_sport_tss + sport_tss_breakdown on each weekly_180d row
-  - _phase_stream1_features: primary_tss_values extracted from weekly rows
-  - _phase_stream2_features: numerator and denominator filtered to primary sport, all-sport fallback
-  - _detect_phase_v2: primary_sport threaded from derived_metrics
-  Falls back to all-sport when primary sport data unavailable. Single-sport athletes unaffected.
+Version 3.98 - Schema rename: derived_metrics.polarisation_index → easy_time_ratio (and _note).
+  Disambiguates from Seiler polarization_index (Treff PI). Rename only — no formula or value change.
 
-Version 3.85 - Wellness field expansion: all Intervals.icu wellness fields now passed through to latest.json
-  and history.json. Adds subjective state (stress, mood, motivation, injury, hydration), vitals (spO2,
-  blood glucose, blood pressure, Baevsky SI, lactate, respiration), body composition (body fat, abdomen),
-  nutrition (kcal, carbs, protein, fat), lifestyle (steps, hydration volume), and cycle tracking
-  (menstrual phase + predicted). Bug fix: hrvSdnn → hrvSDNN case mismatch (was silently returning null).
-  wellness_field_scales legend added to READ_THIS_FIRST (1-4 scale direction + per-field labels).
-  Fields null when not reported — zero cost, no new decision logic.
+Version 3.97 - Readiness signal hygiene: low-side ACWR removed from readiness_decision ambers
+  and ACWR alerts — low ACWR is a load-state/undertraining context signal, not a fatigue signal,
+  and already surfaces via acwr_interpretation. RI amber now requires 2-day persistence (ri<0.7
+  today AND yesterday) to filter single-night noise; red still fires on any single day <0.6.
+  New derived metric: recovery_index_yesterday. ACWR high-side boundary unified across code and
+  docs: >=1.3 amber/caution, >=1.5 red/danger (replaces mixed >/>= usage).
 
-Version 3.84 - Activity description passthrough, chat_notes fix (completed activities),
-  phase_week off-by-one fix.
+Version 3.96 - Course character fix: elevation_per_km as sole density metric (total elevation
+  is distance-blind); absolute elevation thresholds removed. Climb-category upgrade retained for
+  "flat with one big climb" cases.
 
-Version 3.83 - Per-sport zone preference: ZONE_PREFERENCE config overrides power/HR priority per sport family.
-  Format: "run:hr,cycling:power". Config cascade: .sync_config.json → env var → default (power preferred).
-  _get_activity_zones() converted from @staticmethod to instance method with sport_family param.
-  _aggregate_seiler_zones() refactored to use _get_activity_zones() (eliminated duplicated zone extraction).
-  zone_basis field added to zone_distribution_7d and all seiler_tid blocks. zone_preference in READ_THIS_FIRST.
-  Input validation: rejects non-power/hr values with warning. --setup wizard updated.
-  Phase detection: HR_ONLY_MAJORITY suppressed when zone_preference includes HR (intentional, not missing data).
+Version 3.95 - Polyline + event metadata: 500m downsampled polyline in terrain_summary for
+  weather/wind/pacing lookups. Start time (HH:MM) on events when set. Indoor flag passthrough.
 
-Version 3.82 - Interval-level data: intervals.json with per-segment metrics for structured sessions.
-  Pre-filter via interval_summary + sport family whitelist (cycling, run, ski, rowing, swim).
-  Incremental cache (72h scan, 7-day retention, first-run backfill). has_intervals flag in latest.json.
+Version 3.94 - Phase detection: live weekly rows from activities_28d. Replaces v3.89 single-week
+  overlay with full 4-week bucketing — all weekly rows (TSS, primary_sport_tss, hard_days) computed
+  fresh every run. CTL/ATL enriched from history.json as stable background. Eliminates the entire
+  class of stale-row bugs (previously, completed weeks snapshotted mid-progress stayed frozen until
+  history.json regeneration). recent_activities widened from 7d to 28d (activities_extended) so
+  latest.json always covers the full window between history.json regenerations.
 
-Version 3.81 - Feel removed from readiness decision signal chain.
-  Feel is a retrospective activity-level field, not a morning readiness marker.
-  A feel value from days ago should not drive today's go/modify/skip recommendation.
-  - Removed _get_latest_feel() method
-  - Removed feel signal from readiness_decision.signals (7 → 6 signals: HRV, RHR, Sleep, ACWR, RI, TSB)
-  - Removed feel-only case from _build_modification()
-  - Feel remains in: activity data, weekly history tier, all report templates (retrospective/trend use)
+Version 3.93 - Route & Terrain Intelligence: GPX/TCX attachments on events parsed into routes.json.
+  Climb/descent detection, course character, elevation_per_km. Cached by attachment ID.
+  has_terrain flag on planned workouts and race calendar entries. GPX + TCX via stdlib
+  xml.etree.ElementTree (zero new deps). FIT format stubbed. Elevation smoothing (50m window).
+  Start trimming (2km local gradient) prevents flat approaches inflating climbs. Course character
+  uses elevation_per_km + climb category upgrades. Hash-based cache invalidation:
+  script_hash (SHA256 of sync.py) on routes.json, intervals.json, history.json — any code change
+  auto-invalidates cached files on next run. activity_types order-preserving dedup (was set()).
 
-Version 3.80 - --update orphan cleanup: detects and removes local files no longer in the upstream
-  manifest (e.g. files moved or deleted in a repo restructure), and standalone empty directories.
-  Runs after the pull step, shows orphaned items with [removed from repo] / [empty directory] tags,
-  prompts for confirmation. Empty parent directories cleaned up automatically.
-  Skips manifest.json, .tmp files, and hidden files/directories.
+Version 3.92 - Local-Sync: --update auto-clears history.json + intervals.json when sync.py
+  changes. Prevents stale-schema bugs. Full data restored after 2 sync cycles.
 
-Version 3.79 - Feel/RPE fix: feel removed from daily rows, RPE added to weekly tier, report templates updated
-Version 3.78 - Week alignment fix, log rotation, update checker cleanup
-Versions 3.7–3.77 — Phase detection v2, readiness decision, HRRc, week alignment, local sync pipeline, hash manifest
-Versions 3.6.0–3.6.5 — EF tracking, HR zone fallback, workout summary parser, real IDs, coach notes
-Versions 3.5.0–3.5.1 — Race calendar, HRV outlier filter
-Versions 3.3.0–3.4.1 — Durability, TID, alerts, history.json, smart fitness metrics
+Version 3.91 - Sustainability Profile: per-sport power/HR sustainability table for race estimation.
+  42-day window, sport-filtered curves (power-curves + hr-curves per sport family). Cycling gets
+  three model layers (actual MMP, Coggan duration factors, CP/W' model) with model_divergence_pct.
+  Non-cycling power sports get actual MMP only. Indoor/outdoor source flag for cycling (max of
+  Ride vs VirtualRide). Per-anchor: watts, W/kg, HR, %LTHR, source, date, recency. Block-level:
+  coverage_ratio, ftp_staleness_days (cycling only). Weight fallback chain. capability namespace.
+
+Version 3.90 - Sleep signal simplified: hours only. Sleep quality/score removed from readiness
+  classification — they are device-derived composites of HRV + HR during sleep, already captured as
+  independent signals. Quality still passes through in signal output as coaching context.
+
+Version 3.89 - Phase detection current-week patch: overlay fresh CTL/TSS/hard_days/ACWR/monotony
+  onto the current week's weekly_180d row at runtime, so phase classification always uses live data
+  instead of stale history.json snapshot (up to 28 days old). Fixes phase flip caused by stale
+  current-week row. Runtime only — does not write back to history.json. Respects week_start_day.
+
+Version 3.88 - HR Curve Delta: max sustained HR comparison at 4 anchor durations (60s/300s/1200s/3600s)
+  across two 28-day windows. New hr-curves API call (no sport filter — HR is cross-sport physiological).
+  Data key is 'values' (not 'watts'). Rotation index: mean(60s,300s) - mean(1200s,3600s).
+  Same capability namespace, same guards, same pattern as power_curve_delta.
+
+Version 3.87–3.85 — Power curve delta, primary sport TSS filtering for phase detection, wellness field expansion
+Version 3.84–3.80 — Activity description passthrough, per-sport zone preference, interval-level data, feel removed from readiness, orphan cleanup
+Versions 3.7–3.79 — Phase detection v2, readiness decision, HRRc, week alignment, local sync pipeline, hash manifest, feel/RPE fix
+Versions 3.3.0–3.6.5 — EF tracking, HR zone fallback, race calendar, durability, TID, alerts, history.json, smart fitness metrics
 """
 
 import requests
@@ -75,6 +93,7 @@ import shutil
 import atexit
 from collections import defaultdict
 from pathlib import Path
+import xml.etree.ElementTree as ET
 
 
 class IntervalsSync:
@@ -86,15 +105,33 @@ class IntervalsSync:
     HISTORY_FILE = "history.json"
     UPSTREAM_REPO = "CrankAddict/section-11"
     CHANGELOG_FILE = "changelog.json"
-    VERSION = "3.86"
+    VERSION = "3.99"
     INTERVALS_FILE = "intervals.json"
+    ROUTES_FILE = "routes.json"
 
     # Sport families eligible for interval-level data extraction.
     # Only structured sessions in these families are worth fetching
     # per-interval detail for. Walk, strength, yoga, other excluded.
     INTERVAL_SPORT_FAMILIES = {"cycling", "run", "ski", "rowing", "swim"}
     INTERVAL_SCAN_HOURS = 72    # Only scan recent activities for new intervals
-    INTERVAL_RETENTION_DAYS = 8  # Keep cached intervals for 8 days (survives schedule drift)
+    INTERVAL_RETENTION_DAYS = 14  # Keep cached intervals for 14 days (DFA drift analysis window)
+
+    # --- DFA a1 Protocol (v3.99) ---
+    # Per-session DFA a1 rollups computed from streams when AlphaHRV Connect IQ field
+    # has written to the FIT and Intervals.icu surfaces dfa_a1 + artifacts streams.
+    # Threshold mapping (1.0 / 0.5) is cycling-validated (Rowlands 2017, Gronwald 2020,
+    # Mateo-March 2023). Other sports get rollups but validated=False.
+    DFA_LT1 = 1.0                       # DFA a1 above this = below LT1 (true aerobic)
+    DFA_LT2 = 0.5                       # DFA a1 below this = above LT2 (supra-threshold)
+    DFA_LT1_BAND = 0.05                 # crossing window for LT1 estimate: 0.95-1.05
+    DFA_LT2_BAND = 0.05                 # crossing window for LT2 estimate: 0.45-0.55
+    DFA_MIN_CROSSING_DWELL_SECS = 60    # min seconds in crossing band to emit threshold estimate
+    DFA_ARTIFACT_MAX_PCT = 5.0          # drop seconds where artifacts % exceeds this
+    DFA_MIN_VALID_VALUE = 0.01          # exclude AlphaHRV sentinel zeros
+    DFA_MIN_DURATION_SECS = 1200        # 20 min minimum valid data for sufficient=True
+    DFA_DRIFT_INTERPRETABLE_MAX_LT2_PCT = 15.0  # if >15% time above LT2, drift is structural noise
+    DFA_TRAILING_WINDOW_N = 7           # latest N AlphaHRV sessions for trailing window (≥6 needed for 'high' confidence)
+    DFA_VALIDATED_SPORTS = {"cycling"}  # sports where 1.0/0.5 mapping is literature-validated
 
     # Sport family mapping for per-sport monotony calculation
     # Multi-sport athletes get inflated total monotony when cross-training
@@ -128,6 +165,44 @@ class IntervalsSync:
     # Default Monday (ISO). Override via .sync_config.json, WEEK_START env var, or --week-start CLI arg.
     WEEK_START_DAY = 0
     
+    # --- Sustainability Profile (v3.91) ---
+    # Race estimation lookup table: what power/HR is sustainable at each duration?
+    SUSTAINABILITY_WINDOW_DAYS = 42
+    
+    # Per-sport anchor durations (seconds). Cycling covers long events; SkiErg/rowing are shorter.
+    SUSTAINABILITY_ANCHORS = {
+        "cycling": {"300s": 300, "600s": 600, "1200s": 1200, "1800s": 1800, "3600s": 3600, "5400s": 5400, "7200s": 7200},
+        "ski":     {"60s": 60, "120s": 120, "300s": 300, "600s": 600, "1200s": 1200, "1800s": 1800},
+        "rowing":  {"60s": 60, "120s": 120, "300s": 300, "600s": 600, "1200s": 1200, "1800s": 1800},
+    }
+    
+    # Coggan duration factors — midpoints of published ranges. Cycling only.
+    # Source: Allen & Coggan, Training and Racing with a Power Meter (3rd ed.)
+    # Sustainable power as fraction of FTP by duration.
+    COGGAN_DURATION_FACTORS = {
+        300:  1.06,   # 5min:  ~106% FTP (range 100-112%)
+        600:  0.97,   # 10min: ~97% FTP (range 94-100%)
+        1200: 0.93,   # 20min: ~93% FTP (range 91-95%)
+        1800: 0.90,   # 30min: ~90% FTP (range 88-93%)
+        3600: 0.86,   # 60min: ~86% FTP (range 83-90%)
+        5400: 0.82,   # 90min: ~82% FTP (range 78-85%)
+        7200: 0.78,   # 2h:    ~78% FTP (range 75-82%)
+    }
+    
+    # Activity types for sport-filtered power-curves fetch
+    SUSTAINABILITY_POWER_TYPES = {
+        "cycling": ["Ride", "VirtualRide"],
+        "ski":     ["NordicSki", "VirtualSki"],
+        "rowing":  ["Rowing"],
+    }
+    
+    # Activity types for sport-filtered hr-curves fetch
+    SUSTAINABILITY_HR_TYPES = {
+        "cycling": ["Ride", "VirtualRide"],
+        "ski":     ["NordicSki", "VirtualSki"],
+        "rowing":  ["Rowing"],
+    }
+    
     def __init__(self, athlete_id: str, intervals_api_key: str, github_token: str = None, 
                  github_repo: str = None, debug: bool = False, week_start_day: int = None,
                  zone_preference: dict = None):
@@ -140,6 +215,19 @@ class IntervalsSync:
         self.data_dir = Path.cwd()  # Data files (history.json, ftp_history.json) write to caller's working directory
         self.week_start_day = week_start_day if week_start_day is not None else self.WEEK_START_DAY
         self.zone_preference = zone_preference or {}  # {"run": "hr", "cycling": "power", ...}
+        self._cached_script_hash = None  # lazy-computed
+    
+    @property
+    def script_hash(self) -> str:
+        """SHA256 of sync.py itself. Used to invalidate cached files on any code change."""
+        if self._cached_script_hash is None:
+            script_path = Path(__file__).resolve()
+            h = hashlib.sha256()
+            with open(script_path, 'rb') as f:
+                for chunk in iter(lambda: f.read(8192), b''):
+                    h.update(chunk)
+            self._cached_script_hash = h.hexdigest()[:12]  # short hash, sufficient for change detection
+        return self._cached_script_hash
     
     def _intervals_get(self, endpoint: str, params: Dict = None) -> Dict:
         """Fetch from Intervals.icu API"""
@@ -191,15 +279,240 @@ class IntervalsSync:
             if self.debug:
                 print(f"    ⚠️  Could not fetch intervals for {activity_id}: {e}")
             return []
+
+    def _fetch_activity_streams(self, activity_id: str, types: List[str]) -> Dict[str, List]:
+        """
+        Fetch per-second streams for a single activity.
+
+        Generic streams fetcher for any rollup metric that needs second-by-second data.
+        Returns a dict keyed by stream type, value is the data list. Streams not present
+        in the response are simply absent from the returned dict.
+
+        Returns empty dict on 404/exception. Many activities won't have AlphaHRV-derived
+        streams (no Connect IQ field installed, sourced via Strava which strips dev fields,
+        wrong sport, etc.) — that's expected and not an error.
+
+        Note on cache invalidation: streams are fetched once per activity. If the underlying
+        FIT is reprocessed in AlphaHRV's mobile app and re-uploaded, the cached rollup will
+        be stale. Rare in practice; workaround is to delete intervals.json.
+        """
+        url = f"{self.INTERVALS_BASE_URL}/activity/{activity_id}/streams"
+        headers = {
+            "Authorization": f"Basic {self.intervals_auth}",
+            "Accept": "application/json"
+        }
+        try:
+            response = requests.get(url, headers=headers)
+            response.raise_for_status()
+            data = response.json()
+            if not isinstance(data, list):
+                return {}
+            wanted = set(types)
+            out = {}
+            for s in data:
+                stype = s.get("type")
+                if stype in wanted:
+                    sdata = s.get("data")
+                    if isinstance(sdata, list):
+                        out[stype] = sdata
+            return out
+        except Exception as e:
+            if self.debug:
+                print(f"    ⚠️  Could not fetch streams for {activity_id}: {e}")
+            return {}
+
+    def _compute_dfa_block(self, streams: Dict[str, List]) -> Optional[Dict]:
+        """
+        Compute per-session DFA a1 rollup from raw streams.
+
+        Inputs: streams dict from _fetch_activity_streams, expected keys:
+          dfa_a1, artifacts, heartrate, watts (heartrate/watts optional but degrade output)
+
+        Returns the dfa block dict, or None if dfa_a1 stream is absent entirely
+        (i.e. AlphaHRV did not record on this activity).
+
+        When dfa_a1 IS present but data is insufficient to interpret (too short,
+        too noisy), returns a block with quality.sufficient=False so the AI can
+        distinguish "no AlphaHRV" (None → no dfa key in output) from "AlphaHRV
+        ran but unusable" (block present, sufficient=False).
+
+        Filtering rules (in order):
+          1. Drop seconds where dfa_a1 < DFA_MIN_VALID_VALUE (AlphaHRV sentinel zeros)
+          2. Drop seconds where artifacts > DFA_ARTIFACT_MAX_PCT (5%, Altini convention)
+        Both filters applied jointly to dfa_a1, hr, watts so they stay aligned.
+        """
+        dfa_stream = streams.get("dfa_a1")
+        if not dfa_stream:
+            return None  # no AlphaHRV recording on this activity
+
+        artifacts_stream = streams.get("artifacts") or [0.0] * len(dfa_stream)
+        hr_stream = streams.get("heartrate") or [None] * len(dfa_stream)
+        watts_stream = streams.get("watts") or [None] * len(dfa_stream)
+
+        # Align all streams to dfa_a1 length (defensive — should already match)
+        n = len(dfa_stream)
+        if len(artifacts_stream) != n:
+            artifacts_stream = (artifacts_stream + [0.0] * n)[:n]
+        if len(hr_stream) != n:
+            hr_stream = (hr_stream + [None] * n)[:n]
+        if len(watts_stream) != n:
+            watts_stream = (watts_stream + [None] * n)[:n]
+
+        # Apply filters
+        valid_dfa, valid_hr, valid_watts = [], [], []
+        artifact_sum = 0.0
+        artifact_count = 0
+        for i in range(n):
+            d = dfa_stream[i]
+            a = artifacts_stream[i]
+            if a is not None:
+                artifact_sum += a
+                artifact_count += 1
+            if d is None or d < self.DFA_MIN_VALID_VALUE:
+                continue
+            if a is not None and a > self.DFA_ARTIFACT_MAX_PCT:
+                continue
+            valid_dfa.append(d)
+            valid_hr.append(hr_stream[i])
+            valid_watts.append(watts_stream[i])
+
+        valid_secs = len(valid_dfa)
+        total_secs = n
+        valid_pct = round(100.0 * valid_secs / total_secs, 1) if total_secs else 0.0
+        artifact_rate_avg = round(artifact_sum / artifact_count, 2) if artifact_count else None
+        sufficient = valid_secs >= self.DFA_MIN_DURATION_SECS
+
+        quality = {
+            "valid_secs": valid_secs,
+            "total_secs": total_secs,
+            "valid_pct": valid_pct,
+            "artifact_rate_avg": artifact_rate_avg,
+            "sufficient": sufficient,
+        }
+
+        if not sufficient:
+            # Emit minimal block — AI sees AlphaHRV ran but data unusable
+            return {
+                "avg": None,
+                "p25": None, "p50": None, "p75": None,
+                "tiz_below_lt1": None,
+                "tiz_lt1_transition": None,
+                "tiz_transition_lt2": None,
+                "tiz_above_lt2": None,
+                "drift": None,
+                "lt1_crossing": None,
+                "lt2_crossing": None,
+                "quality": quality,
+            }
+
+        # Sufficient — full rollup
+        sorted_dfa = sorted(valid_dfa)
+        avg = round(sum(valid_dfa) / valid_secs, 3)
+        p25 = round(sorted_dfa[valid_secs // 4], 3)
+        p50 = round(sorted_dfa[valid_secs // 2], 3)
+        p75 = round(sorted_dfa[(valid_secs * 3) // 4], 3)
+
+        # 4-band TIZ with HR/power cross-references per band
+        def _band_stats(predicate):
+            secs = 0
+            hr_sum, hr_n = 0, 0
+            w_sum, w_n = 0, 0
+            for i in range(valid_secs):
+                if predicate(valid_dfa[i]):
+                    secs += 1
+                    if valid_hr[i] is not None:
+                        hr_sum += valid_hr[i]
+                        hr_n += 1
+                    if valid_watts[i] is not None:
+                        w_sum += valid_watts[i]
+                        w_n += 1
+            if secs == 0:
+                return None
+            return {
+                "secs": secs,
+                "pct": round(100.0 * secs / valid_secs, 1),
+                "avg_hr": round(hr_sum / hr_n) if hr_n else None,
+                "avg_watts": round(w_sum / w_n) if w_n else None,
+            }
+
+        tiz_below_lt1 = _band_stats(lambda d: d > self.DFA_LT1)
+        tiz_lt1_transition = _band_stats(lambda d: 0.75 <= d <= self.DFA_LT1)
+        tiz_transition_lt2 = _band_stats(lambda d: self.DFA_LT2 <= d < 0.75)
+        tiz_above_lt2 = _band_stats(lambda d: d < self.DFA_LT2)
+
+        # Drift: first-third vs last-third of valid data
+        third = valid_secs // 3
+        if third >= 60:  # need at least 60s per third for meaningful drift
+            first_third = valid_dfa[:third]
+            last_third = valid_dfa[-third:]
+            first_avg = round(sum(first_third) / len(first_third), 3)
+            last_avg = round(sum(last_third) / len(last_third), 3)
+            drift_delta = round(last_avg - first_avg, 3)
+            # Drift is interpretable only on steady-state work — if significant time
+            # was spent above LT2, the session has hard intervals and drift is structural
+            above_lt2_pct = tiz_above_lt2["pct"] if tiz_above_lt2 else 0.0
+            interpretable = above_lt2_pct <= self.DFA_DRIFT_INTERPRETABLE_MAX_LT2_PCT
+            drift = {
+                "first_third_avg": first_avg,
+                "last_third_avg": last_avg,
+                "delta": drift_delta,
+                "interpretable": interpretable,
+            }
+        else:
+            drift = None
+
+        # LT1 / LT2 crossing-band estimates (the actually-coachable threshold candidates)
+        def _crossing_stats(center, band):
+            lo, hi = center - band, center + band
+            secs = 0
+            hr_sum, hr_n = 0, 0
+            w_sum, w_n = 0, 0
+            for i in range(valid_secs):
+                if lo <= valid_dfa[i] <= hi:
+                    secs += 1
+                    if valid_hr[i] is not None:
+                        hr_sum += valid_hr[i]
+                        hr_n += 1
+                    if valid_watts[i] is not None:
+                        w_sum += valid_watts[i]
+                        w_n += 1
+            if secs < self.DFA_MIN_CROSSING_DWELL_SECS:
+                return {"secs_in_band": secs, "avg_hr": None, "avg_watts": None}
+            return {
+                "secs_in_band": secs,
+                "avg_hr": round(hr_sum / hr_n) if hr_n else None,
+                "avg_watts": round(w_sum / w_n) if w_n else None,
+            }
+
+        lt1_crossing = _crossing_stats(self.DFA_LT1, self.DFA_LT1_BAND)
+        lt2_crossing = _crossing_stats(self.DFA_LT2, self.DFA_LT2_BAND)
+
+        return {
+            "avg": avg,
+            "p25": p25, "p50": p50, "p75": p75,
+            "tiz_below_lt1": tiz_below_lt1,
+            "tiz_lt1_transition": tiz_lt1_transition,
+            "tiz_transition_lt2": tiz_transition_lt2,
+            "tiz_above_lt2": tiz_above_lt2,
+            "drift": drift,
+            "lt1_crossing": lt1_crossing,
+            "lt2_crossing": lt2_crossing,
+            "quality": quality,
+        }
+
     
     def _generate_intervals(self, activities: List[Dict]) -> set:
         """
         Generate intervals.json with incremental caching.
         
-        First run (no cache): scans full retention window (7 days) to backfill.
+        First run (no cache): scans full retention window (14 days) to backfill.
         Subsequent runs: scans recent activities (72h) for new sessions only.
         Fetches per-interval data for new qualifying activities, merges
-        with cached data, and purges entries older than 7 days.
+        with cached data, and purges entries older than 14 days.
+
+        DFA a1 (v3.99): for each new qualifying activity, also fetches streams
+        (dfa_a1, artifacts, heartrate, watts) and computes a per-session dfa block.
+        Attached to the activity entry as 'dfa' key when AlphaHRV recorded.
         
         Returns set of activity IDs that have interval data (for has_intervals flag).
         """
@@ -214,22 +527,32 @@ class IntervalsSync:
             try:
                 with open(intervals_path, 'r') as f:
                     cached = json.load(f)
+                # Invalidate cache if sync.py changed
+                if cached.get("script_hash") != self.script_hash:
+                    if self.debug:
+                        print(f"    🔄 intervals.json stale (sync.py changed), re-scanning all")
+                    cached = {"activities": []}
+                    first_run = True
             except Exception as e:
                 if self.debug:
                     print(f"    ⚠️  Could not read intervals.json: {e}")
                 cached = {"activities": []}
                 first_run = True
         
-        # First run: backfill full retention window (7 days). Subsequent: scan 72h only.
+        # First run: backfill full retention window (14 days). Subsequent: scan 72h only.
         if first_run:
             scan_cutoff = retention_cutoff
-            print("    First run — scanning 7 days for interval data...")
+            print("    First run — scanning 14 days for interval data...")
         else:
             scan_cutoff = (now - timedelta(hours=self.INTERVAL_SCAN_HOURS)).strftime("%Y-%m-%d")
         
         cached_ids = {a["activity_id"] for a in cached.get("activities", [])}
         
-        # Filter activities to scan window + sport family whitelist + interval_summary non-null
+        # Filter activities to scan window + sport family whitelist.
+        # NOTE (v3.99): interval_summary requirement removed. Pure endurance rides
+        # without structured intervals are exactly where DFA a1 is most valuable
+        # (steady-state drift detection, LT1 calibration). We attempt both intervals
+        # AND streams fetches; entry is emitted if either yields data.
         candidates = []
         for act in activities:
             date_str = act.get("start_date_local", "")[:10]
@@ -238,8 +561,6 @@ class IntervalsSync:
             act_type = act.get("type", "")
             family = self.SPORT_FAMILIES.get(act_type)
             if family not in self.INTERVAL_SPORT_FAMILIES:
-                continue
-            if not act.get("interval_summary"):
                 continue
             act_id = act.get("id")
             if act_id in cached_ids:
@@ -250,12 +571,12 @@ class IntervalsSync:
         new_entries = []
         for act in candidates:
             act_id = act.get("id")
-            print(f"    Fetching intervals for {act.get('name', act_id)}...")
+            print(f"    Fetching intervals/streams for {act.get('name', act_id)}...")
             raw_intervals = self._fetch_activity_intervals(act_id)
-            if not raw_intervals:
-                continue
-            
-            # Format interval segments
+            # raw_intervals may be empty for unstructured endurance rides — that's fine,
+            # we still attempt streams below for DFA a1.
+
+            # Format interval segments (empty list if no structured intervals exist)
             segments = []
             for iv in raw_intervals:
                 segment = {
@@ -271,20 +592,46 @@ class IntervalsSync:
                     "w_bal": iv.get("w_bal"),
                     "training_load": iv.get("training_load"),
                     "decoupling": iv.get("decoupling"),
+                    # Per-interval avg_dfa_a1 is the Intervals.icu-computed value (UNFILTERED).
+                    # The session-level dfa.avg below IS artifact-filtered. Don't try to
+                    # reconcile the two — they use different denominators by design.
+                    "avg_dfa_a1": iv.get("average_dfa_a1"),
                 }
                 # Strip None values to keep output lean
                 segment = {k: v for k, v in segment.items() if v is not None}
                 segments.append(segment)
-            
-            if segments:
-                new_entries.append({
+
+            # DFA a1 session-level rollup (v3.99) — fetch streams, compute block.
+            # None means no AlphaHRV recording on this activity (skip dfa key entirely).
+            # A block with quality.sufficient=False means AlphaHRV ran but data unusable.
+            dfa_block = None
+            try:
+                streams = self._fetch_activity_streams(
+                    act_id, ["dfa_a1", "artifacts", "heartrate", "watts"]
+                )
+                if streams.get("dfa_a1"):
+                    dfa_block = self._compute_dfa_block(streams)
+            except Exception as e:
+                if self.debug:
+                    print(f"    ⚠️  DFA a1 computation failed for {act_id}: {e}")
+                dfa_block = None
+
+            # Emit entry if EITHER segments OR dfa block exists.
+            # Pure endurance rides with AlphaHRV: no segments, has dfa.
+            # Structured intervals without AlphaHRV: has segments, no dfa.
+            # Both: full entry. Neither: skip silently.
+            if segments or dfa_block is not None:
+                entry = {
                     "activity_id": act_id,
                     "date": act.get("start_date_local", "")[:10],
                     "type": act.get("type", "Unknown"),
                     "name": act.get("name", ""),
                     "interval_summary": act.get("interval_summary"),
                     "intervals": segments
-                })
+                }
+                if dfa_block is not None:
+                    entry["dfa"] = dfa_block
+                new_entries.append(entry)
         
         if new_entries:
             print(f"    ✅ Fetched intervals for {len(new_entries)} new activit{'y' if len(new_entries) == 1 else 'ies'}")
@@ -297,6 +644,7 @@ class IntervalsSync:
         self._intervals_data = {
             "generated_at": now.isoformat(),
             "version": self.VERSION,
+            "script_hash": self.script_hash,
             "scan_hours": self.INTERVAL_SCAN_HOURS,
             "retention_days": self.INTERVAL_RETENTION_DAYS,
             "activities": all_entries
@@ -304,6 +652,549 @@ class IntervalsSync:
         
         # Return all activity IDs that have interval data
         return {a["activity_id"] for a in all_entries}
+    
+    # ── Route & Terrain Intelligence (v3.93) ─────────────────────────────
+    
+    def _generate_terrain(self, events: List[Dict]) -> Dict:
+        """
+        Parse GPX/TCX attachments on events into routes.json.
+        
+        Scans all events for attachments, downloads and parses route files,
+        produces terrain_summary with climb/descent detection. Caches by
+        attachment ID to avoid re-downloading unchanged files.
+        
+        Returns dict of event_id → terrain_summary for has_terrain flags.
+        """
+        routes_path = self.data_dir / self.ROUTES_FILE
+        
+        # Load existing cache
+        cached = {"events": []}
+        if routes_path.exists():
+            try:
+                with open(routes_path, 'r') as f:
+                    cached = json.load(f)
+                # Invalidate cache if sync.py changed (schema may differ)
+                if cached.get("script_hash") != self.script_hash:
+                    if self.debug:
+                        print(f"    🔄 routes.json stale (sync.py changed), re-parsing all")
+                    cached = {"events": []}
+            except Exception as e:
+                if self.debug:
+                    print(f"    ⚠️  Could not read routes.json: {e}")
+                cached = {"events": []}
+        
+        # Build lookup of cached attachment_id → terrain entry
+        cached_by_attachment = {}
+        for entry in cached.get("events", []):
+            aid = entry.get("attachment_id")
+            if aid:
+                cached_by_attachment[aid] = entry
+        
+        # Scan events for attachments
+        new_entries = []
+        for evt in events:
+            attachments = evt.get("attachments")
+            if not attachments:
+                continue
+            
+            evt_id = evt.get("id")
+            evt_name = evt.get("name", "Unnamed")
+            evt_date = (evt.get("start_date_local") or "")[:10]
+            evt_category = evt.get("category", "")
+            
+            # Start time: HH:MM when set (not midnight)
+            evt_start_time = None
+            raw_start = evt.get("start_date_local") or ""
+            if "T" in raw_start:
+                time_part = raw_start.split("T")[1][:5]
+                if time_part != "00:00":
+                    evt_start_time = time_part
+            
+            for att in attachments:
+                att_id = att.get("id")
+                filename = att.get("filename", "")
+                url = att.get("url", "")
+                
+                if not att_id or not url:
+                    continue
+                
+                # Skip non-route files by extension
+                ext = filename.lower().rsplit(".", 1)[-1] if "." in filename else ""
+                if ext not in ("gpx", "tcx", "fit"):
+                    continue
+                
+                # Check cache — reuse if attachment ID unchanged
+                if att_id in cached_by_attachment:
+                    entry = cached_by_attachment[att_id].copy()
+                    # Update event metadata (name/date may change)
+                    entry["event_id"] = evt_id
+                    entry["event_name"] = evt_name
+                    entry["event_date"] = evt_date
+                    entry["category"] = evt_category
+                    if evt_start_time:
+                        entry["start_time"] = evt_start_time
+                    else:
+                        entry.pop("start_time", None)
+                    new_entries.append(entry)
+                    if self.debug:
+                        print(f"    ✓ Cached terrain: {evt_name} ({filename})")
+                    continue
+                
+                # Download and parse
+                if self.debug:
+                    print(f"    ↓ Downloading: {filename} for {evt_name}")
+                
+                terrain_summary = self._download_and_parse_route(url, filename)
+                
+                entry = {
+                    "event_id": evt_id,
+                    "event_name": evt_name,
+                    "event_date": evt_date,
+                    "category": evt_category,
+                    "attachment_id": att_id,
+                    "filename": filename,
+                    "terrain_summary": terrain_summary
+                }
+                if evt_start_time:
+                    entry["start_time"] = evt_start_time
+                new_entries.append(entry)
+        
+        # Build routes.json
+        self._routes_data = {
+            "generated_at": datetime.now().isoformat(),
+            "sync_version": self.VERSION,
+            "script_hash": self.script_hash,
+            "events": new_entries
+        }
+        
+        # Return event_id → True for has_terrain flags
+        return {e["event_id"] for e in new_entries if e.get("terrain_summary")}
+    
+    def _download_and_parse_route(self, url: str, filename: str) -> Optional[Dict]:
+        """Download a route file attachment and parse it into a terrain_summary."""
+        try:
+            response = requests.get(url, timeout=30)
+            if response.status_code != 200:
+                return {"error": f"download failed (HTTP {response.status_code})"}
+            content = response.content
+        except Exception as e:
+            return {"error": f"download failed: {str(e)[:100]}"}
+        
+        if not content or len(content) < 50:
+            return {"error": "empty or invalid file"}
+        
+        return self._parse_route_file(content, filename)
+    
+    def _parse_route_file(self, content: bytes, filename: str) -> Optional[Dict]:
+        """Detect route file format and dispatch to parser."""
+        text_start = content[:200].decode("utf-8", errors="ignore").strip()
+        
+        if text_start.startswith("<?xml") or text_start.startswith("<gpx") or "<gpx" in text_start[:500]:
+            return self._parse_gpx(content)
+        elif "<TrainingCenterDatabase" in text_start or "TrainingCenterDatabase" in content[:500].decode("utf-8", errors="ignore"):
+            return self._parse_tcx(content)
+        elif content[:2] == b'.F' or content[:4] == b'\x0e\x10\xd9\x07':
+            # FIT binary magic bytes
+            return {"error": "FIT format not yet supported"}
+        else:
+            # Fall back to extension
+            ext = filename.lower().rsplit(".", 1)[-1] if "." in filename else ""
+            if ext == "gpx":
+                return self._parse_gpx(content)
+            elif ext == "tcx":
+                return self._parse_tcx(content)
+            elif ext == "fit":
+                return {"error": "FIT format not yet supported"}
+            return {"error": f"unrecognized route file format"}
+    
+    def _parse_gpx(self, content: bytes) -> Optional[Dict]:
+        """Parse GPX file into trackpoints, then analyze terrain."""
+        try:
+            root = ET.fromstring(content)
+        except ET.ParseError as e:
+            return {"error": f"GPX parse error: {str(e)[:100]}"}
+        
+        # Handle namespace
+        ns = ""
+        tag = root.tag
+        if "}" in tag:
+            ns = tag[:tag.index("}") + 1]
+        
+        trackpoints = []
+        for trkpt in root.iter(f"{ns}trkpt"):
+            lat = trkpt.get("lat")
+            lon = trkpt.get("lon")
+            ele_elem = trkpt.find(f"{ns}ele")
+            if lat and lon:
+                tp = {"lat": float(lat), "lon": float(lon)}
+                if ele_elem is not None and ele_elem.text:
+                    try:
+                        tp["ele"] = float(ele_elem.text)
+                    except ValueError:
+                        pass
+                trackpoints.append(tp)
+        
+        if len(trackpoints) < 2:
+            return {"error": "insufficient trackpoints"}
+        
+        return self._analyze_terrain(trackpoints)
+    
+    def _parse_tcx(self, content: bytes) -> Optional[Dict]:
+        """Parse TCX file into trackpoints, then analyze terrain."""
+        try:
+            root = ET.fromstring(content)
+        except ET.ParseError as e:
+            return {"error": f"TCX parse error: {str(e)[:100]}"}
+        
+        # Handle namespace
+        ns = ""
+        tag = root.tag
+        if "}" in tag:
+            ns = tag[:tag.index("}") + 1]
+        
+        trackpoints = []
+        for tp_elem in root.iter(f"{ns}Trackpoint"):
+            pos = tp_elem.find(f"{ns}Position")
+            if pos is None:
+                continue
+            lat_elem = pos.find(f"{ns}LatitudeDegrees")
+            lon_elem = pos.find(f"{ns}LongitudeDegrees")
+            alt_elem = tp_elem.find(f"{ns}AltitudeMeters")
+            
+            if lat_elem is not None and lon_elem is not None:
+                try:
+                    tp = {"lat": float(lat_elem.text), "lon": float(lon_elem.text)}
+                    if alt_elem is not None and alt_elem.text:
+                        tp["ele"] = float(alt_elem.text)
+                    trackpoints.append(tp)
+                except (ValueError, TypeError):
+                    continue
+        
+        if len(trackpoints) < 2:
+            return {"error": "insufficient trackpoints"}
+        
+        return self._analyze_terrain(trackpoints)
+    
+    @staticmethod
+    def _haversine(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+        """Haversine distance in meters between two GPS coordinates."""
+        R = 6371000  # Earth radius in meters
+        phi1, phi2 = math.radians(lat1), math.radians(lat2)
+        dphi = math.radians(lat2 - lat1)
+        dlam = math.radians(lon2 - lon1)
+        a = math.sin(dphi / 2) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlam / 2) ** 2
+        return R * 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    
+    def _analyze_terrain(self, trackpoints: List[Dict]) -> Dict:
+        """
+        Analyze trackpoints into terrain_summary.
+        
+        Computes: total distance, total elevation gain, climb/descent detection,
+        course character, elevation_per_km. Elevation smoothed with rolling
+        window (~50m) before gradient calculation to reduce GPS jitter.
+        """
+        has_elevation = any("ele" in tp for tp in trackpoints)
+        
+        # Compute cumulative distance and collect elevation
+        cum_dist = [0.0]  # cumulative distance in meters
+        for i in range(1, len(trackpoints)):
+            d = self._haversine(
+                trackpoints[i - 1]["lat"], trackpoints[i - 1]["lon"],
+                trackpoints[i]["lat"], trackpoints[i]["lon"]
+            )
+            cum_dist.append(cum_dist[-1] + d)
+        
+        total_distance_m = cum_dist[-1]
+        total_distance_km = round(total_distance_m / 1000, 1)
+        
+        if not has_elevation or total_distance_m < 100:
+            return {
+                "source": "gpx_attachment" if has_elevation else "gpx_attachment_no_elevation",
+                "total_distance_km": total_distance_km,
+                "total_elevation_m": 0,
+                "elevation_per_km": 0.0,
+                "course_character": "flat",
+                "climbs": [],
+                "descents": []
+            } if not has_elevation else None
+        
+        # Smooth elevation: rolling window ~50m of distance
+        raw_ele = [tp.get("ele", 0.0) for tp in trackpoints]
+        smoothed_ele = list(raw_ele)  # copy
+        SMOOTH_WINDOW_M = 50.0
+        
+        for i in range(len(trackpoints)):
+            # Find indices within ±SMOOTH_WINDOW_M/2 of current point
+            lo, hi = i, i
+            while lo > 0 and cum_dist[i] - cum_dist[lo - 1] < SMOOTH_WINDOW_M / 2:
+                lo -= 1
+            while hi < len(trackpoints) - 1 and cum_dist[hi + 1] - cum_dist[i] < SMOOTH_WINDOW_M / 2:
+                hi += 1
+            if lo < hi:
+                smoothed_ele[i] = sum(raw_ele[lo:hi + 1]) / (hi - lo + 1)
+        
+        # Total elevation gain (from smoothed)
+        total_gain = 0.0
+        for i in range(1, len(smoothed_ele)):
+            diff = smoothed_ele[i] - smoothed_ele[i - 1]
+            if diff > 0:
+                total_gain += diff
+        total_elevation_m = round(total_gain)
+        
+        elevation_per_km = round(total_elevation_m / total_distance_km, 1) if total_distance_km > 0 else 0.0
+        
+        # Detect climbs and descents
+        # Entry gradient is low (1.5%) to catch long gradual climbs like Brocken.
+        # Post-filter by elevation gain: segments with <100m gain AND <3% avg are
+        # filtered out to avoid detecting gentle inclines as "climbs."
+        raw_climbs = self._detect_segments(trackpoints, cum_dist, smoothed_ele, min_gradient=1.5, min_distance=500.0, ascending=True)
+        climbs = [c for c in raw_climbs if c["elevation_m"] >= 100 or c["avg_gradient_pct"] >= 3.0]
+        raw_descents = self._detect_segments(trackpoints, cum_dist, smoothed_ele, min_gradient=1.5, min_distance=500.0, ascending=False)
+        descents = [d for d in raw_descents if abs(d["elevation_m"]) >= 100 or abs(d["avg_gradient_pct"]) >= 3.0]
+        
+        # Course character — elevation density (m/km) only.
+        # Total elevation is distance-blind: 2000m over 300km is rolling,
+        # not hilly. Climb category upgrades handle "flat with one big climb."
+        if elevation_per_km >= 30:
+            course_character = "mountain"
+        elif elevation_per_km >= 20:
+            course_character = "hilly"
+        elif elevation_per_km >= 5:
+            course_character = "rolling"
+        else:
+            course_character = "flat"
+        
+        # Upgrade based on climb severity
+        max_category = None
+        for c in climbs:
+            cat = c.get("category")
+            if cat in ("HC", "Cat 1", "Cat 2"):
+                max_category = "hilly"
+                break
+        if max_category == "hilly" and course_character in ("flat", "rolling"):
+            course_character = "hilly"
+        
+        # Downsample trackpoints at 500m intervals for polyline
+        POLYLINE_INTERVAL_M = 500.0
+        polyline = []
+        next_threshold = 0.0
+        for i, tp in enumerate(trackpoints):
+            if cum_dist[i] >= next_threshold or i == 0 or i == len(trackpoints) - 1:
+                km = round(cum_dist[i] / 1000, 1)
+                pt = [km, round(tp["lat"], 5), round(tp["lon"], 5)]
+                if has_elevation:
+                    pt.append(round(smoothed_ele[i]))
+                polyline.append(pt)
+                if i == 0:
+                    next_threshold = POLYLINE_INTERVAL_M
+                else:
+                    next_threshold = cum_dist[i] + POLYLINE_INTERVAL_M
+        
+        return {
+            "source": "gpx_attachment",
+            "total_distance_km": total_distance_km,
+            "total_elevation_m": total_elevation_m,
+            "elevation_per_km": elevation_per_km,
+            "course_character": course_character,
+            "climbs": climbs,
+            "descents": descents,
+            "polyline": polyline
+        }
+    
+    def _detect_segments(self, trackpoints: List[Dict], cum_dist: List[float],
+                         smoothed_ele: List[float], min_gradient: float,
+                         min_distance: float, ascending: bool) -> List[Dict]:
+        """
+        Detect sustained climb or descent segments using chunk-based analysis.
+        
+        Divides route into ~200m chunks, classifies each by gradient, then finds
+        contiguous climbing/descending runs. Tolerates brief flats and small dips
+        within a climb (real climbs have false flats and switchbacks). A climb ends
+        when elevation drops >50m from the local high water mark, indicating a
+        genuine descent, not a brief dip.
+        """
+        CHUNK_M = 200  # chunk size for gradient classification
+        DIP_TOLERANCE_M = 50  # max elevation loss before ending a climb
+        
+        n = len(trackpoints)
+        if n < 2 or cum_dist[-1] < CHUNK_M:
+            return []
+        
+        # Build chunks: each has start_idx, end_idx, gradient, distance, ele_change
+        chunks = []
+        ci = 0
+        while ci < n - 1:
+            cj = ci + 1
+            while cj < n and cum_dist[cj] - cum_dist[ci] < CHUNK_M:
+                cj += 1
+            if cj >= n:
+                cj = n - 1
+            if cj <= ci:
+                break
+            
+            chunk_dist = cum_dist[cj] - cum_dist[ci]
+            chunk_ele = smoothed_ele[cj] - smoothed_ele[ci]
+            chunk_grad = (chunk_ele / chunk_dist * 100) if chunk_dist > 10 else 0
+            
+            chunks.append({
+                "si": ci, "ei": cj,
+                "dist": chunk_dist, "ele": chunk_ele, "grad": chunk_grad
+            })
+            ci = cj
+        
+        if not chunks:
+            return []
+        
+        # Find climbing or descending segments using high-water-mark logic
+        segments = []
+        i = 0
+        
+        while i < len(chunks):
+            c = chunks[i]
+            
+            # Look for start of a potential segment
+            if ascending and c["grad"] < 1.0:
+                i += 1
+                continue
+            elif not ascending and c["grad"] > -1.0:
+                i += 1
+                continue
+            
+            # Start tracking a segment
+            seg_start_idx = c["si"]
+            seg_start_ele = smoothed_ele[seg_start_idx]
+            
+            if ascending:
+                high_mark = seg_start_ele
+                high_mark_chunk = i
+            else:
+                low_mark = seg_start_ele
+                low_mark_chunk = i
+            
+            j = i
+            while j < len(chunks):
+                current_ele = smoothed_ele[chunks[j]["ei"]]
+                
+                if ascending:
+                    if current_ele > high_mark:
+                        high_mark = current_ele
+                        high_mark_chunk = j
+                    # End if we've dropped too far from high water mark
+                    if high_mark - current_ele > DIP_TOLERANCE_M:
+                        break
+                else:
+                    if current_ele < low_mark:
+                        low_mark = current_ele
+                        low_mark_chunk = j
+                    # End if we've risen too far from low water mark
+                    if current_ele - low_mark > DIP_TOLERANCE_M:
+                        break
+                j += 1
+            
+            # Determine segment boundaries
+            if ascending:
+                seg_end_idx = chunks[high_mark_chunk]["ei"]
+            else:
+                seg_end_idx = chunks[low_mark_chunk]["ei"]
+            
+            # Trim flat approach: advance start until the LOCAL gradient
+            # (over the next ~1km) shows sustained climbing. Prevents valley
+            # roads with slight uphill trend being included in mountain climbs.
+            LOCAL_TRIM_DIST = 2000  # look 2km ahead for local gradient check
+            LOCAL_TRIM_GRAD = 2.5   # minimum local gradient to start the climb
+            if ascending:
+                for t in range(i, min(high_mark_chunk, len(chunks))):
+                    t_start = chunks[t]["si"]
+                    # Find point ~1km ahead
+                    ahead_idx = t_start
+                    for ai in range(t_start + 1, min(chunks[high_mark_chunk]["ei"] + 1, len(cum_dist))):
+                        if cum_dist[ai] - cum_dist[t_start] >= LOCAL_TRIM_DIST:
+                            ahead_idx = ai
+                            break
+                    if ahead_idx > t_start:
+                        local_dist = cum_dist[ahead_idx] - cum_dist[t_start]
+                        local_ele = smoothed_ele[ahead_idx] - smoothed_ele[t_start]
+                        if local_dist > 0 and (local_ele / local_dist * 100) >= LOCAL_TRIM_GRAD:
+                            seg_start_idx = t_start
+                            break
+            elif not ascending:
+                end_chunk = low_mark_chunk
+                for t in range(i, min(end_chunk, len(chunks))):
+                    t_start = chunks[t]["si"]
+                    ahead_idx = t_start
+                    for ai in range(t_start + 1, min(chunks[end_chunk]["ei"] + 1, len(cum_dist))):
+                        if cum_dist[ai] - cum_dist[t_start] >= LOCAL_TRIM_DIST:
+                            ahead_idx = ai
+                            break
+                    if ahead_idx > t_start:
+                        local_dist = cum_dist[ahead_idx] - cum_dist[t_start]
+                        local_ele = smoothed_ele[ahead_idx] - smoothed_ele[t_start]
+                        if local_dist > 0 and (local_ele / local_dist * 100) <= -LOCAL_TRIM_GRAD:
+                            seg_start_idx = t_start
+                            break
+            
+            seg_dist = cum_dist[seg_end_idx] - cum_dist[seg_start_idx]
+            seg_ele = smoothed_ele[seg_end_idx] - smoothed_ele[seg_start_idx]
+            
+            # Check minimum criteria
+            if seg_dist >= min_distance and abs(seg_ele) >= 50:
+                avg_gradient = (seg_ele / seg_dist) * 100 if seg_dist > 0 else 0
+                
+                if (ascending and avg_gradient >= min_gradient) or \
+                   (not ascending and avg_gradient <= -min_gradient):
+                    
+                    position_km = round(cum_dist[seg_start_idx] / 1000, 1)
+                    distance_km = round(seg_dist / 1000, 1)
+                    elevation_m = round(abs(seg_ele))
+                    
+                    segment = {
+                        "position_km": position_km,
+                        "distance_km": distance_km,
+                        "elevation_m": elevation_m if ascending else -elevation_m,
+                        "avg_gradient_pct": round(abs(avg_gradient), 1),
+                        "start_coords": [round(trackpoints[seg_start_idx]["lat"], 5),
+                                         round(trackpoints[seg_start_idx]["lon"], 5)],
+                        "end_coords": [round(trackpoints[seg_end_idx]["lat"], 5),
+                                       round(trackpoints[seg_end_idx]["lon"], 5)]
+                    }
+                    
+                    if ascending:
+                        # Max gradient over 200m subsections
+                        max_grad = 0.0
+                        for k in range(seg_start_idx, seg_end_idx):
+                            for m in range(k + 1, seg_end_idx + 1):
+                                sub_dist = cum_dist[m] - cum_dist[k]
+                                if sub_dist >= 200:
+                                    sub_grad = abs((smoothed_ele[m] - smoothed_ele[k]) / sub_dist * 100)
+                                    max_grad = max(max_grad, sub_grad)
+                                    break
+                        segment["max_gradient_pct"] = round(max_grad, 1) if max_grad > 0 else segment["avg_gradient_pct"]
+                        
+                        # UCI-derived climb category
+                        if elevation_m >= 1000:
+                            segment["category"] = "HC"
+                        elif elevation_m >= 650:
+                            segment["category"] = "Cat 1"
+                        elif elevation_m >= 400:
+                            segment["category"] = "Cat 2"
+                        elif elevation_m >= 200:
+                            segment["category"] = "Cat 3"
+                        elif elevation_m >= 100:
+                            segment["category"] = "Cat 4"
+                        else:
+                            segment["category"] = None  # uncategorized — below Cat 4 threshold
+                    else:
+                        segment["avg_gradient_pct"] = -segment["avg_gradient_pct"]
+                    
+                    segments.append(segment)
+            
+            # Advance past this segment
+            if ascending:
+                i = high_mark_chunk + 1
+            else:
+                i = low_mark_chunk + 1
+        
+        return segments
     
     def _fetch_today_wellness(self) -> Dict:
         """
@@ -495,7 +1386,7 @@ class IntervalsSync:
         
         return None, None
     
-    def collect_training_data(self, days_back: int = 7, anonymize: bool = False) -> Dict:
+    def collect_training_data(self, days_back: int = 7) -> Dict:
         """Collect all training data for LLM analysis"""
         # Extended range for ACWR calculation (need 28 days minimum)
         days_for_acwr = 28
@@ -616,6 +1507,13 @@ class IntervalsSync:
             current_ftp_outdoor, ftp_history.get("outdoor", {}), "outdoor"
         )
         
+        # Generate routes.json from GPX/TCX attachments (v3.93)
+        print("Scanning events for route attachments...")
+        terrain_event_ids = self._generate_terrain(events)
+        self._terrain_event_ids = terrain_event_ids
+        if terrain_event_ids:
+            print(f"   🗺️  Route data for {len(terrain_event_ids)} event(s)")
+        
         # Build race calendar (v3.5.0) — moved before derived metrics for phase detection
         print("Building race calendar...")
         race_calendar = self._build_race_calendar(
@@ -628,7 +1526,97 @@ class IntervalsSync:
         )
         
         # Format planned workouts — used by both phase detection and output
-        formatted_planned_workouts = self._format_events(near_future_events, anonymize, today=today)
+        formatted_planned_workouts = self._format_events(near_future_events, today=today)
+        
+        # Fetch power curves for delta analysis (two 28-day windows)
+        print("Fetching power curves...")
+        power_curve_data = None
+        pc_dates = None
+        try:
+            pc_end1 = today
+            pc_start1 = (datetime.now() - timedelta(days=27)).strftime("%Y-%m-%d")
+            pc_end2 = (datetime.now() - timedelta(days=28)).strftime("%Y-%m-%d")
+            pc_start2 = (datetime.now() - timedelta(days=55)).strftime("%Y-%m-%d")
+            pc_dates = (pc_start1, pc_end1, pc_start2, pc_end2)
+            power_curve_data = self._intervals_get("power-curves", {
+                "type": "Ride",
+                "curves": f"r.{pc_start1}.{pc_end1},r.{pc_start2}.{pc_end2}"
+            })
+        except Exception as e:
+            if self.debug:
+                print(f"  ⚠️  Power curve fetch failed: {e}")
+        
+        # Fetch HR curves for delta analysis (same windows, no sport filter)
+        print("Fetching HR curves...")
+        hr_curve_data = None
+        try:
+            hr_curve_data = self._intervals_get("hr-curves", {
+                "curves": f"r.{pc_dates[0]}.{pc_dates[1]},r.{pc_dates[2]}.{pc_dates[3]}"
+            }) if pc_dates else None
+        except Exception as e:
+            if self.debug:
+                print(f"  ⚠️  HR curve fetch failed: {e}")
+        
+        # Fetch sustainability curves (v3.91) — sport-filtered power + HR, single 42d window
+        print("Fetching sustainability curves...")
+        sustainability_curves = {}
+        sus_end = today
+        sus_start = (datetime.now() - timedelta(days=self.SUSTAINABILITY_WINDOW_DAYS - 1)).strftime("%Y-%m-%d")
+        sus_window = (sus_start, sus_end)
+        
+        # Determine which sport families have recent activity data
+        active_sport_families = set()
+        for a in activities_extended:
+            sf = self.SPORT_FAMILIES.get(a.get("type", ""), None)
+            if sf and sf in self.SUSTAINABILITY_ANCHORS:
+                active_sport_families.add(sf)
+        
+        for sport_family in active_sport_families:
+            sport_curves = {"power": {}, "hr": {}}
+            
+            # Power curves — one fetch per activity type (cycling: Ride + VirtualRide)
+            power_types = self.SUSTAINABILITY_POWER_TYPES.get(sport_family, [])
+            for ptype in power_types:
+                try:
+                    data = self._intervals_get("power-curves", {
+                        "type": ptype,
+                        "curves": f"r.{sus_start}.{sus_end}"
+                    })
+                    sport_curves["power"][ptype] = data
+                except Exception as e:
+                    if self.debug:
+                        print(f"  ⚠️  Sustainability power-curves ({ptype}) failed: {e}")
+            
+            # HR curves — one fetch per activity type
+            hr_types = self.SUSTAINABILITY_HR_TYPES.get(sport_family, [])
+            for htype in hr_types:
+                try:
+                    data = self._intervals_get("hr-curves", {
+                        "type": htype,
+                        "curves": f"r.{sus_start}.{sus_end}"
+                    })
+                    sport_curves["hr"][htype] = data
+                except Exception as e:
+                    if self.debug:
+                        print(f"  ⚠️  Sustainability hr-curves ({htype}) failed: {e}")
+            
+            sustainability_curves[sport_family] = sport_curves
+        
+        if sustainability_curves:
+            print(f"  📊 Sustainability curves fetched for: {', '.join(sorted(sustainability_curves.keys()))}")
+        else:
+            print("  📊 No sport families with sustainability data")
+        
+        # Generate interval-level data (v3.82, expanded v3.99)
+        # Uses the already-fetched activity list — no extra listing API calls.
+        # Pre-filters by sport family whitelist; no longer requires interval_summary.
+        # Incremental: only fetches intervals for new qualifying activities.
+        # MUST run before _calculate_derived_metrics so self._intervals_data is
+        # populated when _calculate_dfa_a1_profile reads it (v3.99 fix).
+        print("Checking for interval data...")
+        interval_activity_ids = self._generate_intervals(activities_display)
+        if interval_activity_ids:
+            print(f"  📊 {len(interval_activity_ids)} activit{'y' if len(interval_activity_ids) == 1 else 'ies'} with interval data")
         
         # Calculate derived metrics for Section 11 compliance
         print("Calculating derived metrics...")
@@ -647,7 +1635,14 @@ class IntervalsSync:
             benchmark_outdoor=(benchmark_index_outdoor, ftp_8_weeks_ago_outdoor, current_ftp_outdoor),
             vo2max=vo2max,
             formatted_planned_workouts=formatted_planned_workouts,
-            race_calendar=race_calendar
+            race_calendar=race_calendar,
+            power_curve_data=power_curve_data,
+            power_curve_dates=pc_dates,
+            hr_curve_data=hr_curve_data,
+            sustainability_curves=sustainability_curves,
+            sustainability_window=sus_window,
+            sport_settings=sport_settings,
+            icu_weight=athlete.get("icu_weight")
         )
         
         # Generate alerts array (v3.3.0)
@@ -701,22 +1696,13 @@ class IntervalsSync:
         # History confidence (v3.3.0)
         history_info = self._get_history_confidence()
         
-        # Generate interval-level data (v3.82)
-        # Uses the already-fetched activity list — no extra listing API calls.
-        # Pre-filters by sport family whitelist + interval_summary non-null.
-        # Incremental: only fetches intervals for new qualifying activities.
-        print("Checking for interval data...")
-        interval_activity_ids = self._generate_intervals(activities_display)
-        if interval_activity_ids:
-            print(f"  📊 {len(interval_activity_ids)} activit{'y' if len(interval_activity_ids) == 1 else 'ies'} with interval data")
-        
         data = {
             "READ_THIS_FIRST": {
                 "instruction_for_ai": "DO NOT calculate totals from individual activities. Use the pre-calculated values in 'summary', 'weekly_summary', and 'derived_metrics' sections below. These are already computed accurately from the API data.",
                 "display_formatting": "For durations and sleep, always display the '_formatted' fields (e.g., sleep_formatted, duration_formatted, total_training_formatted) instead of converting decimal '_hours' values. The formatted fields are pre-calculated from raw seconds and avoid rounding errors.",
                 "data_period": f"Last {days_back} days (including today)",
                 "extended_data_note": f"ACWR and baselines calculated from {days_for_acwr} days of data",
-                "capability_metrics_note": "The 'capability' block in derived_metrics contains durability trend (aggregate decoupling 7d/28d), efficiency factor trend (aggregate EF 7d/28d), HRRc trend (heart rate recovery 7d/28d), and TID comparison (7d vs 28d distribution drift). These measure HOW the athlete expresses fitness, not just load. Use these for coaching context alongside traditional load metrics. Durability and EF trend direction matters more than absolute values. HRRc is display only — higher = better parasympathetic recovery.",
+                "capability_metrics_note": "The 'capability' block in derived_metrics contains durability trend (aggregate decoupling 7d/28d), efficiency factor trend (aggregate EF 7d/28d), HRRc trend (heart rate recovery 7d/28d), TID comparison (7d vs 28d distribution drift), power curve delta (MMP shift at anchor durations across 28d windows — energy system adaptation direction), HR curve delta (max sustained HR shift at anchor durations — cardiac adaptation, cross-sport), sustainability profile (per-sport power/HR sustainability table for race estimation — 42d window, sport-filtered), and DFA a1 profile (per-session non-linear HRV index from AlphaHRV Connect IQ field — latest_session + trailing_by_sport with crossing-band LT1/LT2 estimates). These measure HOW the athlete expresses fitness, not just load. Use these for coaching context alongside traditional load metrics. Durability and EF trend direction matters more than absolute values. HRRc is display only — higher = better parasympathetic recovery. Power curve delta rotation_index reveals whether gains are sprint-biased (positive) or endurance-biased (negative). HR curve delta is ambiguous — rising max sustained HR may indicate fitness or fatigue; cross-reference with resting HRV/HR and RPE. Sustainability profile provides race estimation lookup: actual MMP, Coggan predicted (cycling only), CP/W' model (cycling only), model_divergence_pct (actual vs CP — divergence IS the coaching signal). CP/W' is primary for durations ≤20min; Coggan duration factors are the established reference for ≥60min. Source flag (observed_outdoor/observed_indoor) matters for cycling race estimation — indoor MMP is typically 3-5% lower. DFA a1 profile: thresholds (1.0 ≈ LT1, 0.5 ≈ LT2) cycling-validated only — non-cycling sports get rollups but validated=False. Crossing-band estimates (avg HR/watts in narrow bands around each threshold) are provisional at confidence='low' (suppressed for calibration delta surfacing) and usable at 'moderate' or 'high'. DFA a1 is a Tier-2 interpretive signal — does NOT enter readiness P0–P3 ladder, does NOT auto-update dossier zones; surfaces calibration deltas only. Quality gate: refuse to interpret when latest_session.sufficient=false or trailing confidence=null. See SECTION_11.md DFA a1 Protocol for full interpretation rules.",
                 "readiness_decision_note": "The 'readiness_decision' block contains a pre-computed go/modify/skip recommendation with priority level (P0=safety, P1=overload, P2=fatigue, P3=green), individual signal statuses, phase-adjusted thresholds, and structured modification guidance. Use this as the baseline for pre-workout recommendations. Override with explanation in the coach note if the AI's contextual judgment disagrees.",
                 "zone_preference": self.zone_preference if self.zone_preference else "default (power preferred, HR fallback)",
                 "wellness_field_scales": {
@@ -739,7 +1725,7 @@ class IntervalsSync:
                 }
             },
             "metadata": {
-                "athlete_id": "REDACTED" if anonymize else self.athlete_id,
+                "athlete_id": "REDACTED",
                 "last_updated": datetime.now().isoformat(),
                 "data_range_days": days_back,
                 "extended_range_days": days_for_acwr,
@@ -807,7 +1793,7 @@ class IntervalsSync:
                 }
             },
             "derived_metrics": derived_metrics,
-            "recent_activities": self._format_activities(activities_display, anonymize, interval_activity_ids),
+            "recent_activities": self._format_activities(activities_extended, interval_activity_ids),
             "wellness_data": self._format_wellness(wellness),
             "planned_workouts": formatted_planned_workouts,
             "workout_summary_stats": getattr(self, '_summary_stats', {}),
@@ -860,7 +1846,14 @@ class IntervalsSync:
                                     benchmark_outdoor: Tuple[Optional[float], Optional[int], Optional[int]],
                                     vo2max: float,
                                     formatted_planned_workouts: List[Dict] = None,
-                                    race_calendar: Dict = None) -> Dict:
+                                    race_calendar: Dict = None,
+                                    power_curve_data: Dict = None,
+                                    power_curve_dates: Tuple = None,
+                                    hr_curve_data: Dict = None,
+                                    sustainability_curves: Dict = None,
+                                    sustainability_window: Tuple = None,
+                                    sport_settings: Dict = None,
+                                    icu_weight: float = None) -> Dict:
         """
         Calculate Section 11 derived metrics.
         
@@ -983,6 +1976,18 @@ class IntervalsSync:
             ri = round(hrv_ratio / rhr_ratio, 2) if rhr_ratio > 0 else None
         else:
             ri = None
+
+        # Yesterday's RI — same formula, wellness_7d[-2] against same 7d baseline.
+        # Used for RI amber persistence check in readiness_decision (2-day rule).
+        ri_yesterday = None
+        if len(wellness_7d) >= 2:
+            y_hrv_raw = wellness_7d[-2].get("hrv")
+            y_hrv = y_hrv_raw if self._is_valid_hrv(y_hrv_raw) else None
+            y_rhr = wellness_7d[-2].get("restingHR")
+            if y_hrv and y_rhr and hrv_baseline_7d and rhr_baseline_7d:
+                y_hrv_ratio = y_hrv / hrv_baseline_7d
+                y_rhr_ratio = y_rhr / rhr_baseline_7d
+                ri_yesterday = round(y_hrv_ratio / y_rhr_ratio, 2) if y_rhr_ratio > 0 else None
         
         # === STRESS TOLERANCE ===
         # Formula: (Strain ÷ Monotony) ÷ 100
@@ -1011,10 +2016,10 @@ class IntervalsSync:
         # This is the "hard" work that should be ~20% in polarized training
         quality_intensity_percentage = round((z4_plus_time / total_zone_time) * 100, 1) if total_zone_time > 0 else None
         
-        # === POLARISATION INDEX ===
+        # === EASY TIME RATIO ===
         # Formula: (Z1 + Z2) / Total - measures how much time is "easy"
         # Target: ~80% for polarized training
-        polarisation_index = round((z1_time + z2_time) / total_zone_time, 2) if total_zone_time > 0 else None
+        easy_time_ratio = round((z1_time + z2_time) / total_zone_time, 2) if total_zone_time > 0 else None
         
         # === SEILER TID (Training Intensity Distribution) ===
         # Dual calculation: all-sport and primary-sport (like monotony)
@@ -1061,46 +2066,126 @@ class IntervalsSync:
         efficiency_factor = self._calculate_efficiency_factor(activities_7d, activities_28d)
         hrrc_trend = self._calculate_hrrc_trend(activities_7d, activities_28d)
 
+        # === POWER CURVE DELTA (energy system adaptation trend) ===
+        power_curve_delta = self._calculate_power_curve_delta(power_curve_data, power_curve_dates)
+
+        # === HR CURVE DELTA (cardiac adaptation trend) ===
+        hr_curve_delta = self._calculate_hr_curve_delta(hr_curve_data, power_curve_dates)
+
+        # === SUSTAINABILITY PROFILE (race estimation lookup table, v3.91) ===
+        sustainability_profile = self._calculate_sustainability_profile(
+            sustainability_curves=sustainability_curves or {},
+            sustainability_window=sustainability_window,
+            power_model=power_model,
+            sport_settings=sport_settings or {},
+            wellness_7d=wellness_7d,
+            wellness_extended=wellness_extended,
+            icu_weight=icu_weight
+        )
+
+        # === DFA a1 PROFILE (v3.99) ===
+        # Reads from self._intervals_data populated by _generate_intervals().
+        # Returns None when no AlphaHRV-equipped sessions exist in the 14d window.
+        dfa_a1_profile = self._calculate_dfa_a1_profile()
+
         # === CONSISTENCY INDEX ===
         consistency_index, consistency_details = self._calculate_consistency_index(
             activities_for_consistency, past_events
         )
         
-        # === HARD DAYS THIS WEEK ===
-        # Uses _classify_hard_day() for consistent power/HR evaluation.
-        # Power: 5-rung cumulative ladder (Seiler/Foster)
-        # HR fallback: 2-rung conservative ladder (above LT2 only)
-        hard_days_this_week = 0
-        activities_by_date_7d = {}
-        for a in activities_7d:
-            a_date = a.get("start_date_local", "")[:10]
-            if a_date not in activities_by_date_7d:
-                activities_by_date_7d[a_date] = []
-            activities_by_date_7d[a_date].append(a)
-        
-        for date_str, day_acts in activities_by_date_7d.items():
-            day_zones_by_basis = {}
-            for a in day_acts:
-                sf = self.SPORT_FAMILIES.get(a.get("type", ""), None)
-                zones, basis = self._get_activity_zones(a, sport_family=sf)
-                if zones and basis:
-                    if basis not in day_zones_by_basis:
-                        day_zones_by_basis[basis] = {}
-                    for zid, secs in zones.items():
-                        day_zones_by_basis[basis][zid] = day_zones_by_basis[basis].get(zid, 0) + secs
-            
-            is_hard, _basis = self._classify_hard_day(day_zones_by_basis)
-            if is_hard:
-                hard_days_this_week += 1
-        
         # === PHASE DETECTION v2 (dual-stream) ===
         today = datetime.now().strftime("%Y-%m-%d")
         
-        # Load weekly_180d lookback from history.json
-        weekly_rows = self._load_weekly_rows_for_phase()
+        # === LIVE WEEKLY ROWS FROM activities_28d (v3.94) ===
+        # Replaces v3.89 single-week overlay. Computes all 4 weekly rows
+        # (TSS, primary_sport_tss, hard_days) live from activities_28d,
+        # eliminating the entire class of stale-row bugs. CTL/ATL enriched
+        # from history.json where available (stable background data).
+        now_dt = datetime.now()
+        days_since_ws = (now_dt.weekday() - self.week_start_day) % 7
+        current_ws_dt = now_dt - timedelta(days=days_since_ws)
+        
+        # Build 4 week boundaries (newest first, then reversed to chronological)
+        week_boundaries = []
+        for i in range(4):
+            ws_dt = current_ws_dt - timedelta(weeks=i)
+            we_dt = ws_dt + timedelta(days=6)
+            week_boundaries.append((ws_dt.strftime("%Y-%m-%d"), we_dt.strftime("%Y-%m-%d")))
+        week_boundaries.reverse()  # chronological: oldest first
+        
+        # Bucket activities_28d by week and compute TSS + hard_days per week
+        weekly_rows = []
+        for ws, we in week_boundaries:
+            week_acts = [a for a in activities_28d
+                         if ws <= (a.get("start_date_local", "")[:10]) <= we]
+            
+            w_tss = sum((a.get("icu_training_load", 0) or 0) for a in week_acts)
+            w_primary_tss = sum(
+                (a.get("icu_training_load", 0) or 0) for a in week_acts
+                if self.SPORT_FAMILIES.get(a.get("type", ""), None) == primary_sport
+            )
+            
+            # Hard days: group by date, classify each day
+            acts_by_date = {}
+            for a in week_acts:
+                a_date = a.get("start_date_local", "")[:10]
+                if a_date not in acts_by_date:
+                    acts_by_date[a_date] = []
+                acts_by_date[a_date].append(a)
+            
+            w_hard_days = 0
+            for date_str, day_acts in acts_by_date.items():
+                day_zones_by_basis = {}
+                for a in day_acts:
+                    sf = self.SPORT_FAMILIES.get(a.get("type", ""), None)
+                    zones, basis = self._get_activity_zones(a, sport_family=sf)
+                    if zones and basis:
+                        if basis not in day_zones_by_basis:
+                            day_zones_by_basis[basis] = {}
+                        for zid, secs in zones.items():
+                            day_zones_by_basis[basis][zid] = day_zones_by_basis[basis].get(zid, 0) + secs
+                is_hard, _basis = self._classify_hard_day(day_zones_by_basis)
+                if is_hard:
+                    w_hard_days += 1
+            
+            weekly_rows.append({
+                "week_start": ws,
+                "total_tss": round(w_tss, 0),
+                "primary_sport_tss": round(w_primary_tss, 0),
+                "primary_sport": primary_sport,
+                "hard_days": w_hard_days,
+            })
+        
+        # Current week gets live CTL/ATL/ACWR/monotony (already computed this run)
+        weekly_rows[-1]["ctl_end"] = round(current_ctl, 1) if current_ctl else None
+        weekly_rows[-1]["atl_end"] = round(current_atl, 1) if current_atl else None
+        weekly_rows[-1]["acwr"] = acwr
+        weekly_rows[-1]["monotony"] = monotony
+        
+        # Enrich older weeks with CTL/ATL from history.json (stable background)
+        history_rows = self._load_weekly_rows_for_phase()
+        history_by_ws = {r.get("week_start"): r for r in history_rows}
+        for row in weekly_rows[:-1]:  # skip current week (already enriched)
+            hist = history_by_ws.get(row["week_start"])
+            if hist:
+                for field in ("ctl_end", "atl_end", "acwr", "monotony"):
+                    if field not in row or row[field] is None:
+                        row[field] = hist.get(field)
+        
+        # hard_days_this_week: current week's value (used in return dict)
+        hard_days_this_week = weekly_rows[-1]["hard_days"]
+        
+        # previous_phase from [-2] (last completed week).
+        # History rows may have phase_detected; fresh rows won't.
+        # Enrich completed rows with phase_detected from history where available.
+        for row in weekly_rows[:-1]:
+            hist = history_by_ws.get(row["week_start"])
+            if hist and "phase_detected" in hist:
+                row["phase_detected"] = hist["phase_detected"]
+        
         previous_phase = None
-        if weekly_rows:
-            previous_phase = weekly_rows[-1].get("phase_detected")
+        if len(weekly_rows) >= 2:
+            previous_phase = weekly_rows[-2].get("phase_detected")
         
         phase_result = self._detect_phase_v2(
             weekly_rows=weekly_rows,
@@ -1125,6 +2210,7 @@ class IntervalsSync:
         return {
             # Tier 1: Primary Readiness
             "recovery_index": ri,
+            "recovery_index_yesterday": ri_yesterday,
             "hrv_baseline_7d": hrv_baseline_7d,
             "rhr_baseline_7d": rhr_baseline_7d,
             "hrv_baseline_28d": hrv_baseline_28d,
@@ -1161,8 +2247,8 @@ class IntervalsSync:
             "grey_zone_note": "Gray Zone % (Z3/tempo) - minimize in polarized training",
             "quality_intensity_percentage": quality_intensity_percentage,
             "quality_intensity_note": "Quality Intensity % (Z4+/threshold+) - target ~20% in polarized training",
-            "polarisation_index": polarisation_index,
-            "polarisation_note": "Easy time (Z1+Z2) / Total - target ~80% in polarized training",
+            "easy_time_ratio": easy_time_ratio,
+            "easy_time_ratio_note": "Easy time (Z1+Z2) / Total - target ~80% in polarized training",
             "hard_days_this_week": hard_days_this_week,
             "hard_days_note": "Power ladder: z3+ >= 30min, z4+ >= 10min, z5+ >= 5min, z6+ >= 2min, z7 >= 1min. HR fallback (when no power): z4+ >= 10min, z5+ >= 5min. Per Seiler 3-zone model + Foster. HR-based days flagged with intensity_basis: hr",
             
@@ -1178,6 +2264,10 @@ class IntervalsSync:
                 "efficiency_factor": efficiency_factor,
                 "hrrc": hrrc_trend,
                 "tid_comparison": tid_comparison,
+                "power_curve_delta": power_curve_delta,
+                "hr_curve_delta": hr_curve_delta,
+                "sustainability_profile": sustainability_profile,
+                "dfa_a1_profile": dfa_a1_profile,
             },
             
             # Tier 3: Consistency & Compliance
@@ -1235,9 +2325,9 @@ class IntervalsSync:
             return None
         if acwr < 0.8:
             return "undertraining"
-        elif acwr <= 1.3:
+        elif acwr < 1.3:
             return "optimal"
-        elif acwr <= 1.5:
+        elif acwr < 1.5:
             return "caution"
         else:
             return "danger"
@@ -2000,6 +3090,765 @@ class IntervalsSync:
                      "not wired into readiness_decision signals.")
         }
 
+    def _calculate_power_curve_delta(self, power_curve_data: Dict = None,
+                                      power_curve_dates: Tuple = None) -> Dict:
+        """
+        Calculate power curve delta across two 28-day windows.
+        
+        Extracts MMP at five anchor durations (5s, 60s, 300s, 1200s, 3600s)
+        from each window. Computes % change per anchor and rotation_index.
+        
+        Rotation index = mean(short-anchor changes) - mean(long-anchor changes)
+        where short = 5s, 60s and long = 1200s, 3600s. 300s excluded (transitional).
+        Positive = sprint-biased gains, negative = endurance-biased gains.
+        
+        Curve matching by response ID field, not list index — handles empty
+        windows gracefully (API omits curves with no data).
+        
+        Guards:
+        - Per-anchor: null if duration not in secs array or watts is 0/None
+        - pct_change: null if either window's anchor watts is 0/None
+        - Block-level: null if either window has < 3 non-null anchors
+        - Rotation: null if any of the 4 component anchors has null pct_change
+        
+        References:
+        - Pinot & Grappe (2011): power-duration profiling across durations
+        - Quod et al. (2010): MMP tracking for training monitoring
+        - Intervals.icu API: GET /api/v1/athlete/{id}/power-curves
+        """
+        ANCHORS = {"5s": 5, "60s": 60, "300s": 300, "1200s": 1200, "3600s": 3600}
+        
+        # Build null block (reused for all early returns)
+        def _null_block(note="Insufficient power data in one or both windows."):
+            dates = {}
+            if power_curve_dates:
+                dates = {
+                    "current_window": {"start": power_curve_dates[0], "end": power_curve_dates[1]},
+                    "previous_window": {"start": power_curve_dates[2], "end": power_curve_dates[3]},
+                }
+            return {
+                "window_days": 28,
+                **dates,
+                "anchors": None,
+                "rotation_index": None,
+                "note": note
+            }
+        
+        # Guard: no data or no dates
+        if not power_curve_data or not power_curve_dates:
+            return _null_block()
+        
+        curves_list = power_curve_data.get("list", [])
+        if not curves_list:
+            return _null_block()
+        
+        # Match curves by ID, not list index
+        pc_start1, pc_end1, pc_start2, pc_end2 = power_curve_dates
+        current_id = f"r.{pc_start1}.{pc_end1}"
+        previous_id = f"r.{pc_start2}.{pc_end2}"
+        
+        curves_by_id = {c["id"]: c for c in curves_list if "id" in c}
+        current_curve = curves_by_id.get(current_id)
+        previous_curve = curves_by_id.get(previous_id)
+        
+        if not current_curve or not previous_curve:
+            missing = []
+            if not current_curve:
+                missing.append("current")
+            if not previous_curve:
+                missing.append("previous")
+            return _null_block(f"No power data in {' and '.join(missing)} window(s).")
+        
+        # Extract anchor values from both curves
+        anchors = {}
+        for label, duration_secs in ANCHORS.items():
+            cur_secs = current_curve.get("secs", [])
+            cur_watts = current_curve.get("watts", [])
+            prev_secs = previous_curve.get("secs", [])
+            prev_watts = previous_curve.get("watts", [])
+            
+            # Current window anchor
+            cur_w = None
+            if duration_secs in cur_secs:
+                idx = cur_secs.index(duration_secs)
+                val = cur_watts[idx] if idx < len(cur_watts) else None
+                if val is not None and val > 0:
+                    cur_w = val
+            
+            # Previous window anchor
+            prev_w = None
+            if duration_secs in prev_secs:
+                idx = prev_secs.index(duration_secs)
+                val = prev_watts[idx] if idx < len(prev_watts) else None
+                if val is not None and val > 0:
+                    prev_w = val
+            
+            # Compute pct_change (null if either side is null)
+            pct_change = None
+            if cur_w is not None and prev_w is not None:
+                pct_change = round((cur_w - prev_w) / prev_w * 100, 1)
+            
+            anchors[label] = {
+                "current_watts": cur_w,
+                "previous_watts": prev_w,
+                "pct_change": pct_change
+            }
+        
+        # Block-level guard: need >= 3 non-null anchors in EACH window
+        current_valid = sum(1 for a in anchors.values() if a["current_watts"] is not None)
+        previous_valid = sum(1 for a in anchors.values() if a["previous_watts"] is not None)
+        
+        if current_valid < 3 or previous_valid < 3:
+            return _null_block(f"Too few valid anchors (current: {current_valid}, previous: {previous_valid}, need 3+).")
+        
+        # Rotation index: mean(5s, 60s) - mean(1200s, 3600s), 300s excluded
+        short_changes = [anchors["5s"]["pct_change"], anchors["60s"]["pct_change"]]
+        long_changes = [anchors["1200s"]["pct_change"], anchors["3600s"]["pct_change"]]
+        
+        rotation_index = None
+        if all(v is not None for v in short_changes + long_changes):
+            short_mean = sum(short_changes) / len(short_changes)
+            long_mean = sum(long_changes) / len(long_changes)
+            rotation_index = round(short_mean - long_mean, 1)
+        
+        if self.debug:
+            if rotation_index is not None:
+                print(f"  📈 Power curve delta: rotation={rotation_index:+.1f}")
+            else:
+                print(f"  📈 Power curve delta: rotation unavailable (missing anchor data)")
+            for label, vals in anchors.items():
+                if vals["pct_change"] is not None:
+                    print(f"      {label}: {vals['current_watts']}W vs {vals['previous_watts']}W ({vals['pct_change']:+.1f}%)")
+        
+        return {
+            "window_days": 28,
+            "current_window": {"start": pc_start1, "end": pc_end1},
+            "previous_window": {"start": pc_start2, "end": pc_end2},
+            "anchors": anchors,
+            "rotation_index": rotation_index,
+            "note": ("Compares MMP at 5 anchor durations (5s neuromuscular, 60s anaerobic, "
+                     "300s MAP, 1200s threshold, 3600s endurance) across two 28d windows. "
+                     "rotation_index = mean(5s,60s pct_change) - mean(1200s,3600s pct_change). "
+                     "Positive = sprint-biased gains, negative = endurance-biased. "
+                     "300s excluded from rotation (transitional). "
+                     "Null when either window has fewer than 3 valid anchor durations.")
+        }
+
+    def _calculate_hr_curve_delta(self, hr_curve_data: Dict = None,
+                                   curve_dates: Tuple = None) -> Dict:
+        """
+        Calculate HR curve delta across two 28-day windows.
+        
+        Extracts max sustained HR at four anchor durations (60s, 300s, 1200s, 3600s)
+        from each window. Computes % change per anchor and rotation_index.
+        
+        No 5s anchor — peak HR at 5s is just max HR, not an energy system signal.
+        
+        Rotation index = mean(short-anchor changes) - mean(long-anchor changes)
+        where short = 60s, 300s and long = 1200s, 3600s.
+        Positive = intensity-biased HR shift, negative = endurance-biased shift.
+        
+        IMPORTANT: Unlike power where higher is always better, rising max sustained HR
+        is ambiguous — could indicate improved cardiac output (fitness gain) or
+        accumulated fatigue / dehydration / heat. The AI coach must cross-reference
+        with resting HRV, resting HR, RPE trends, and environmental context.
+        
+        No sport filter on the API call — HR is physiological, not sport-specific.
+        Max sustained HR at 300s is max sustained HR at 300s whether from cycling,
+        running, or SkiErg. The curve is naturally dominated by the hardest efforts.
+        
+        Data key is 'values' (not 'watts' as in power curves).
+        
+        Guards: same as power_curve_delta — per-anchor null, div-by-zero, block-level <3.
+        """
+        ANCHORS = {"60s": 60, "300s": 300, "1200s": 1200, "3600s": 3600}
+        
+        def _null_block(note="Insufficient HR data in one or both windows."):
+            dates = {}
+            if curve_dates:
+                dates = {
+                    "current_window": {"start": curve_dates[0], "end": curve_dates[1]},
+                    "previous_window": {"start": curve_dates[2], "end": curve_dates[3]},
+                }
+            return {
+                "window_days": 28,
+                **dates,
+                "anchors": None,
+                "rotation_index": None,
+                "note": note
+            }
+        
+        # Guard: no data or no dates
+        if not hr_curve_data or not curve_dates:
+            return _null_block()
+        
+        curves_list = hr_curve_data.get("list", [])
+        if not curves_list:
+            return _null_block()
+        
+        # Match curves by ID, not list index
+        pc_start1, pc_end1, pc_start2, pc_end2 = curve_dates
+        current_id = f"r.{pc_start1}.{pc_end1}"
+        previous_id = f"r.{pc_start2}.{pc_end2}"
+        
+        curves_by_id = {c["id"]: c for c in curves_list if "id" in c}
+        current_curve = curves_by_id.get(current_id)
+        previous_curve = curves_by_id.get(previous_id)
+        
+        if not current_curve or not previous_curve:
+            missing = []
+            if not current_curve:
+                missing.append("current")
+            if not previous_curve:
+                missing.append("previous")
+            return _null_block(f"No HR data in {' and '.join(missing)} window(s).")
+        
+        # Extract anchor values — HR curves use 'values' key, not 'watts'
+        anchors = {}
+        for label, duration_secs in ANCHORS.items():
+            cur_secs = current_curve.get("secs", [])
+            cur_values = current_curve.get("values", [])
+            prev_secs = previous_curve.get("secs", [])
+            prev_values = previous_curve.get("values", [])
+            
+            # Current window anchor
+            cur_v = None
+            if duration_secs in cur_secs:
+                idx = cur_secs.index(duration_secs)
+                val = cur_values[idx] if idx < len(cur_values) else None
+                if val is not None and val > 0:
+                    cur_v = val
+            
+            # Previous window anchor
+            prev_v = None
+            if duration_secs in prev_secs:
+                idx = prev_secs.index(duration_secs)
+                val = prev_values[idx] if idx < len(prev_values) else None
+                if val is not None and val > 0:
+                    prev_v = val
+            
+            # Compute pct_change (null if either side is null)
+            pct_change = None
+            if cur_v is not None and prev_v is not None:
+                pct_change = round((cur_v - prev_v) / prev_v * 100, 1)
+            
+            anchors[label] = {
+                "current_bpm": cur_v,
+                "previous_bpm": prev_v,
+                "pct_change": pct_change
+            }
+        
+        # Block-level guard: need >= 3 non-null anchors in EACH window
+        current_valid = sum(1 for a in anchors.values() if a["current_bpm"] is not None)
+        previous_valid = sum(1 for a in anchors.values() if a["previous_bpm"] is not None)
+        
+        if current_valid < 3 or previous_valid < 3:
+            return _null_block(f"Too few valid anchors (current: {current_valid}, previous: {previous_valid}, need 3+).")
+        
+        # Rotation index: mean(60s, 300s) - mean(1200s, 3600s)
+        short_changes = [anchors["60s"]["pct_change"], anchors["300s"]["pct_change"]]
+        long_changes = [anchors["1200s"]["pct_change"], anchors["3600s"]["pct_change"]]
+        
+        rotation_index = None
+        if all(v is not None for v in short_changes + long_changes):
+            short_mean = sum(short_changes) / len(short_changes)
+            long_mean = sum(long_changes) / len(long_changes)
+            rotation_index = round(short_mean - long_mean, 1)
+        
+        if self.debug:
+            if rotation_index is not None:
+                print(f"  📈 HR curve delta: rotation={rotation_index:+.1f}")
+            else:
+                print(f"  📈 HR curve delta: rotation unavailable (missing anchor data)")
+            for label, vals in anchors.items():
+                if vals["pct_change"] is not None:
+                    print(f"      {label}: {vals['current_bpm']}bpm vs {vals['previous_bpm']}bpm ({vals['pct_change']:+.1f}%)")
+        
+        return {
+            "window_days": 28,
+            "current_window": {"start": pc_start1, "end": pc_end1},
+            "previous_window": {"start": pc_start2, "end": pc_end2},
+            "anchors": anchors,
+            "rotation_index": rotation_index,
+            "note": ("Compares max sustained HR at 4 anchor durations (60s anaerobic ceiling, "
+                     "300s VO2max HR, 1200s threshold HR, 3600s endurance HR) across two 28d windows. "
+                     "rotation_index = mean(60s,300s pct_change) - mean(1200s,3600s pct_change). "
+                     "Positive = intensity-biased HR shift, negative = endurance-biased. "
+                     "No sport filter — HR is cross-sport physiological (dominated by hardest efforts). "
+                     "IMPORTANT: rising max sustained HR is ambiguous — may indicate improved cardiac "
+                     "output (good) or accumulated fatigue/dehydration/heat (bad). Cross-reference with "
+                     "resting HRV, resting HR, RPE, and environmental context before interpreting. "
+                     "Null when either window has fewer than 3 valid anchor durations.")
+        }
+
+    def _calculate_dfa_a1_profile(self) -> Optional[Dict]:
+        """
+        Build dfa_a1_profile for latest.json capability block.
+
+        Reads from self._intervals_data (must be set first by _generate_intervals).
+        Returns:
+          - latest_session: most recent activity with a sufficient dfa block (any sport)
+          - trailing_by_sport: per sport family, aggregated rollups across the latest
+            DFA_TRAILING_WINDOW_N sessions, with confidence + validated flags
+
+        Returns None if no intervals data or no DFA-equipped sessions exist.
+        """
+        intervals_data = getattr(self, "_intervals_data", None)
+        if not intervals_data:
+            return None
+        activities = intervals_data.get("activities", [])
+        # Keep only activities with a dfa block (i.e. AlphaHRV recorded), most recent first
+        dfa_activities = [a for a in activities if a.get("dfa") is not None]
+        if not dfa_activities:
+            return None
+        dfa_activities.sort(key=lambda a: a.get("date", ""), reverse=True)
+
+        # --- latest_session: most recent SUFFICIENT session ---
+        latest_session = None
+        for a in dfa_activities:
+            block = a["dfa"]
+            quality = block.get("quality", {})
+            if quality.get("sufficient"):
+                tiz_split = {}
+                for key, label in [
+                    ("tiz_below_lt1", "below_lt1"),
+                    ("tiz_lt1_transition", "lt1_transition"),
+                    ("tiz_transition_lt2", "transition_lt2"),
+                    ("tiz_above_lt2", "above_lt2"),
+                ]:
+                    band = block.get(key)
+                    tiz_split[label] = band["pct"] if band else 0.0
+                drift = block.get("drift") or {}
+                latest_session = {
+                    "activity_id": a.get("activity_id"),
+                    "date": a.get("date"),
+                    "name": a.get("name"),
+                    "sport": a.get("type"),
+                    "validated": self.SPORT_FAMILIES.get(a.get("type", "")) in self.DFA_VALIDATED_SPORTS,
+                    "avg": block.get("avg"),
+                    "tiz_split_pct": tiz_split,
+                    "drift_delta": drift.get("delta"),
+                    "drift_interpretable": drift.get("interpretable"),
+                    "quality_pct": quality.get("valid_pct"),
+                    "sufficient": True,
+                }
+                break
+
+        # If no sufficient session, surface the most recent insufficient one so the AI
+        # can see "AlphaHRV ran but unusable" instead of "no data".
+        if latest_session is None:
+            a = dfa_activities[0]
+            latest_session = {
+                "activity_id": a.get("activity_id"),
+                "date": a.get("date"),
+                "name": a.get("name"),
+                "sport": a.get("type"),
+                "validated": self.SPORT_FAMILIES.get(a.get("type", "")) in self.DFA_VALIDATED_SPORTS,
+                "avg": None,
+                "tiz_split_pct": None,
+                "drift_delta": None,
+                "drift_interpretable": None,
+                "quality_pct": a["dfa"].get("quality", {}).get("valid_pct"),
+                "sufficient": False,
+            }
+
+        # --- trailing_by_sport: per-sport aggregation across last N sufficient sessions ---
+        trailing_by_sport = {}
+        # Group dfa activities by sport family
+        by_family = {}
+        for a in dfa_activities:
+            if not a["dfa"].get("quality", {}).get("sufficient"):
+                continue
+            family = self.SPORT_FAMILIES.get(a.get("type", ""), "other")
+            by_family.setdefault(family, []).append(a)
+
+        for family, acts in by_family.items():
+            window = acts[: self.DFA_TRAILING_WINDOW_N]
+            n = len(window)
+            if n == 0:
+                continue
+            avg_dfa_values = [a["dfa"]["avg"] for a in window if a["dfa"].get("avg") is not None]
+            avg_dfa = round(sum(avg_dfa_values) / len(avg_dfa_values), 3) if avg_dfa_values else None
+            drift_values = [
+                a["dfa"]["drift"]["delta"]
+                for a in window
+                if a["dfa"].get("drift") and a["dfa"]["drift"].get("interpretable")
+                and a["dfa"]["drift"].get("delta") is not None
+            ]
+            drift_mean = round(sum(drift_values) / len(drift_values), 3) if drift_values else None
+
+            # Threshold estimates from crossing bands — only sessions with sufficient dwell
+            def _avg_crossing(key, field):
+                vals = []
+                for a in window:
+                    cb = a["dfa"].get(key)
+                    if cb and cb.get("secs_in_band", 0) >= self.DFA_MIN_CROSSING_DWELL_SECS:
+                        v = cb.get(field)
+                        if v is not None:
+                            vals.append(v)
+                if not vals:
+                    return None, 0
+                return round(sum(vals) / len(vals)), len(vals)
+
+            lt1_hr, lt1_n_hr = _avg_crossing("lt1_crossing", "avg_hr")
+            lt1_watts, lt1_n_w = _avg_crossing("lt1_crossing", "avg_watts")
+            lt2_hr, lt2_n_hr = _avg_crossing("lt2_crossing", "avg_hr")
+            lt2_watts, lt2_n_w = _avg_crossing("lt2_crossing", "avg_watts")
+
+            # Observability: how many sessions in window had ≥dwell threshold in each band.
+            # If confidence stays stuck at low/null with high n_sessions, these counts reveal
+            # whether the issue is "athlete rarely crosses this band" (count low) vs some
+            # other failure mode. Diagnostic only — not used in confidence logic itself.
+            lt1_crossing_sessions = sum(
+                1 for a in window
+                if (a["dfa"].get("lt1_crossing") or {}).get("secs_in_band", 0)
+                >= self.DFA_MIN_CROSSING_DWELL_SECS
+            )
+            lt2_crossing_sessions = sum(
+                1 for a in window
+                if (a["dfa"].get("lt2_crossing") or {}).get("secs_in_band", 0)
+                >= self.DFA_MIN_CROSSING_DWELL_SECS
+            )
+
+            # Confidence based on n sessions contributing to crossing estimates
+            crossing_n = max(lt1_n_hr, lt1_n_w, lt2_n_hr, lt2_n_w)
+            if crossing_n >= 6:
+                confidence = "high"
+            elif crossing_n >= 4:
+                confidence = "moderate"
+            elif crossing_n >= 3:
+                confidence = "low"
+            else:
+                confidence = None  # not enough sessions for any threshold estimate
+
+            quality_avg = round(
+                sum(a["dfa"]["quality"]["valid_pct"] for a in window) / n, 1
+            )
+
+            validated = family in self.DFA_VALIDATED_SPORTS
+            sport_block = {
+                "n_sessions": n,
+                "date_range": [window[-1].get("date"), window[0].get("date")],
+                "avg_dfa_a1": avg_dfa,
+                "drift_delta_mean": drift_mean,
+                "lt1_crossing_sessions": lt1_crossing_sessions,
+                "lt2_crossing_sessions": lt2_crossing_sessions,
+                "lt1_estimate": {
+                    "hr": lt1_hr if confidence else None,
+                    "watts": lt1_watts if confidence else None,
+                    "n_sessions": max(lt1_n_hr, lt1_n_w),
+                } if confidence else None,
+                "lt2_estimate": {
+                    "hr": lt2_hr if confidence else None,
+                    "watts": lt2_watts if confidence else None,
+                    "n_sessions": max(lt2_n_hr, lt2_n_w),
+                } if confidence else None,
+                "quality_avg_pct": quality_avg,
+                "validated": validated,
+                "confidence": confidence,
+            }
+            if not validated:
+                sport_block["note"] = (
+                    f"DFA a1 threshold mapping (1.0/0.5) is cycling-validated. "
+                    f"{family} thresholds may differ — treat estimates as informational only."
+                )
+            trailing_by_sport[family] = sport_block
+
+        return {
+            "latest_session": latest_session,
+            "trailing_by_sport": trailing_by_sport,
+        }
+
+    def _calculate_sustainability_profile(self, sustainability_curves: Dict,
+                                           sustainability_window: Tuple,
+                                           power_model: Dict,
+                                           sport_settings: Dict,
+                                           wellness_7d: List[Dict],
+                                           wellness_extended: List[Dict],
+                                           icu_weight: float = None) -> Dict:
+        """
+        Build per-sport sustainability profile for race estimation (v3.91).
+        
+        For each active sport family, extracts MMP and max sustained HR at
+        sport-specific anchor durations from a single wider window (42d default).
+        
+        Three model layers for cycling:
+        1. Actual MMP — observed from training data
+        2. Coggan predicted — FTP × duration factor (Allen & Coggan, 3rd ed.)
+        3. CP/W' predicted — P = CP + W'/t (Skiba critical power model)
+        
+        Non-cycling power sports get actual MMP only (no published duration
+        factors, no sport-specific CP/W' values).
+        
+        Indoor/outdoor handling (cycling only): fetches Ride and VirtualRide
+        separately, takes max at each anchor. Source flag indicates which
+        environment produced the best effort.
+        
+        Weight fallback chain: today's wellness → most recent in wellness
+        history → athlete.icu_weight → null (all W/kg fields null).
+        
+        References:
+        - Allen & Coggan, Training and Racing with a Power Meter (3rd ed.)
+        - Skiba et al. (2012): CP/W' model for performance prediction
+        - Pinot & Grappe (2011): power-duration profiling
+        """
+        # Null block for early returns
+        def _null_profile(note="No sustainability data available."):
+            result = {"note": note}
+            if sustainability_window:
+                result["window"] = {
+                    "days": self.SUSTAINABILITY_WINDOW_DAYS,
+                    "start": sustainability_window[0],
+                    "end": sustainability_window[1]
+                }
+            return result
+        
+        if not sustainability_curves or not sustainability_window:
+            return _null_profile()
+        
+        # --- Weight fallback chain ---
+        weight_kg = None
+        weight_source = None
+        
+        # 1. Today's wellness (last entry in 7d)
+        if wellness_7d:
+            for w in reversed(wellness_7d):
+                if w.get("weight"):
+                    weight_kg = round(w["weight"], 1)
+                    weight_source = "wellness_recent"
+                    break
+        
+        # 2. Extended wellness history
+        if weight_kg is None and wellness_extended:
+            for w in reversed(wellness_extended):
+                if w.get("weight"):
+                    weight_kg = round(w["weight"], 1)
+                    weight_source = "wellness_extended"
+                    break
+        
+        # 3. Athlete profile weight (icu_weight)
+        if weight_kg is None and icu_weight is not None:
+            weight_kg = round(icu_weight, 1)
+            weight_source = "athlete_profile"
+        
+        if self.debug:
+            if weight_kg:
+                print(f"  ⚖️  Sustainability weight: {weight_kg}kg ({weight_source})")
+            else:
+                print(f"  ⚖️  Sustainability weight: unavailable (W/kg will be null)")
+        
+        # --- FTP staleness (cycling only) ---
+        ftp_staleness_days = None
+        try:
+            ftp_history = self._load_ftp_history()
+            all_dates = []
+            for ftp_type in ["indoor", "outdoor"]:
+                dates = list(ftp_history.get(ftp_type, {}).keys())
+                all_dates.extend(dates)
+            if all_dates:
+                most_recent = max(all_dates)
+                most_recent_date = datetime.strptime(most_recent, "%Y-%m-%d")
+                ftp_staleness_days = (datetime.now() - most_recent_date).days
+        except Exception:
+            pass
+        
+        # --- Cycling model inputs ---
+        cycling_ftp = None
+        cycling_w_prime = None
+        cycling_settings = sport_settings.get("cycling", {})
+        
+        # Use athlete-set FTP from sportSettings (not eFTP)
+        cycling_ftp = cycling_settings.get("ftp")
+        if not cycling_ftp:
+            # Fallback to indoor FTP if outdoor not set
+            cycling_ftp = cycling_settings.get("ftp_indoor")
+        
+        cycling_w_prime = power_model.get("w_prime")  # In joules from API
+        
+        # --- Build per-sport blocks ---
+        profile = {
+            "window": {
+                "days": self.SUSTAINABILITY_WINDOW_DAYS,
+                "start": sustainability_window[0],
+                "end": sustainability_window[1]
+            },
+            "weight_kg": weight_kg,
+            "weight_source": weight_source,
+        }
+        
+        for sport_family, sport_data in sustainability_curves.items():
+            anchors_map = self.SUSTAINABILITY_ANCHORS.get(sport_family)
+            if not anchors_map:
+                continue
+            
+            sport_lthr = sport_settings.get(sport_family, {}).get("lthr")
+            power_curves_by_type = sport_data.get("power", {})
+            hr_curves_by_type = sport_data.get("hr", {})
+            
+            is_cycling = (sport_family == "cycling")
+            
+            # --- Extract MMP per anchor (power) ---
+            # For cycling: max(Ride, VirtualRide) at each anchor with source tracking
+            anchors = {}
+            curve_id = f"r.{sustainability_window[0]}.{sustainability_window[1]}"
+            
+            for label, duration_secs in anchors_map.items():
+                best_watts = None
+                best_source = None
+                
+                for ptype, pdata in power_curves_by_type.items():
+                    curves_list = pdata.get("list", []) if isinstance(pdata, dict) else []
+                    curves_by_id = {c["id"]: c for c in curves_list if "id" in c}
+                    curve = curves_by_id.get(curve_id)
+                    if not curve:
+                        continue
+                    
+                    secs = curve.get("secs", [])
+                    watts = curve.get("watts", [])
+                    
+                    if duration_secs in secs:
+                        idx = secs.index(duration_secs)
+                        val = watts[idx] if idx < len(watts) else None
+                        if val is not None and val > 0:
+                            if best_watts is None or val > best_watts:
+                                best_watts = val
+                                if is_cycling:
+                                    if ptype == "VirtualRide":
+                                        best_source = "observed_indoor"
+                                    else:
+                                        best_source = "observed_outdoor"
+                                else:
+                                    best_source = "observed"
+                
+                # --- Extract max sustained HR at this anchor ---
+                best_hr = None
+                
+                for htype, hdata in hr_curves_by_type.items():
+                    curves_list = hdata.get("list", []) if isinstance(hdata, dict) else []
+                    curves_by_id = {c["id"]: c for c in curves_list if "id" in c}
+                    curve = curves_by_id.get(curve_id)
+                    if not curve:
+                        continue
+                    
+                    secs = curve.get("secs", [])
+                    values = curve.get("values", [])
+                    
+                    if duration_secs in secs:
+                        idx = secs.index(duration_secs)
+                        val = values[idx] if idx < len(values) else None
+                        if val is not None and val > 0:
+                            if best_hr is None or val > best_hr:
+                                best_hr = round(val)
+                
+                # --- Compute W/kg ---
+                actual_wpkg = None
+                if best_watts is not None and weight_kg is not None and weight_kg > 0:
+                    actual_wpkg = round(best_watts / weight_kg, 2)
+                
+                # --- Compute %LTHR ---
+                pct_lthr = None
+                if best_hr is not None and sport_lthr is not None and sport_lthr > 0:
+                    pct_lthr = round(best_hr / sport_lthr * 100, 1)
+                
+                # --- Coggan model (cycling only) ---
+                coggan_watts = None
+                coggan_wpkg = None
+                if is_cycling and cycling_ftp and duration_secs in self.COGGAN_DURATION_FACTORS:
+                    coggan_watts = round(cycling_ftp * self.COGGAN_DURATION_FACTORS[duration_secs])
+                    if weight_kg and weight_kg > 0:
+                        coggan_wpkg = round(coggan_watts / weight_kg, 2)
+                
+                # --- CP/W' model (cycling only) ---
+                cp_model_watts = None
+                cp_model_wpkg = None
+                if is_cycling and cycling_ftp and cycling_w_prime and duration_secs > 0:
+                    # P = CP + W'/t  (CP approximated by FTP for this model)
+                    cp_model_watts = round(cycling_ftp + cycling_w_prime / duration_secs)
+                    if weight_kg and weight_kg > 0:
+                        cp_model_wpkg = round(cp_model_watts / weight_kg, 2)
+                
+                # --- Model divergence (actual vs CP model) ---
+                model_divergence_pct = None
+                if best_watts is not None and cp_model_watts is not None and cp_model_watts > 0:
+                    model_divergence_pct = round((best_watts - cp_model_watts) / cp_model_watts * 100, 1)
+                
+                # --- Best effort date (not available from aggregate curves) ---
+                # The power-curves endpoint returns aggregate MMP, not per-activity.
+                # Date/recency fields would require cross-referencing recent_activities,
+                # which isn't passed this deep. Omitted by design — the AI can cross-ref.
+                
+                anchor_data = {
+                    "actual_watts": best_watts,
+                    "actual_wpkg": actual_wpkg,
+                    "actual_hr": best_hr,
+                    "pct_lthr": pct_lthr,
+                    "source": best_source,
+                }
+                
+                # Cycling gets model layers
+                if is_cycling:
+                    anchor_data["coggan_watts"] = coggan_watts
+                    anchor_data["coggan_wpkg"] = coggan_wpkg
+                    anchor_data["cp_model_watts"] = cp_model_watts
+                    anchor_data["cp_model_wpkg"] = cp_model_wpkg
+                    anchor_data["model_divergence_pct"] = model_divergence_pct
+                
+                anchors[label] = anchor_data
+            
+            # --- Coverage ratio ---
+            total_anchors = len(anchors)
+            observed_anchors = sum(1 for a in anchors.values() if a.get("actual_watts") is not None)
+            coverage_ratio = round(observed_anchors / total_anchors, 2) if total_anchors > 0 else 0
+            
+            # Block-level guard: need >= 2 non-null anchors
+            if observed_anchors < 2:
+                profile[sport_family] = {
+                    "anchors": None,
+                    "coverage_ratio": coverage_ratio,
+                    "note": f"Too few observed anchors ({observed_anchors}, need 2+)."
+                }
+                continue
+            
+            sport_block = {
+                "anchors": anchors,
+                "coverage_ratio": coverage_ratio,
+            }
+            
+            # Cycling-only fields at sport block level
+            if is_cycling:
+                sport_block["ftp_used"] = cycling_ftp
+                sport_block["w_prime_used"] = cycling_w_prime
+                sport_block["ftp_staleness_days"] = ftp_staleness_days
+                sport_block["model_trust_note"] = (
+                    "CP/W' model (P=CP+W'/t) is primary for durations ≤20min where W' contribution "
+                    "is meaningful. Coggan duration factors (Allen & Coggan, 3rd ed.) are the established "
+                    "reference for ≥60min. 30min is the crossover zone where both apply. "
+                    "model_divergence_pct = (actual - CP_model) / CP_model × 100. "
+                    "Positive divergence at short durations may indicate strong anaerobic capacity "
+                    "or stale W' value. Indoor MMP is typically 3-5% lower than outdoor (cooling, "
+                    "motivation) — source flag indicates which environment produced each anchor."
+                )
+            
+            profile[sport_family] = sport_block
+            
+            if self.debug:
+                print(f"  📊 Sustainability {sport_family}: {observed_anchors}/{total_anchors} anchors observed")
+                for label, vals in anchors.items():
+                    w = vals.get("actual_watts")
+                    hr = vals.get("actual_hr")
+                    src = vals.get("source", "")
+                    if w is not None:
+                        div = vals.get("model_divergence_pct")
+                        div_str = f", div={div:+.1f}%" if div is not None else ""
+                        print(f"      {label}: {w}W ({src}), HR={hr}{div_str}")
+        
+        # If no sport blocks were added beyond the header
+        has_sport_data = any(k not in ("window", "weight_kg", "weight_source", "note") for k in profile)
+        if not has_sport_data:
+            return _null_profile("No sport families produced valid sustainability data.")
+        
+        return profile
+
     def _calculate_tid_comparison(self, seiler_tid_7d: Dict,
                                    seiler_tid_28d: Dict) -> Dict:
         """
@@ -2096,15 +3945,17 @@ class IntervalsSync:
         )
         reason_codes.extend(extra_reasons)
         
-        # Phase duration: count consecutive weeks of same phase from recent weekly rows
+        # Phase duration: count consecutive weeks of same phase from history.
+        # Skip weekly_rows[-1] — it's the current week (being classified now,
+        # phase_detected is stale or absent). Count from [-2] backward, +1 for current.
         phase_duration = 0
         if phase and weekly_rows:
-            for row in reversed(weekly_rows):
+            for row in reversed(weekly_rows[:-1]):
                 if row.get("phase_detected") == phase:
                     phase_duration += 1
                 else:
                     break
-            phase_duration += 1  # include current in-progress week
+            phase_duration += 1  # current week (just classified)
         
         # Dossier agreement
         dossier_agreement = None
@@ -2217,16 +4068,16 @@ class IntervalsSync:
         mono_trend = features.get("monotony_trend")
         
         # Overreached: requires convergence of multiple signals, not a single metric.
-        # Path A: Current week ACWR > 1.5 (acute spike, Gabbett danger zone)
-        # Path B: Sustained elevated monotony (>2.5) + ACWR trending up or >1.3
+        # Path A: Current week ACWR >= 1.5 (acute spike, Gabbett danger zone)
+        # Path B: Sustained elevated monotony (>2.5) + ACWR trending up or >=1.3
         if mono_trend == "elevated":
             # Use CURRENT week's ACWR, not historical max — a spike 3 weeks ago
             # that's since resolved should not keep triggering Overreached
             current_acwr = recent_rows[-1].get("acwr") if recent_rows else None
-            if current_acwr is not None and current_acwr > 1.5:
+            if current_acwr is not None and current_acwr >= 1.5:
                 return "Overreached"
             # Sustained pattern: elevated monotony + ACWR still above normal
-            if current_acwr is not None and current_acwr > 1.3 and acwr_trend == "rising":
+            if current_acwr is not None and current_acwr >= 1.3 and acwr_trend == "rising":
                 return "Overreached"
         
         if ctl_slope is None:
@@ -2768,30 +4619,33 @@ class IntervalsSync:
         is_multi_sport = derived_metrics.get("multi_sport_detected", False)
         strain = derived_metrics.get("strain")
         ri = derived_metrics.get("recovery_index")
+        ri_yesterday = derived_metrics.get("recovery_index_yesterday")
         latest_hrv = derived_metrics.get("latest_hrv")
         latest_rhr = derived_metrics.get("latest_rhr")
         hrv_baseline_7d = derived_metrics.get("hrv_baseline_7d")
         rhr_baseline_7d = derived_metrics.get("rhr_baseline_7d")
         
         # --- ACWR Alerts ---
+        # High-side only. Low ACWR = undertraining / reduced recent load context,
+        # not overload risk. Low-side is surfaced via derived_metrics.acwr_interpretation.
         if acwr is not None:
-            if acwr <= 0.75 or acwr >= 1.35:
+            if acwr >= 1.35:
                 alerts.append({
                     "metric": "acwr",
                     "value": acwr,
                     "severity": "alarm",
-                    "threshold": "0.75 / 1.35",
-                    "context": f"ACWR {acwr} outside safe range. Injury/overreach risk elevated.",
+                    "threshold": "1.35",
+                    "context": f"ACWR {acwr} above safe range. Injury/overreach risk elevated.",
                     "persistence_days": None,
                     "tier": 2
                 })
-            elif acwr <= 0.8 or acwr >= 1.3:
+            elif acwr >= 1.3:
                 alerts.append({
                     "metric": "acwr",
                     "value": acwr,
                     "severity": "warning",
-                    "threshold": "0.8 / 1.3",
-                    "context": f"ACWR {acwr} at edge of optimal range. Monitor closely. Alarm at 0.75/1.35.",
+                    "threshold": "1.3",
+                    "context": f"ACWR {acwr} at edge of optimal range. Monitor closely. Alarm at 1.35.",
                     "persistence_days": None,
                     "tier": 2
                 })
@@ -2864,6 +4718,10 @@ class IntervalsSync:
             })
         
         # --- Recovery Index Alerts ---
+        # Aligned with readiness_decision RI rule:
+        #   alarm: ri < 0.6 (single day, immediate)
+        #   warning: ri < 0.7 AND ri_yesterday < 0.7 (persistent, 2+ days)
+        # Single-day dips 0.6–0.7 are context only, not warning-grade.
         if ri is not None:
             if ri < 0.6:
                 alerts.append({
@@ -2875,14 +4733,14 @@ class IntervalsSync:
                     "persistence_days": None,
                     "tier": 1
                 })
-            elif ri < 0.7:
+            elif ri < 0.7 and ri_yesterday is not None and ri_yesterday < 0.7:
                 alerts.append({
                     "metric": "recovery_index",
                     "value": ri,
                     "severity": "warning",
                     "threshold": 0.7,
-                    "context": f"RI {ri} < 0.7. Monitor — if persists >3 days, deload review required.",
-                    "persistence_days": None,
+                    "context": f"RI {ri} < 0.7 for 2+ consecutive days (yesterday {ri_yesterday}). Monitor — if persists 3+ days, deload review required.",
+                    "persistence_days": 2,
                     "tier": 1
                 })
         
@@ -3107,7 +4965,7 @@ class IntervalsSync:
         
         Priority ladder (first match wins):
           P0 — Safety stop: RI < 0.6 or any tier-1 alarm → Skip
-          P1 — Acute overload: ACWR > 1.5, compound TSB+HRV, RI < 0.7 + persistent alerts → Skip/Modify
+          P1 — Acute overload: ACWR >= 1.5, compound TSB+HRV, RI < 0.7 + persistent alerts → Skip/Modify
           P2 — Accumulated fatigue: signal counting with phase-adjusted thresholds → Modify
           P3 — Green light → Go
         
@@ -3169,10 +5027,10 @@ class IntervalsSync:
             rhr_delta = None
             signals["rhr"] = {"status": "unavailable", "value": latest_rhr, "baseline_7d": rhr_baseline_7d, "delta_bpm": None}
         
-        # Sleep signal
+        # Sleep signal (hours only — sleep quality/score excluded from readiness; v3.90)
         if sleep_hours is not None:
-            sleep_red = sleep_hours < 5 or (sleep_quality is not None and sleep_quality >= 4)
-            sleep_amber = (not sleep_red) and (sleep_hours < 7 or (sleep_quality is not None and sleep_quality >= 3))
+            sleep_red = sleep_hours < 5
+            sleep_amber = (not sleep_red) and sleep_hours < 7
             if sleep_red:
                 sleep_status = "red"
             elif sleep_amber:
@@ -3184,12 +5042,12 @@ class IntervalsSync:
             signals["sleep"] = {"status": "unavailable", "hours": None, "quality": sleep_quality}
         
         # ACWR signal
+        # Readiness: high-side only. Low ACWR = reduced recent load (taper/undertraining),
+        # not a fatigue/overload signal — context surfaces via acwr_interpretation.
         if acwr is not None:
-            if acwr > 1.5:
+            if acwr >= 1.5:
                 acwr_status = "red"
-            elif acwr > 1.3:
-                acwr_status = "amber"
-            elif acwr < 0.8:
+            elif acwr >= 1.3:
                 acwr_status = "amber"
             else:
                 acwr_status = "green"
@@ -3197,17 +5055,21 @@ class IntervalsSync:
         else:
             signals["acwr"] = {"status": "unavailable", "value": None}
         
-        # RI signal (Section 8: >= 0.8 good, 0.6-0.79 moderate fatigue, < 0.6 deload)
+        # RI signal — amber requires 2-day persistence to filter single-night noise.
+        #   red: ri < 0.6 (single day, immediate)
+        #   amber: ri < 0.7 AND ri_yesterday < 0.7 (persistent)
+        #   green: otherwise (single-day dips 0.6–0.7 remain visible via value, not counted)
+        ri_yesterday = derived_metrics.get("recovery_index_yesterday")
         if ri is not None:
             if ri < 0.6:
                 ri_status = "red"
-            elif ri < 0.8:
+            elif ri < 0.7 and ri_yesterday is not None and ri_yesterday < 0.7:
                 ri_status = "amber"
             else:
                 ri_status = "green"
-            signals["ri"] = {"status": ri_status, "value": ri}
+            signals["ri"] = {"status": ri_status, "value": ri, "value_yesterday": ri_yesterday}
         else:
-            signals["ri"] = {"status": "unavailable", "value": None}
+            signals["ri"] = {"status": "unavailable", "value": None, "value_yesterday": ri_yesterday}
         
         # --- Count signals ---
         green_count = sum(1 for s in signals.values() if s["status"] == "green")
@@ -3253,8 +5115,8 @@ class IntervalsSync:
         p1_skip_reasons = []
         p1_modify_reasons = []
         
-        if acwr is not None and acwr > 1.5:
-            p1_skip_reasons.append(f"ACWR {acwr} > 1.5")
+        if acwr is not None and acwr >= 1.5:
+            p1_skip_reasons.append(f"ACWR {acwr} >= 1.5")
         
         # Compound: deep TSB + HRV confirming
         if tsb is not None and tsb < -30 and hrv_delta_pct is not None and hrv_delta_pct < -10:
@@ -3285,8 +5147,8 @@ class IntervalsSync:
             }
         
         # P1 modify tier (sub-skip thresholds)
-        if acwr is not None and acwr > 1.3:
-            p1_modify_reasons.append(f"ACWR {acwr} > 1.3")
+        if acwr is not None and acwr >= 1.3:
+            p1_modify_reasons.append(f"ACWR {acwr} >= 1.3")
         if tsb is not None and tsb < -25 and hrv_delta_pct is not None and hrv_delta_pct < -10:
             p1_modify_reasons.append(f"TSB {tsb} < -25 with HRV {hrv_delta_pct}% below baseline")
         
@@ -3303,7 +5165,7 @@ class IntervalsSync:
                     "modifier_applied": modifiers["modifier_applied"]
                 },
                 "race_week_defers": race_week_active,
-                "modification": self._build_modification(["acwr"] if acwr and acwr > 1.3 else amber_signals),
+                "modification": self._build_modification(["acwr"] if acwr and acwr >= 1.3 else amber_signals),
                 "reason": f"P1 acute overload (modify). {'; '.join(p1_modify_reasons)}.",
                 "alarm_refs": []
             }
@@ -3523,6 +5385,17 @@ class IntervalsSync:
                 print("  history.json missing — will generate (first run)")
             return True
         
+        # If sync.py changed, regenerate regardless of time gate
+        try:
+            with open(history_path, 'r') as f:
+                history_data = json.load(f)
+            if history_data.get("script_hash") != self.script_hash:
+                if self.debug:
+                    print("  history.json stale (sync.py changed) — will regenerate")
+                return True
+        except Exception:
+            return True
+        
         # For REFRESH of existing history, apply the time gate
         now = datetime.now()
         
@@ -3678,6 +5551,7 @@ class IntervalsSync:
             "generated_at": now.isoformat(),
             "source": "Intervals.icu API",
             "sync_version": self.VERSION,
+            "script_hash": self.script_hash,
             "data_range": {
                 "earliest": earliest_date,
                 "latest": latest_date,
@@ -3714,7 +5588,7 @@ class IntervalsSync:
             
             total_tss = sum(a.get("icu_training_load", 0) or 0 for a in day_activities)
             total_seconds = sum(a.get("moving_time", 0) or 0 for a in day_activities)
-            activity_types = list(set(a.get("type", "Unknown") for a in day_activities)) if day_activities else ["Rest"]
+            activity_types = list(dict.fromkeys(a.get("type", "Unknown") for a in day_activities)) if day_activities else ["Rest"]
             
             # Hard day detection via shared classifier (power + HR fallback)
             day_zones_by_basis = {}
@@ -4385,7 +6259,7 @@ class IntervalsSync:
             if self.debug:
                 print(f"  Could not create update issue: {e}")
     
-    def _format_activities(self, activities: List[Dict], anonymize: bool = False, interval_activity_ids: set = None) -> List[Dict]:
+    def _format_activities(self, activities: List[Dict], interval_activity_ids: set = None) -> List[Dict]:
         """Format activities for LLM analysis"""
         interval_activity_ids = interval_activity_ids or set()
         chat_notes_cutoff = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
@@ -4455,9 +6329,6 @@ class IntervalsSync:
                 zone_dist = None
             
             activity_name = act.get("name", "")
-            if anonymize:
-                if act.get("type", "") in self.OUTDOOR_TYPES:
-                    activity_name = "Training Session"
             
             raw_hrrc = act.get("icu_hrr")
             if isinstance(raw_hrrc, dict):
@@ -5050,7 +6921,7 @@ class IntervalsSync:
         except Exception:
             return None
     
-    def _format_events(self, events: List[Dict], anonymize: bool = False, today: str = None) -> List[Dict]:
+    def _format_events(self, events: List[Dict], today: str = None) -> List[Dict]:
         """
         Format planned workouts with workout_summary and tiered detail (v3.6.2).
         
@@ -5122,11 +6993,23 @@ class IntervalsSync:
                 "planned_tss": evt.get("icu_training_load"),
                 "duration_hours": round((evt.get("moving_time") or 0) / 3600, 2),
                 "duration_formatted": self._format_duration(int(evt.get("moving_time") or 0)),
-                "workout_summary": summary
+                "workout_summary": summary,
+                "has_terrain": evt.get("id", f"unknown_{i+1}") in getattr(self, '_terrain_event_ids', set())
             }
 
             if coach_notes:
                 entry["coach_notes"] = coach_notes
+            
+            # Start time: extract HH:MM when a real time is set (not midnight)
+            raw_start = evt.get("start_date_local") or ""
+            if "T" in raw_start:
+                time_part = raw_start.split("T")[1][:5]
+                if time_part != "00:00":
+                    entry["start_time"] = time_part
+            
+            # Indoor flag: only include when True
+            if evt.get("indoor"):
+                entry["indoor"] = True
             
             if is_near:
                 # Days 0-7: full detail
@@ -5170,7 +7053,7 @@ class IntervalsSync:
                         evt_date = datetime.strptime(start, "%Y-%m-%d").date()
                         days_until = (evt_date - today_date).days
                         if days_until >= 0:
-                            race_events.append({
+                            race_entry = {
                                 "name": evt.get("name", "Unnamed Race"),
                                 "date": start,
                                 "category": cat,
@@ -5178,8 +7061,19 @@ class IntervalsSync:
                                 "days_until": days_until,
                                 "moving_time_seconds": evt.get("moving_time"),
                                 "distance_meters": evt.get("distance"),
+                                "has_terrain": evt.get("id") in getattr(self, '_terrain_event_ids', set()),
                                 "_raw": evt  # Keep raw for race-week building
-                            })
+                            }
+                            # Start time: extract HH:MM when a real time is set
+                            raw_start = evt.get("start_date_local") or ""
+                            if "T" in raw_start:
+                                time_part = raw_start.split("T")[1][:5]
+                                if time_part != "00:00":
+                                    race_entry["start_time"] = time_part
+                            # Indoor flag: only include when True
+                            if evt.get("indoor"):
+                                race_entry["indoor"] = True
+                            race_events.append(race_entry)
                     except ValueError:
                         continue
         
@@ -6003,6 +7897,23 @@ def do_update():
         elif updated:
             print(f"\n   ✅ {len(updated)} file{'s' if len(updated) != 1 else ''} updated")
 
+        # --- Cache invalidation: sync.py schema change ---
+        sync_updated = any(u["path"] == "examples/sync.py" for u in updated)
+        if sync_updated:
+            cache_cleared = []
+            for cache_file in ("history.json", "intervals.json", "routes.json"):
+                cache_path = data_dir / cache_file
+                if cache_path.exists():
+                    try:
+                        cache_path.unlink()
+                        cache_cleared.append(cache_file)
+                    except Exception as e:
+                        print(f"   ⚠️  Could not delete {cache_file}: {e}")
+            if cache_cleared:
+                print(f"\n   🔄 sync.py updated → cleared {', '.join(cache_cleared)}")
+                print(f"      Timer users: full data after 2 cycles (~2 min)")
+                print(f"      Manual users: run sync twice to rebuild")
+
     # --- Orphan cleanup (runs regardless of whether files were updated) ---
     orphaned_files = _find_orphaned_files(upstream_files, target_dir)
     empty_dirs = _find_empty_dirs(target_dir)
@@ -6244,7 +8155,6 @@ def main():
     parser.add_argument("--github-repo", help="GitHub repo (format: username/repo)")
     parser.add_argument("--days", type=int, default=7, help="Days of data to export (default: 7)")
     parser.add_argument("--output", help="Save to local file instead of GitHub")
-    parser.add_argument("--anonymize", action="store_true", default=True, help="Remove identifying information (default: enabled)")
     parser.add_argument("--debug", action="store_true", help="Show debug output for API fields")
     parser.add_argument("--week-start", choices=["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
                         default=None, help="Training week start day (default: mon, or from config)")
@@ -6387,7 +8297,7 @@ def main():
     
     print(f"\n🔄 Fetching {args.days} days of data (extended 28 days for ACWR)...")
     
-    data = sync.collect_training_data(days_back=args.days, anonymize=args.anonymize)
+    data = sync.collect_training_data(days_back=args.days)
     
     # Extract derived metrics for display
     dm = data.get("derived_metrics", {})
@@ -6402,7 +8312,7 @@ def main():
         print(f"   Strain: {dm.get('strain')}")
         print(f"   Gray Zone %: {dm.get('grey_zone_percentage')}%")
         print(f"   Quality Intensity %: {dm.get('quality_intensity_percentage')}%")
-        print(f"   Polarisation: {dm.get('polarisation_index')} (target ~0.80)")
+        print(f"   Easy Time Ratio: {dm.get('easy_time_ratio')} (target ~0.80)")
         tid = dm.get('seiler_tid_7d', {})
         tid_ps = dm.get('seiler_tid_7d_primary', {})
         print(f"   Seiler TID: {tid.get('classification')} (PI: {tid.get('polarization_index')}) — Z1:{tid.get('z1_pct')}% Z2:{tid.get('z2_pct')}% Z3:{tid.get('z3_pct')}%")
@@ -6438,8 +8348,7 @@ def main():
     
     if args.output:
         filepath = sync.save_to_file(data, args.output)
-        if args.anonymize:
-            print(f"   🔒 Anonymization: ENABLED")
+        print(f"   🔒 Athlete ID: REDACTED")
         print(f"\n✅ Data saved to {filepath}")
         print_summary()
         print(f"\n💡 Tip: Paste contents to AI, or upload the file directly")
@@ -6451,6 +8360,14 @@ def main():
             with open(intervals_path, 'w') as f:
                 json.dump(intervals_data, f, indent=2, default=str)
             print(f"   📊 intervals.json saved ({len(intervals_data['activities'])} activities)")
+        
+        # === SAVE ROUTES.JSON (local mode) ===
+        routes_data = getattr(sync, '_routes_data', None)
+        if routes_data is not None:
+            routes_path = sync.data_dir / sync.ROUTES_FILE
+            with open(routes_path, 'w') as f:
+                json.dump(routes_data, f, indent=2, default=str)
+            print(f"   🗺️  routes.json saved ({len(routes_data.get('events', []))} event(s))")
         
         # === AUTO HISTORY GENERATION (local mode) ===
         if sync.should_generate_history():
@@ -6467,8 +8384,7 @@ def main():
         raw_url = sync.publish_to_github(data)
         
         print(f"\n✅ Data published to GitHub")
-        if args.anonymize:
-            print(f"   🔒 Anonymization: ENABLED")
+        print(f"   🔒 Athlete ID: REDACTED")
         print_summary()
         print(f"\n📊 Static URL for LLMs:")
         print(f"   {raw_url}")
@@ -6488,6 +8404,20 @@ def main():
                 print(f"   📊 intervals.json pushed ({len(intervals_data['activities'])} activities)")
             except Exception as e:
                 print(f"   ⚠️ intervals.json push failed (non-critical): {e}")
+        
+        # === PUBLISH ROUTES.JSON (GitHub mode) ===
+        routes_data = getattr(sync, '_routes_data', None)
+        if routes_data is not None:
+            # Save locally for cache on next run
+            routes_path = sync.data_dir / sync.ROUTES_FILE
+            with open(routes_path, 'w') as f:
+                json.dump(routes_data, f, indent=2, default=str)
+            try:
+                sync.publish_to_github(routes_data, filepath="routes.json",
+                                       commit_message=f"Update routes.json - {datetime.now().strftime('%Y-%m-%d')}")
+                print(f"   🗺️  routes.json pushed ({len(routes_data.get('events', []))} event(s))")
+            except Exception as e:
+                print(f"   ⚠️ routes.json push failed (non-critical): {e}")
         
         # === AUTO HISTORY GENERATION (Sundays/Mondays, first two runs after midnight) ===
         if sync.should_generate_history():
