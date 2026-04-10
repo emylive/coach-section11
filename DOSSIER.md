@@ -11,7 +11,7 @@
 
 ## Objectifs 2026
 - **Objectif Principal** : Trail de la Sainte Baume (25 avril 2026) - 25km / 1200D+
-- **Objectifs de Performance** : Améliorer l'allure en course à pied pour suivre le groupe en trail ; réduire l'écart de niveau entre le vélo et la course en triathlon.
+- **Objectifs de Performance** : Améliorer l'allure en course à pied pour suivre le groupe en trail ; réduire l'écart de niveau entre le vélo et la course en triathlon; ~4h00
 
 ## Historique de Compétition
 - **Triathlon** : S, M et 1 L (2025)
@@ -27,9 +27,14 @@
 - **Samedi/Dimanche** : Sortie longue (Trail ou Vélo de route)
 
 ## Santé et Limitations
-- **Historique** : Fracture poignet + algoneurodystrophie (il y a 8 ans).
+- **Historique** : Fracture poignet + algoneurodystrophie (il y a 8 ans). Hernies discales (vigilance sur la posture et les impacts répétés), antécédents d'entorses de cheville (travail de proprioception recommandé)
 - **Note** : Vigilance sur la charge d'impact en course à pied pour éviter les blessures de surutilisation.
 
 ## Préférences du Coach
 - **Style** : Direct, basé sur les données (TSB, ACWR).
 - **Priorité** : Gestion de la charge pour arriver fraîche au Trail de la Ste Baume le 25 avril.
+
+## 🛠 MATÉRIEL
+- **Vélo** : Route (extérieur)
+- **Aviron** : Concept2 (Puissance disponible)
+- **Montre/Capteurs** : Données synchronisées via Intervals.icu  
