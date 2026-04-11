@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-04-11T14:05:07.568143",
+    "last_updated": "2026-04-11T14:53:46.555126",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -588,7 +588,7 @@
           "hard_sessions_planned": 0,
           "race_proximity": 14,
           "next_week_load": null,
-          "plan_coverage_current_week": 0.2,
+          "plan_coverage_current_week": 0.6,
           "plan_coverage_next_week": 1.2
         },
         "data_quality": "good",
@@ -624,7 +624,7 @@
     "p_max": 525,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-04-11T14:05:07.566993",
+    "calculation_timestamp": "2026-04-11T14:53:46.554025",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -2525,6 +2525,32 @@
       "description": "- 120m easy steady"
     },
     {
+      "id": 103697855,
+      "date": "2026-04-12",
+      "name": "Trail Cardio J-14",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": null,
+      "duration_hours": 0.0,
+      "duration_formatted": "0s",
+      "workout_summary": null,
+      "has_terrain": false,
+      "description": "- 20m Z1 Cardio Warmup\n- 30m Z3 Cardio Allure Course\n- 45m Z2 Cardio Endurance\n- 10m Z1 Cardio Cool"
+    },
+    {
+      "id": 103698271,
+      "date": "2026-04-12",
+      "name": "Trail HR J-14",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": null,
+      "duration_hours": 0.0,
+      "duration_formatted": "0s",
+      "workout_summary": null,
+      "has_terrain": false,
+      "description": "- 20m Z1 HR\n- 30m Z3 HR Allure Course\n- 45m Z2 HR Endurance\n- 10m Z1 HR"
+    },
+    {
       "id": 89752185,
       "date": "2026-04-14",
       "name": "Aff\u00fbtage final S-1",
@@ -2699,7 +2725,7 @@
     "success": 3,
     "patternA": 3,
     "patternB": 0,
-    "bail_no_workout_doc": 2,
+    "bail_no_workout_doc": 4,
     "bail_no_match": 7
   },
   "weekly_summary": {
