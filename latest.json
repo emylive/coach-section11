@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-04-11T23:34:47.761755",
+    "last_updated": "2026-04-12T00:03:22.841949",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -78,10 +78,10 @@
   "alerts": [
     {
       "metric": "race_taper",
-      "value": 14,
+      "value": 13,
       "severity": "info",
       "threshold": "RACE_A within 8-14 days",
-      "context": "RACE_A 'Trail Ste Baume (Course) by LeCoach App' in 14 days. Begin volume reduction (target 41-60% over 2 weeks). Maintain intensity. CTL should peak now or within the next few days.",
+      "context": "RACE_A 'Trail Ste Baume (Course) by LeCoach App' in 13 days. Begin volume reduction (target 41-60% over 2 weeks). Maintain intensity. CTL should peak now or within the next few days.",
       "persistence_days": null,
       "tier": 1
     }
@@ -91,41 +91,41 @@
     "priority": 3,
     "signals": {
       "hrv": {
-        "status": "green",
-        "value": 44.0,
-        "baseline_7d": 41.4,
-        "delta_pct": 6.3
+        "status": "unavailable",
+        "value": null,
+        "baseline_7d": 42.2,
+        "delta_pct": null
       },
       "rhr": {
-        "status": "green",
-        "value": 52,
-        "baseline_7d": 53.9,
-        "delta_bpm": -1.9
+        "status": "unavailable",
+        "value": null,
+        "baseline_7d": 54,
+        "delta_bpm": null
       },
       "sleep": {
-        "status": "green",
-        "hours": 7.22,
-        "quality": 3
+        "status": "unavailable",
+        "hours": null,
+        "quality": null
       },
       "acwr": {
         "status": "green",
-        "value": 0.47
+        "value": 0.52
       },
       "ri": {
-        "status": "green",
-        "value": 1.1,
-        "value_yesterday": 0.99
+        "status": "unavailable",
+        "value": null,
+        "value_yesterday": 1.08
       },
       "tsb": {
         "status": "green",
-        "value": 3.1
+        "value": 9.4
       }
     },
     "signal_summary": {
-      "green": 6,
+      "green": 2,
       "amber": 0,
       "red": 0,
-      "unavailable": 0
+      "unavailable": 4
     },
     "phase_context": {
       "phase": "Taper",
@@ -135,7 +135,7 @@
     },
     "race_week_defers": false,
     "modification": null,
-    "reason": "P3 green light. 6 green, 0 amber (threshold 1), 0 red.",
+    "reason": "P3 green light. 2 green, 0 amber (threshold 1), 0 red. Note: 4 signals unavailable \u2014 limited data.",
     "alarm_refs": []
   },
   "history": {
@@ -173,17 +173,17 @@
   },
   "current_status": {
     "fitness": {
-      "ctl": 61.32,
-      "atl": 58.26,
-      "tsb": 3.06,
-      "ramp_rate": -5.05,
-      "fitness_source": "From Intervals.icu API (reflects completed workouts)"
+      "ctl": 59.88,
+      "atl": 50.5,
+      "tsb": 9.38,
+      "ramp_rate": -4.93,
+      "fitness_source": "Decayed from yesterday (today's planned workouts not yet completed)"
     },
     "thresholds": {
-      "eftp": 156.0,
-      "w_prime": 14033,
+      "eftp": 155.9,
+      "w_prime": 14019,
       "w_prime_kj": 14.0,
-      "p_max": 525,
+      "p_max": 524,
       "vo2max": null,
       "sports": {
         "cycling": {
@@ -223,11 +223,11 @@
     "current_metrics": {
       "weight_kg": 61.849,
       "resting_hr": 52,
-      "hrv": 44.0,
-      "sleep_quality": 3,
-      "sleep_hours": 7.22,
-      "sleep_formatted": "7h13m",
-      "sleep_score": 74.0,
+      "hrv": null,
+      "sleep_quality": null,
+      "sleep_hours": null,
+      "sleep_formatted": null,
+      "sleep_score": null,
       "fatigue": null,
       "soreness": null,
       "stress": null,
@@ -244,7 +244,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 7953,
+      "steps": null,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -256,15 +256,15 @@
     }
   },
   "derived_metrics": {
-    "recovery_index": 1.1,
-    "recovery_index_yesterday": 0.99,
-    "hrv_baseline_7d": 41.4,
-    "rhr_baseline_7d": 53.9,
-    "hrv_baseline_28d": 42.0,
-    "rhr_baseline_28d": 52.4,
-    "latest_hrv": 44.0,
-    "latest_rhr": 52,
-    "acwr": 0.47,
+    "recovery_index": null,
+    "recovery_index_yesterday": 1.08,
+    "hrv_baseline_7d": 42.2,
+    "rhr_baseline_7d": 54,
+    "hrv_baseline_28d": 42.3,
+    "rhr_baseline_28d": 52.3,
+    "latest_hrv": null,
+    "latest_rhr": null,
+    "acwr": 0.52,
     "acwr_interpretation": "undertraining",
     "monotony": 0.9,
     "monotony_interpretation": "normal (primary sport 0.66, total 0.9 inflated by multi-sport)",
@@ -275,9 +275,9 @@
     "multi_sport_detected": true,
     "strain": 210.0,
     "stress_tolerance": 2.3,
-    "load_recovery_ratio": 2.1,
+    "load_recovery_ratio": null,
     "tss_7d_total": 233.0,
-    "tss_28d_total": 2001.0,
+    "tss_28d_total": 1799.0,
     "zone_distribution_7d": {
       "z1_hours": 1.28,
       "z2_hours": 1.09,
@@ -318,23 +318,23 @@
       "sport": "run"
     },
     "seiler_tid_28d": {
-      "z1_seconds": 54234,
-      "z2_seconds": 16491,
-      "z3_seconds": 47822,
+      "z1_seconds": 49438,
+      "z2_seconds": 13354,
+      "z3_seconds": 45309,
       "z1_pct": 45.7,
-      "z2_pct": 13.9,
-      "z3_pct": 40.3,
-      "polarization_index": 2.12,
+      "z2_pct": 12.4,
+      "z3_pct": 41.9,
+      "polarization_index": 2.19,
       "classification": "Polarized",
       "zone_basis": "mixed"
     },
     "seiler_tid_28d_primary": {
-      "z1_seconds": 34623,
-      "z2_seconds": 14213,
-      "z3_seconds": 41932,
-      "z1_pct": 38.1,
-      "z2_pct": 15.7,
-      "z3_pct": 46.2,
+      "z1_seconds": 29827,
+      "z2_seconds": 11076,
+      "z3_seconds": 39419,
+      "z1_pct": 37.1,
+      "z2_pct": 13.8,
+      "z3_pct": 49.1,
       "polarization_index": null,
       "classification": "High Intensity",
       "zone_basis": "mixed",
@@ -361,9 +361,9 @@
       },
       "hrrc": {
         "mean_hrrc_7d": 22.0,
-        "mean_hrrc_28d": 20.4,
+        "mean_hrrc_28d": 22.2,
         "qualifying_sessions_7d": 1,
-        "qualifying_sessions_28d": 5,
+        "qualifying_sessions_28d": 4,
         "trend": "stable",
         "note": "HRRc = heart rate recovery (largest 60s HR drop in bpm after exceeding threshold HR for >1 min). Higher = better parasympathetic recovery. Null when threshold not reached, recording stopped before cooldown, or no HR data. Trend: 7d mean vs 28d mean, >10% = meaningful (min 1 session/7d, 3 sessions/28d). Display only \u2014 not wired into readiness_decision signals."
       },
@@ -371,20 +371,20 @@
         "classification_7d": "Polarized",
         "classification_28d": "Polarized",
         "pi_7d": 2.71,
-        "pi_28d": 2.12,
-        "pi_delta": 0.59,
+        "pi_28d": 2.19,
+        "pi_delta": 0.52,
         "drift": "consistent",
         "note": "Compares 7d vs 28d Seiler TID to detect distribution shifts. pi_delta positive = more polarized acutely."
       },
       "power_curve_delta": {
         "window_days": 28,
         "current_window": {
-          "start": "2026-03-15",
-          "end": "2026-04-11"
+          "start": "2026-03-16",
+          "end": "2026-04-12"
         },
         "previous_window": {
-          "start": "2026-02-15",
-          "end": "2026-03-14"
+          "start": "2026-02-16",
+          "end": "2026-03-15"
         },
         "anchors": {
           "5s": {
@@ -419,12 +419,12 @@
       "hr_curve_delta": {
         "window_days": 28,
         "current_window": {
-          "start": "2026-03-15",
-          "end": "2026-04-11"
+          "start": "2026-03-16",
+          "end": "2026-04-12"
         },
         "previous_window": {
-          "start": "2026-02-15",
-          "end": "2026-03-14"
+          "start": "2026-02-16",
+          "end": "2026-03-15"
         },
         "anchors": {
           "60s": {
@@ -454,8 +454,8 @@
       "sustainability_profile": {
         "window": {
           "days": 42,
-          "start": "2026-03-01",
-          "end": "2026-04-11"
+          "start": "2026-03-02",
+          "end": "2026-04-12"
         },
         "weight_kg": 61.8,
         "weight_source": "wellness_recent",
@@ -548,8 +548,8 @@
           },
           "coverage_ratio": 0.71,
           "ftp_used": 169,
-          "w_prime_used": 14033,
-          "ftp_staleness_days": 22,
+          "w_prime_used": 14019,
+          "ftp_staleness_days": 23,
           "model_trust_note": "CP/W' model (P=CP+W'/t) is primary for durations \u226420min where W' contribution is meaningful. Coggan duration factors (Allen & Coggan, 3rd ed.) are the established reference for \u226560min. 30min is the crossover zone where both apply. model_divergence_pct = (actual - CP_model) / CP_model \u00d7 100. Positive divergence at short durations may indicate strong anaerobic capacity or stale W' value. Indoor MMP is typically 3-5% lower than outdoor (cooling, motivation) \u2014 source flag indicates which environment produced each anchor."
         }
       },
@@ -561,10 +561,10 @@
       "completed_days": 1,
       "matched_days": 0,
       "planned_dates": [
-        "2026-04-05",
         "2026-04-07",
         "2026-04-08",
-        "2026-04-09"
+        "2026-04-09",
+        "2026-04-12"
       ],
       "completed_dates": [
         "2026-04-06"
@@ -578,7 +578,7 @@
       ],
       "basis": {
         "stream_1": {
-          "ctl_slope": 0.95,
+          "ctl_slope": 0.6,
           "acwr_trend": "falling",
           "hard_day_pattern": 4,
           "weeks_available": 4
@@ -586,7 +586,7 @@
         "stream_2": {
           "planned_tss_delta": null,
           "hard_sessions_planned": 0,
-          "race_proximity": 14,
+          "race_proximity": 13,
           "next_week_load": null,
           "plan_coverage_current_week": 0.6,
           "plan_coverage_next_week": 1.2
@@ -618,19 +618,19 @@
       "benchmark_percentage": null,
       "seasonal_expected": null
     },
-    "eftp": 156.0,
-    "w_prime": 14033,
+    "eftp": 155.9,
+    "w_prime": 14019,
     "w_prime_kj": 14.0,
-    "p_max": 525,
+    "p_max": 524,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-04-11T23:34:47.760598",
+    "calculation_timestamp": "2026-04-12T00:03:22.840730",
     "data_quality": {
-      "hrv_data_points": 7,
-      "rhr_data_points": 7,
+      "hrv_data_points": 6,
+      "rhr_data_points": 6,
       "activities_7d": 6,
-      "activities_28d": 32,
-      "planned_workouts_7d": 5,
+      "activities_28d": 31,
+      "planned_workouts_7d": 7,
       "ftp_history_days": {
         "indoor": 0,
         "outdoor": 0
@@ -2187,94 +2187,9 @@
         }
       },
       "has_intervals": false
-    },
-    {
-      "id": "i132153565",
-      "date": "2026-03-15T09:40:47",
-      "type": "TrailRun",
-      "name": "Morning Trail",
-      "duration_hours": 2.92,
-      "distance_km": 17.29,
-      "tss": 202,
-      "intensity_factor": 82.991974,
-      "avg_power": null,
-      "normalized_power": null,
-      "avg_hr": 148,
-      "max_hr": 170,
-      "avg_cadence": 75.99863,
-      "avg_speed": 5.9,
-      "max_speed": 10.7,
-      "avg_pace": null,
-      "avg_temp": null,
-      "weather": null,
-      "humidity": null,
-      "wind_speed": null,
-      "work_kj": null,
-      "calories": 1375,
-      "carbs_used": null,
-      "carbs_ingested": null,
-      "variability_index": null,
-      "decoupling": null,
-      "efficiency_factor": null,
-      "hrrc": 13,
-      "elevation_m": 608.0,
-      "feel": 2,
-      "rpe": 5,
-      "zone_distribution": {
-        "hr_zones": {
-          "z1_time": 1370,
-          "z2_time": 3426,
-          "z3_time": 3137,
-          "z4_time": 2418,
-          "z5_time": 91,
-          "z6_time": 4,
-          "z7_time": 0
-        }
-      },
-      "has_intervals": false,
-      "description": "CoachWatts Workout Analysis\n\nF\u00e9licitations pour cette superbe sortie Trail de 175 minutes et 960m de d\u00e9nivel\u00e9 ! Votre gestion de l'effort et votre strat\u00e9gie de rythme ont \u00e9t\u00e9 excellentes, d\u00e9montrant une grande discipline et une endurance remarquable. Vous avez maintenu une intensit\u00e9 tr\u00e8s stable, ce qui est particuli\u00e8rement impressionnant sur un terrain technique.\n\n\ud83d\udd17 https://CoachWatts.com - AI Endurance Coaching"
     }
   ],
   "wellness_data": [
-    {
-      "date": "2026-04-05",
-      "weight_kg": null,
-      "resting_hr": 53,
-      "hrv_rmssd": 37.0,
-      "hrv_sdnn": null,
-      "sleep_hours": 6.95,
-      "sleep_formatted": "6h57m",
-      "sleep_quality": 3,
-      "sleep_score": 70.0,
-      "mental_energy": null,
-      "avg_sleeping_hr": null,
-      "vo2max": null,
-      "fatigue": null,
-      "soreness": null,
-      "stress": null,
-      "mood": null,
-      "motivation": null,
-      "injury": null,
-      "hydration": null,
-      "spO2": null,
-      "blood_glucose": null,
-      "systolic": null,
-      "diastolic": null,
-      "baevsky_si": null,
-      "lactate": null,
-      "respiration": null,
-      "body_fat_pct": null,
-      "abdomen_cm": null,
-      "steps": 5016,
-      "hydration_volume_l": null,
-      "kcal_consumed": null,
-      "carbohydrates_g": null,
-      "protein_g": null,
-      "fat_g": null,
-      "menstrual_phase": null,
-      "menstrual_phase_predicted": null,
-      "readiness": null
-    },
     {
       "date": "2026-04-06",
       "weight_kg": null,
@@ -2508,6 +2423,45 @@
       "menstrual_phase": null,
       "menstrual_phase_predicted": null,
       "readiness": null
+    },
+    {
+      "date": "2026-04-12",
+      "weight_kg": null,
+      "resting_hr": null,
+      "hrv_rmssd": null,
+      "hrv_sdnn": null,
+      "sleep_hours": null,
+      "sleep_formatted": null,
+      "sleep_quality": null,
+      "sleep_score": null,
+      "mental_energy": null,
+      "avg_sleeping_hr": null,
+      "vo2max": null,
+      "fatigue": null,
+      "soreness": null,
+      "stress": null,
+      "mood": null,
+      "motivation": null,
+      "injury": null,
+      "hydration": null,
+      "spO2": null,
+      "blood_glucose": null,
+      "systolic": null,
+      "diastolic": null,
+      "baevsky_si": null,
+      "lactate": null,
+      "respiration": null,
+      "body_fat_pct": null,
+      "abdomen_cm": null,
+      "steps": null,
+      "hydration_volume_l": null,
+      "kcal_consumed": null,
+      "carbohydrates_g": null,
+      "protein_g": null,
+      "fat_g": null,
+      "menstrual_phase": null,
+      "menstrual_phase_predicted": null,
+      "readiness": null
     }
   ],
   "planned_workouts": [
@@ -2733,8 +2687,8 @@
     "total_training_formatted": "4h36m",
     "total_tss": 233,
     "activities_count": 6,
-    "avg_hrv": 41.4,
-    "avg_resting_hr": 53.9
+    "avg_hrv": 42.2,
+    "avg_resting_hr": 54.0
   },
   "race_calendar": {
     "next_race": {
@@ -2742,7 +2696,7 @@
       "date": "2026-04-25",
       "category": "RACE_A",
       "type": "Ride",
-      "days_until": 14,
+      "days_until": 13,
       "moving_time_seconds": null,
       "distance_meters": 25000.0,
       "has_terrain": false
@@ -2753,7 +2707,7 @@
         "date": "2026-04-25",
         "category": "RACE_A",
         "type": "Ride",
-        "days_until": 14,
+        "days_until": 13,
         "moving_time_seconds": null,
         "distance_meters": 25000.0,
         "has_terrain": false
@@ -2763,7 +2717,7 @@
         "date": "2026-04-25",
         "category": "RACE_A",
         "type": "Run",
-        "days_until": 14,
+        "days_until": 13,
         "moving_time_seconds": null,
         "distance_meters": null,
         "has_terrain": false,
@@ -2774,8 +2728,8 @@
       "active": true,
       "event_name": "Trail Ste Baume (Course) by LeCoach App",
       "event_date": "2026-04-25",
-      "days_until": 14,
-      "message": "RACE_A 'Trail Ste Baume (Course) by LeCoach App' in 14 days. Begin volume reduction (target 41-60% over 2 weeks). Maintain intensity. CTL should peak now or within the next few days."
+      "days_until": 13,
+      "message": "RACE_A 'Trail Ste Baume (Course) by LeCoach App' in 13 days. Begin volume reduction (target 41-60% over 2 weeks). Maintain intensity. CTL should peak now or within the next few days."
     },
     "race_week": {
       "active": false
