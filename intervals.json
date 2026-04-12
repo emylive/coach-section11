@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-12T07:03:44.772176",
+  "generated_at": "2026-04-12T08:08:11.380924",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -535,6 +535,52 @@
           "zone": 2,
           "training_load": 27.924046,
           "decoupling": -6.6387444
+        }
+      ]
+    },
+    {
+      "activity_id": "i139065238",
+      "date": "2026-04-12",
+      "type": "Run",
+      "name": "Morning Course \u00e0 pied",
+      "interval_summary": [
+        "1x 2m54s 6:49"
+      ],
+      "intervals": [
+        {
+          "type": "RECOVERY",
+          "duration_secs": 13,
+          "avg_power": 85,
+          "max_power": 169,
+          "avg_hr": 91,
+          "max_hr": 92,
+          "avg_cadence": 70.583336,
+          "zone": 1,
+          "decoupling": -52.68652
+        },
+        {
+          "type": "WORK",
+          "label": "174s@225w86rpm",
+          "duration_secs": 174,
+          "avg_power": 225,
+          "max_power": 246,
+          "avg_hr": 115,
+          "max_hr": 129,
+          "avg_cadence": 85.77586,
+          "zone": 1,
+          "training_load": 5.7952876,
+          "decoupling": 16.036053
+        },
+        {
+          "type": "RECOVERY",
+          "duration_secs": 1,
+          "avg_power": 228,
+          "max_power": 228,
+          "avg_hr": 129,
+          "max_hr": 129,
+          "avg_cadence": 85.0,
+          "zone": 1,
+          "training_load": 0.03578403
         }
       ]
     }
