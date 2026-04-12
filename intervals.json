@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-12T09:58:38.708131",
+  "generated_at": "2026-04-12T10:38:47.867545",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -581,6 +581,71 @@
           "avg_cadence": 85.0,
           "zone": 1,
           "training_load": 0.03578403
+        }
+      ]
+    },
+    {
+      "activity_id": "i139100385",
+      "date": "2026-04-12",
+      "type": "Run",
+      "name": "Trail HR J-14",
+      "interval_summary": [
+        "1x 20m2s 7:56",
+        "1x 30m14s 8:53",
+        "2x 46m42s 9:48"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "1202s@208w82rpm",
+          "duration_secs": 1202,
+          "avg_power": 208,
+          "max_power": 246,
+          "avg_hr": 145,
+          "max_hr": 161,
+          "avg_cadence": 82.20333,
+          "zone": 2,
+          "training_load": 37.422123,
+          "decoupling": 15.250764
+        },
+        {
+          "type": "WORK",
+          "label": "1814s@175w77rpm",
+          "duration_secs": 1814,
+          "avg_power": 175,
+          "max_power": 272,
+          "avg_hr": 153,
+          "max_hr": 163,
+          "avg_cadence": 76.56201,
+          "zone": 3,
+          "training_load": 43.83267,
+          "decoupling": -21.3963
+        },
+        {
+          "type": "WORK",
+          "label": "2802s@142w74rpm",
+          "duration_secs": 2779,
+          "avg_power": 141,
+          "max_power": 271,
+          "avg_hr": 152,
+          "max_hr": 171,
+          "avg_cadence": 69.3377,
+          "zone": 3,
+          "training_load": 48.169857,
+          "decoupling": 27.494812
+        },
+        {
+          "type": "WORK",
+          "label": "2802s@142w74rpm",
+          "duration_secs": 2824,
+          "avg_power": 142,
+          "max_power": 266,
+          "avg_hr": 147,
+          "max_hr": 162,
+          "avg_cadence": 78.28702,
+          "zone": 2,
+          "training_load": 44.57464,
+          "decoupling": 1.6235976
         }
       ]
     }
