@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-04-12T20:38:24.897212",
+    "last_updated": "2026-04-12T21:05:35.200108",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -81,7 +81,7 @@
       "value": 13,
       "severity": "info",
       "threshold": "RACE_A within 8-14 days",
-      "context": "RACE_A 'Trail Ste Baume (Course) by LeCoach App' in 13 days. Begin volume reduction (target 41-60% over 2 weeks). Maintain intensity. CTL should peak now or within the next few days.",
+      "context": "RACE_A 'Trail ste baume' in 13 days. Begin volume reduction (target 41-60% over 2 weeks). Maintain intensity. CTL should peak now or within the next few days.",
       "persistence_days": null,
       "tier": 1
     }
@@ -598,7 +598,7 @@
           "race_proximity": 13,
           "next_week_load": null,
           "plan_coverage_current_week": 0.2,
-          "plan_coverage_next_week": 1.2
+          "plan_coverage_next_week": 0.2
         },
         "data_quality": "good",
         "stream_agreement": false
@@ -633,7 +633,7 @@
     "p_max": 524,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-04-12T20:38:24.896036",
+    "calculation_timestamp": "2026-04-12T21:05:35.199027",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -2609,148 +2609,6 @@
       "description": "Semaine pr\u00e9-course. HRV stable ou ascendante. Sorties Z1\u2013Z2 uniquement. Repos complet la veille de la course."
     },
     {
-      "id": 96359078,
-      "date": "2026-04-14",
-      "name": "60m Recovery by LeCoach App",
-      "type": "WORKOUT",
-      "sport_type": "Ride",
-      "planned_tss": 30,
-      "duration_hours": 1.0,
-      "duration_formatted": "1h",
-      "workout_summary": null,
-      "has_terrain": false,
-      "description": "-5m ramp 50-65% FTP\n-50m 55% FTP\n-5m 50% FTP"
-    },
-    {
-      "id": 96359079,
-      "date": "2026-04-15",
-      "name": "5x3m 120% FTP by LeCoach App",
-      "type": "WORKOUT",
-      "sport_type": "Ride",
-      "planned_tss": 126,
-      "duration_hours": 2.0,
-      "duration_formatted": "2h",
-      "workout_summary": "5m @96W | 3\u00d730s @169W / 30s rec | 5m @101W | 5\u00d73m @202W / 3m rec | 1h17m @109W",
-      "has_terrain": false,
-      "description": "-5m ramp 50-65% FTP\n\n3x\n-30s 100% FTP\n-30s 55% FTP\n\n-5m 60% FTP\n\n5x\n-3m 120% FTP\n-3m 65% FTP\n\n-77m 65% FTP"
-    },
-    {
-      "id": 96359096,
-      "date": "2026-04-16",
-      "name": "4x10m 88% FTP by LeCoach App",
-      "type": "WORKOUT",
-      "sport_type": "Ride",
-      "planned_tss": 188,
-      "duration_hours": 3.5,
-      "duration_formatted": "3h30m",
-      "workout_summary": "5m @96W | 4\u00d710m @148W / 5m rec | 2h25m @118W",
-      "has_terrain": false,
-      "description": "-5m ramp 50-65% FTP\n\n4x\n-10m 88% FTP\n-5m 65% FTP\n\n-145m 70% FTP"
-    },
-    {
-      "id": 96359080,
-      "date": "2026-04-17",
-      "name": "240m Endurance Foundation by LeCoach App",
-      "type": "WORKOUT",
-      "sport_type": "Ride",
-      "planned_tss": 192,
-      "duration_hours": 4.0,
-      "duration_formatted": "4h",
-      "workout_summary": null,
-      "has_terrain": false,
-      "description": "-5m ramp 50-65% FTP\n-230m 70% FTP\n-5m 60% FTP"
-    },
-    {
-      "id": 96359082,
-      "date": "2026-04-18",
-      "name": "222m Trail Base by LeCoach App",
-      "type": "WORKOUT",
-      "sport_type": "Ride",
-      "planned_tss": 177,
-      "duration_hours": 3.7,
-      "duration_formatted": "3h42m",
-      "workout_summary": null,
-      "has_terrain": false,
-      "description": "-5m ramp 50-65% FTP\n-212m 70% FTP\n-5m 60% FTP"
-    },
-    {
-      "id": 85337723,
-      "date": "2026-04-21",
-      "name": "Build II \u2014 Simulation Trail",
-      "type": "WORKOUT",
-      "sport_type": "TrailRun",
-      "planned_tss": 700,
-      "duration_hours": 8.0,
-      "duration_formatted": "8h",
-      "workout_summary": null,
-      "has_terrain": false,
-      "description_preview": "Simulation course : 4\u20135h de sortie trail avec nutrition et hydratation test\u00e9es. Accent sur gestion \u00e9nerg\u00e9tique (Z2 prolong\u00e9e)."
-    },
-    {
-      "id": 96359083,
-      "date": "2026-04-21",
-      "name": "30m Recovery by LeCoach App",
-      "type": "WORKOUT",
-      "sport_type": "Ride",
-      "planned_tss": 12,
-      "duration_hours": 0.5,
-      "duration_formatted": "30m",
-      "workout_summary": null,
-      "has_terrain": false,
-      "description_preview": "-30m 50% FTP"
-    },
-    {
-      "id": 96359094,
-      "date": "2026-04-22",
-      "name": "Race Opener by LeCoach App",
-      "type": "WORKOUT",
-      "sport_type": "Ride",
-      "planned_tss": 35,
-      "duration_hours": 0.75,
-      "duration_formatted": "45m",
-      "workout_summary": "5m @96W | 3\u00d730s @169W / 30s rec | 5m @101W | 3\u00d730s @202W / 2m rec | 5m @101W | 3\u00d730s @202W / 2m rec | 12m @101W",
-      "has_terrain": false
-    },
-    {
-      "id": 96359084,
-      "date": "2026-04-23",
-      "name": "60m Maintenance Endurance by LeCoach App",
-      "type": "WORKOUT",
-      "sport_type": "Ride",
-      "planned_tss": 41,
-      "duration_hours": 1.0,
-      "duration_formatted": "1h",
-      "workout_summary": null,
-      "has_terrain": false,
-      "description_preview": "-5m ramp 50-65% FTP\n-50m 65% FTP\n-5m 60% FTP"
-    },
-    {
-      "id": 96359085,
-      "date": "2026-04-24",
-      "name": "90m Aerobic Taper by LeCoach App",
-      "type": "WORKOUT",
-      "sport_type": "Ride",
-      "planned_tss": 61,
-      "duration_hours": 1.5,
-      "duration_formatted": "1h30m",
-      "workout_summary": null,
-      "has_terrain": false,
-      "description_preview": "-5m ramp 50-65% FTP\n-80m 65% FTP\n-5m 60% FTP"
-    },
-    {
-      "id": 96359086,
-      "date": "2026-04-25",
-      "name": "Trail Ste Baume (Course) by LeCoach App",
-      "type": "RACE_A",
-      "sport_type": "Ride",
-      "planned_tss": null,
-      "duration_hours": 0.0,
-      "duration_formatted": "0s",
-      "workout_summary": null,
-      "has_terrain": false,
-      "description_preview": null
-    },
-    {
       "id": 95743799,
       "date": "2026-04-25",
       "name": "Trail ste baume",
@@ -2766,12 +2624,12 @@
     }
   ],
   "workout_summary_stats": {
-    "attempted": 9,
-    "success": 3,
-    "patternA": 3,
+    "attempted": 0,
+    "success": 0,
+    "patternA": 0,
     "patternB": 0,
-    "bail_no_workout_doc": 3,
-    "bail_no_match": 6
+    "bail_no_workout_doc": 2,
+    "bail_no_match": 0
   },
   "weekly_summary": {
     "total_training_hours": 7.0,
@@ -2783,26 +2641,17 @@
   },
   "race_calendar": {
     "next_race": {
-      "name": "Trail Ste Baume (Course) by LeCoach App",
+      "name": "Trail ste baume",
       "date": "2026-04-25",
       "category": "RACE_A",
-      "type": "Ride",
+      "type": "Run",
       "days_until": 13,
       "moving_time_seconds": null,
-      "distance_meters": 25000.0,
-      "has_terrain": false
+      "distance_meters": null,
+      "has_terrain": false,
+      "start_time": "06:00"
     },
     "all_races": [
-      {
-        "name": "Trail Ste Baume (Course) by LeCoach App",
-        "date": "2026-04-25",
-        "category": "RACE_A",
-        "type": "Ride",
-        "days_until": 13,
-        "moving_time_seconds": null,
-        "distance_meters": 25000.0,
-        "has_terrain": false
-      },
       {
         "name": "Trail ste baume",
         "date": "2026-04-25",
@@ -2817,10 +2666,10 @@
     ],
     "taper_alert": {
       "active": true,
-      "event_name": "Trail Ste Baume (Course) by LeCoach App",
+      "event_name": "Trail ste baume",
       "event_date": "2026-04-25",
       "days_until": 13,
-      "message": "RACE_A 'Trail Ste Baume (Course) by LeCoach App' in 13 days. Begin volume reduction (target 41-60% over 2 weeks). Maintain intensity. CTL should peak now or within the next few days."
+      "message": "RACE_A 'Trail ste baume' in 13 days. Begin volume reduction (target 41-60% over 2 weeks). Maintain intensity. CTL should peak now or within the next few days."
     },
     "race_week": {
       "active": false
