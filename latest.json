@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-04-17T03:43:31.335017",
+    "last_updated": "2026-04-17T05:52:46.164922",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -93,7 +93,7 @@
       "hrv": {
         "status": "unavailable",
         "value": null,
-        "baseline_7d": 44.2,
+        "baseline_7d": 45.7,
         "delta_pct": null
       },
       "rhr": {
@@ -114,7 +114,7 @@
       "ri": {
         "status": "unavailable",
         "value": null,
-        "value_yesterday": 1.06
+        "value_yesterday": 1.24
       },
       "tsb": {
         "status": "green",
@@ -251,10 +251,10 @@
   },
   "derived_metrics": {
     "recovery_index": null,
-    "recovery_index_yesterday": 1.06,
-    "hrv_baseline_7d": 44.2,
+    "recovery_index_yesterday": 1.24,
+    "hrv_baseline_7d": 45.7,
     "rhr_baseline_7d": 52.3,
-    "hrv_baseline_28d": 43.3,
+    "hrv_baseline_28d": 43.6,
     "rhr_baseline_28d": 52.3,
     "latest_hrv": null,
     "latest_rhr": null,
@@ -614,7 +614,7 @@
     "p_max": 522,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-04-17T03:43:31.333789",
+    "calculation_timestamp": "2026-04-17T05:52:46.163704",
     "data_quality": {
       "hrv_data_points": 6,
       "rhr_data_points": 6,
@@ -2335,7 +2335,7 @@
       "date": "2026-04-16",
       "weight_kg": null,
       "resting_hr": 50,
-      "hrv_rmssd": 45.0,
+      "hrv_rmssd": 54.0,
       "hrv_sdnn": null,
       "sleep_hours": 7.1,
       "sleep_formatted": "7h6m",
@@ -2360,7 +2360,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 13145,
+      "steps": 17118,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -2504,7 +2504,7 @@
     "total_training_formatted": "6h33m",
     "total_tss": 331,
     "activities_count": 7,
-    "avg_hrv": 44.2,
+    "avg_hrv": 45.7,
     "avg_resting_hr": 52.3
   },
   "race_calendar": {
