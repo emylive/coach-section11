@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-21T07:04:28.214503",
+  "generated_at": "2026-04-21T08:59:40.519492",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -906,6 +906,74 @@
           "zone": 1,
           "training_load": 10.27074,
           "decoupling": 8.963821
+        }
+      ]
+    },
+    {
+      "activity_id": "i141640678",
+      "date": "2026-04-21",
+      "type": "TrailRun",
+      "name": "Morning Trail",
+      "interval_summary": [
+        "3x 8m 8:23",
+        "1x 9m15s 9:41",
+        "1x 13m44s 14:44",
+        "1x 15m41s 16:20"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "480s@134bpm80rpm",
+          "duration_secs": 492,
+          "avg_hr": 138,
+          "max_hr": 164,
+          "avg_cadence": 79.484726,
+          "zone": 2
+        },
+        {
+          "type": "WORK",
+          "label": "555s@147bpm75rpm",
+          "duration_secs": 555,
+          "avg_hr": 147,
+          "max_hr": 162,
+          "avg_cadence": 75.25405,
+          "zone": 2
+        },
+        {
+          "type": "WORK",
+          "label": "824s@143bpm63rpm",
+          "duration_secs": 824,
+          "avg_hr": 143,
+          "max_hr": 159,
+          "avg_cadence": 62.616295,
+          "zone": 2
+        },
+        {
+          "type": "WORK",
+          "label": "941s@127bpm61rpm",
+          "duration_secs": 941,
+          "avg_hr": 127,
+          "max_hr": 156,
+          "avg_cadence": 61.329773,
+          "zone": 1
+        },
+        {
+          "type": "WORK",
+          "label": "480s@134bpm80rpm",
+          "duration_secs": 496,
+          "avg_hr": 128,
+          "max_hr": 140,
+          "avg_cadence": 79.48186,
+          "zone": 1
+        },
+        {
+          "type": "WORK",
+          "label": "480s@134bpm80rpm",
+          "duration_secs": 451,
+          "avg_hr": 136,
+          "max_hr": 144,
+          "avg_cadence": 82.50998,
+          "zone": 2
         }
       ]
     }
