@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-04-25T17:55:14.674616",
+    "last_updated": "2026-04-25T18:36:37.548882",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -262,7 +262,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 35407,
+      "steps": 36260,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -642,7 +642,7 @@
     "p_max": 562,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-04-25T17:55:14.673528",
+    "calculation_timestamp": "2026-04-25T18:36:37.547756",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -660,7 +660,7 @@
       "id": "i142802664",
       "date": "2026-04-25T09:41:32",
       "type": "TrailRun",
-      "name": "Morning Trail",
+      "name": "Trail ste baume ",
       "duration_hours": 4.31,
       "distance_km": 24.84,
       "tss": 338,
@@ -686,8 +686,8 @@
       "efficiency_factor": null,
       "hrrc": 17,
       "elevation_m": 965.0,
-      "feel": null,
-      "rpe": null,
+      "feel": 2,
+      "rpe": 7,
       "zone_distribution": {
         "hr_zones": {
           "z1_time": 1033,
@@ -699,7 +699,8 @@
           "z7_time": 0
         }
       },
-      "has_intervals": true
+      "has_intervals": true,
+      "description": "Beaucoup de crampes \u00e0 partir km13"
     },
     {
       "id": "i142596928",
@@ -2483,7 +2484,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 35407,
+      "steps": 36260,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
