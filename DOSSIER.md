@@ -27,7 +27,7 @@
 - **Samedi/Dimanche** : Sortie longue (Trail ou Vélo de route)
 
 ## Santé et Limitations
-- **Historique** : Fracture poignet + algoneurodystrophie (il y a 8 ans). Hernies discales (vigilance sur la posture et les impacts répétés), antécédents d'entorses de cheville (travail de proprioception recommandé)
+- **Historique** : Fracture poignet + algoneurodystrophie (il y a 8 ans). Hernies discales (vigilance sur la posture et les impacts répétés)
 - **Note** : Vigilance sur la charge d'impact en course à pied pour éviter les blessures de surutilisation.
 
 ## Préférences du Coach
