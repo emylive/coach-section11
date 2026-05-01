@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-01T14:14:53.910283",
+  "generated_at": "2026-05-01T15:16:46.509502",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -1031,6 +1031,57 @@
           "zone": 2,
           "training_load": 15.200417,
           "decoupling": -12.749179
+        }
+      ]
+    },
+    {
+      "activity_id": "i144584445",
+      "date": "2026-05-01",
+      "type": "Run",
+      "name": "Easy + strides",
+      "interval_summary": [
+        "2x 7m13s 7:25",
+        "1x 4m18s 9:05"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "433s@228w85rpm",
+          "duration_secs": 454,
+          "avg_power": 234,
+          "max_power": 318,
+          "avg_hr": 123,
+          "max_hr": 133,
+          "avg_cadence": 84.75,
+          "zone": 1,
+          "training_load": 18.008982,
+          "decoupling": -2.7594202
+        },
+        {
+          "type": "WORK",
+          "label": "433s@228w85rpm",
+          "duration_secs": 412,
+          "avg_power": 221,
+          "max_power": 263,
+          "avg_hr": 136,
+          "max_hr": 142,
+          "avg_cadence": 85.473305,
+          "zone": 2,
+          "training_load": 14.22802,
+          "decoupling": -4.4101458
+        },
+        {
+          "type": "WORK",
+          "label": "258s@196w83rpm",
+          "duration_secs": 258,
+          "avg_power": 196,
+          "max_power": 236,
+          "avg_hr": 137,
+          "max_hr": 144,
+          "avg_cadence": 83.066666,
+          "zone": 2,
+          "training_load": 6.403961,
+          "decoupling": -2.6248033
         }
       ]
     }
