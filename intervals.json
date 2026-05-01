@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-01T15:16:46.509502",
+  "generated_at": "2026-05-01T16:30:34.963010",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -1082,6 +1082,56 @@
           "zone": 2,
           "training_load": 6.403961,
           "decoupling": -2.6248033
+        }
+      ]
+    },
+    {
+      "activity_id": "i144607665",
+      "date": "2026-05-01",
+      "type": "Run",
+      "name": "Afternoon Course \u00e0 pied",
+      "interval_summary": [
+        "1x 7m25s 17:54",
+        "2x 6m56s 7:21"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "445s@173w83rpm",
+          "duration_secs": 445,
+          "avg_power": 173,
+          "max_power": 257,
+          "avg_hr": 109,
+          "max_hr": 131,
+          "avg_cadence": 82.55837,
+          "zone": 1,
+          "training_load": 4.9401355
+        },
+        {
+          "type": "WORK",
+          "label": "416s@221w85rpm",
+          "duration_secs": 434,
+          "avg_power": 223,
+          "max_power": 245,
+          "avg_hr": 136,
+          "max_hr": 145,
+          "avg_cadence": 85.45622,
+          "zone": 2,
+          "training_load": 15.393739,
+          "decoupling": 3.503181
+        },
+        {
+          "type": "WORK",
+          "label": "416s@221w85rpm",
+          "duration_secs": 398,
+          "avg_power": 219,
+          "max_power": 247,
+          "avg_hr": 140,
+          "max_hr": 144,
+          "avg_cadence": 84.482414,
+          "zone": 2,
+          "training_load": 13.499109,
+          "decoupling": 7.160215
         }
       ]
     }
