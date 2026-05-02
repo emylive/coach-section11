@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-02T09:19:23.150028",
+  "generated_at": "2026-05-02T10:27:00.968122",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -1132,6 +1132,70 @@
           "zone": 2,
           "training_load": 13.499109,
           "decoupling": 7.160215
+        }
+      ]
+    },
+    {
+      "activity_id": "i144746623",
+      "date": "2026-05-02",
+      "type": "Run",
+      "name": "Simulation trail",
+      "interval_summary": [
+        "1x 47m28s 8:31",
+        "3x 10m2s 7:30"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "2848s@198w83rpm",
+          "duration_secs": 2848,
+          "avg_power": 198,
+          "max_power": 298,
+          "avg_hr": 133,
+          "max_hr": 145,
+          "avg_cadence": 83.03002,
+          "zone": 1,
+          "training_load": 77.26688,
+          "decoupling": 15.842527
+        },
+        {
+          "type": "WORK",
+          "label": "602s@212w84rpm",
+          "duration_secs": 608,
+          "avg_power": 197,
+          "max_power": 233,
+          "avg_hr": 141,
+          "max_hr": 147,
+          "avg_cadence": 83.65557,
+          "zone": 2,
+          "training_load": 16.5528,
+          "decoupling": 4.5806465
+        },
+        {
+          "type": "WORK",
+          "label": "602s@212w84rpm",
+          "duration_secs": 599,
+          "avg_power": 212,
+          "max_power": 246,
+          "avg_hr": 146,
+          "max_hr": 150,
+          "avg_cadence": 84.11519,
+          "zone": 2,
+          "training_load": 18.695456,
+          "decoupling": 3.2617037
+        },
+        {
+          "type": "WORK",
+          "label": "602s@212w84rpm",
+          "duration_secs": 600,
+          "avg_power": 226,
+          "max_power": 243,
+          "avg_hr": 153,
+          "max_hr": 158,
+          "avg_cadence": 84.621666,
+          "zone": 3,
+          "training_load": 21.281666,
+          "decoupling": -1.2771788
         }
       ]
     }
