@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-05-11T04:22:36.188548",
+    "last_updated": "2026-05-11T07:59:07.799982",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -582,11 +582,11 @@
           "weeks_available": 4
         },
         "stream_2": {
-          "planned_tss_delta": 3.27,
+          "planned_tss_delta": 2.88,
           "hard_sessions_planned": 0,
           "race_proximity": null,
           "next_week_load": 1.58,
-          "plan_coverage_current_week": 1.6,
+          "plan_coverage_current_week": 1.4,
           "plan_coverage_next_week": 0.6
         },
         "data_quality": "good",
@@ -622,7 +622,7 @@
     "p_max": 559,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-05-11T04:22:36.187485",
+    "calculation_timestamp": "2026-05-11T07:59:07.798744",
     "data_quality": {
       "hrv_data_points": 6,
       "rhr_data_points": 6,
@@ -2564,19 +2564,6 @@
       "description": "- 40m 70-72% HR\n- 20s 85% HR\n- 1m 65% HR\n- 20s 85% HR\n- 1m 65% HR\n- 20s 85% HR\n- 1m 65% HR\n- 20s 85% HR\n- 1m 65% HR\n- 20s 85% HR\n- 1m 65% HR"
     },
     {
-      "id": 109048398,
-      "date": "2026-05-15",
-      "name": "Easy + strides l\u00e9gers",
-      "type": "WORKOUT",
-      "sport_type": "Run",
-      "planned_tss": 39,
-      "duration_hours": 0.73,
-      "duration_formatted": "44m",
-      "workout_summary": null,
-      "has_terrain": false,
-      "description": "- 40m 70-72% HR\n- 15s 82% HR\n- 1m 65% HR\n- 15s 82% HR\n- 1m 65% HR\n- 15s 82% HR\n- 1m 65% HR\n- 15s 82% HR"
-    },
-    {
       "id": 109048399,
       "date": "2026-05-16",
       "name": "Sortie longue prot\u00e9g\u00e9e",
@@ -2669,12 +2656,12 @@
     }
   ],
   "workout_summary_stats": {
-    "attempted": 10,
+    "attempted": 9,
     "success": 0,
     "patternA": 0,
     "patternB": 0,
     "bail_no_workout_doc": 3,
-    "bail_no_match": 10
+    "bail_no_match": 9
   },
   "weekly_summary": {
     "total_training_hours": 4.02,
