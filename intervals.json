@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T09:32:03.320035",
+  "generated_at": "2026-05-20T12:10:01.634840",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -1000,6 +1000,27 @@
           "avg_cadence": 84.11779,
           "zone": 3,
           "training_load": 60.871735
+        }
+      ]
+    },
+    {
+      "activity_id": "i149994772",
+      "date": "2026-05-20",
+      "type": "Run",
+      "name": "Lunch Course \u00e0 pied",
+      "interval_summary": null,
+      "intervals": [
+        {
+          "type": "RECOVERY",
+          "duration_secs": 66,
+          "avg_power": 106,
+          "max_power": 233,
+          "avg_hr": 108,
+          "max_hr": 116,
+          "avg_cadence": 83.25,
+          "zone": 1,
+          "training_load": 0.63651943,
+          "decoupling": -391.2626
         }
       ]
     }
