@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-05-23T00:02:11.954397",
+    "last_updated": "2026-05-23T04:05:52.259063",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -118,7 +118,7 @@
       },
       "tsb": {
         "status": "green",
-        "value": 3.3
+        "value": 13.4
       }
     },
     "signal_summary": {
@@ -141,7 +141,7 @@
   "history": {
     "available": true,
     "last_generated": "2026-05-11",
-    "age_days": 11,
+    "age_days": 12,
     "total_months": 35,
     "history_confidence": "high"
   },
@@ -173,17 +173,17 @@
   },
   "current_status": {
     "fitness": {
-      "ctl": 55.96,
-      "atl": 52.66,
-      "tsb": 3.3,
-      "ramp_rate": -1.54,
+      "ctl": 53.31,
+      "atl": 39.92,
+      "tsb": 13.39,
+      "ramp_rate": -4.18,
       "fitness_source": "From Intervals.icu API (reflects completed workouts)"
     },
     "thresholds": {
-      "eftp": 153.8,
-      "w_prime": 12095,
+      "eftp": 153.6,
+      "w_prime": 12083,
       "w_prime_kj": 12.1,
-      "p_max": 554,
+      "p_max": 553,
       "vo2max": null,
       "sports": {
         "cycling": {
@@ -548,7 +548,7 @@
           },
           "coverage_ratio": 1.0,
           "ftp_used": 169,
-          "w_prime_used": 12095,
+          "w_prime_used": 12083,
           "ftp_staleness_days": 64,
           "model_trust_note": "CP/W' model (P=CP+W'/t) is primary for durations \u226420min where W' contribution is meaningful. Coggan duration factors (Allen & Coggan, 3rd ed.) are the established reference for \u226560min. 30min is the crossover zone where both apply. model_divergence_pct = (actual - CP_model) / CP_model \u00d7 100. Positive divergence at short durations may indicate strong anaerobic capacity or stale W' value. Indoor MMP is typically 3-5% lower than outdoor (cooling, motivation) \u2014 source flag indicates which environment produced each anchor."
         }
@@ -579,7 +579,7 @@
       ],
       "basis": {
         "stream_1": {
-          "ctl_slope": -2.5,
+          "ctl_slope": -3.4,
           "acwr_trend": "falling",
           "hard_day_pattern": 3,
           "weeks_available": 4
@@ -619,13 +619,13 @@
       "benchmark_percentage": null,
       "seasonal_expected": null
     },
-    "eftp": 153.8,
-    "w_prime": 12095,
+    "eftp": 153.6,
+    "w_prime": 12083,
     "w_prime_kj": 12.1,
-    "p_max": 554,
+    "p_max": 553,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-05-23T00:02:11.953199",
+    "calculation_timestamp": "2026-05-23T04:05:52.257951",
     "data_quality": {
       "hrv_data_points": 6,
       "rhr_data_points": 6,
