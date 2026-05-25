@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-25T15:33:20.328959",
+  "generated_at": "2026-05-25T17:21:46.406794",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -843,6 +843,95 @@
           "zone": 2,
           "training_load": 118.40459,
           "decoupling": 2.7675076
+        }
+      ]
+    },
+    {
+      "activity_id": "i151404134",
+      "date": "2026-05-25",
+      "type": "Ride",
+      "name": "Evening Cyclisme",
+      "interval_summary": [
+        "2x 4m46s 100bpm",
+        "1x 3m8s 100bpm",
+        "1x 1m55s 87bpm"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "286s@100bpm",
+          "duration_secs": 299,
+          "avg_hr": 103,
+          "max_hr": 122,
+          "zone": 1
+        },
+        {
+          "type": "WORK",
+          "label": "188s@100bpm",
+          "duration_secs": 188,
+          "avg_hr": 100,
+          "max_hr": 109,
+          "zone": 1
+        },
+        {
+          "type": "WORK",
+          "label": "286s@100bpm",
+          "duration_secs": 272,
+          "avg_hr": 96,
+          "max_hr": 104,
+          "zone": 1
+        },
+        {
+          "type": "WORK",
+          "label": "115s@87bpm",
+          "duration_secs": 115,
+          "avg_hr": 87,
+          "max_hr": 94,
+          "zone": 1
+        }
+      ]
+    },
+    {
+      "activity_id": "i151404123",
+      "date": "2026-05-25",
+      "type": "Ride",
+      "name": "Afternoon Cyclisme",
+      "interval_summary": [
+        "3x 3m11s 125bpm",
+        "1x 3m4s 147bpm"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "191s@125bpm",
+          "duration_secs": 201,
+          "avg_hr": 118,
+          "max_hr": 134,
+          "zone": 1
+        },
+        {
+          "type": "WORK",
+          "label": "191s@125bpm",
+          "duration_secs": 186,
+          "avg_hr": 132,
+          "max_hr": 140,
+          "zone": 2
+        },
+        {
+          "type": "WORK",
+          "label": "184s@147bpm",
+          "duration_secs": 184,
+          "avg_hr": 147,
+          "max_hr": 152,
+          "zone": 3
+        },
+        {
+          "type": "WORK",
+          "label": "191s@125bpm",
+          "duration_secs": 185,
+          "avg_hr": 126,
+          "max_hr": 144,
+          "zone": 2
         }
       ]
     }
