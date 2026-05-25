@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-25T08:50:03.869754",
+  "generated_at": "2026-05-25T10:39:58.282496",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -805,6 +805,44 @@
           "avg_hr": 136,
           "max_hr": 164,
           "zone": 2
+        }
+      ]
+    },
+    {
+      "activity_id": "i151300737",
+      "date": "2026-05-25",
+      "type": "Run",
+      "name": "Simulation course",
+      "interval_summary": [
+        "1x 48m9s 9:39",
+        "1x 44m6s 9:01"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "2889s@124w81rpm",
+          "duration_secs": 2889,
+          "avg_power": 124,
+          "max_power": 221,
+          "avg_hr": 137,
+          "max_hr": 147,
+          "avg_cadence": 80.5464,
+          "zone": 2,
+          "training_load": 100.73965,
+          "decoupling": -80.213295
+        },
+        {
+          "type": "WORK",
+          "label": "2646s@163w80rpm",
+          "duration_secs": 2646,
+          "avg_power": 163,
+          "max_power": 234,
+          "avg_hr": 144,
+          "max_hr": 151,
+          "avg_cadence": 80.18481,
+          "zone": 2,
+          "training_load": 118.40459,
+          "decoupling": 2.7675076
         }
       ]
     }
