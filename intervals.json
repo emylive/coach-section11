@@ -1,48 +1,10 @@
 {
-  "generated_at": "2026-05-26T23:57:08.218329",
+  "generated_at": "2026-05-27T02:58:10.366066",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
   "retention_days": 14,
   "activities": [
-    {
-      "activity_id": "i147548046",
-      "date": "2026-05-12",
-      "type": "Run",
-      "name": "Recalibrage pur",
-      "interval_summary": [
-        "1x 50m11s 7:57",
-        "1x 20s 6:52"
-      ],
-      "intervals": [
-        {
-          "type": "WORK",
-          "label": "3011s@209w83rpm",
-          "duration_secs": 3011,
-          "avg_power": 209,
-          "max_power": 342,
-          "avg_hr": 133,
-          "max_hr": 145,
-          "avg_cadence": 82.702,
-          "zone": 1,
-          "training_load": 93.94544,
-          "decoupling": 5.89096
-        },
-        {
-          "type": "WORK",
-          "label": "20s@149w84rpm",
-          "duration_secs": 20,
-          "avg_power": 149,
-          "max_power": 168,
-          "avg_hr": 129,
-          "max_hr": 131,
-          "avg_cadence": 84.35,
-          "zone": 1,
-          "training_load": 0.31668055,
-          "decoupling": -25.942535
-        }
-      ]
-    },
     {
       "activity_id": "i147787324",
       "date": "2026-05-13",
