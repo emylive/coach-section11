@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-05-28T08:30:09.101321",
+    "last_updated": "2026-05-28T11:58:20.648660",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -622,7 +622,7 @@
     "p_max": 550,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-05-28T08:30:09.100139",
+    "calculation_timestamp": "2026-05-28T11:58:20.647495",
     "data_quality": {
       "hrv_data_points": 6,
       "rhr_data_points": 6,
@@ -685,7 +685,7 @@
       "id": "i151869469",
       "date": "2026-05-27T09:07:02",
       "type": "TrailRun",
-      "name": "Morning Trail",
+      "name": "5 mont\u00e9es escalier avec solene",
       "duration_hours": 1.8,
       "distance_km": 10.85,
       "tss": 136,
