@@ -1,90 +1,10 @@
 {
-  "generated_at": "2026-06-04T23:50:12.655663",
+  "generated_at": "2026-06-05T02:31:18.602644",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
   "retention_days": 14,
   "activities": [
-    {
-      "activity_id": "i150371029",
-      "date": "2026-05-21",
-      "type": "Ride",
-      "name": "Velotaf toulon",
-      "interval_summary": [
-        "1x 4m6s 103bpm",
-        "2x 2m52s 108bpm",
-        "1x 2m59s 128bpm",
-        "2x 2m46s 138bpm",
-        "1x 2h54m 137bpm",
-        "1x 25m28s 136bpm"
-      ],
-      "intervals": [
-        {
-          "type": "WORK",
-          "label": "246s@103bpm",
-          "duration_secs": 246,
-          "avg_hr": 103,
-          "max_hr": 116,
-          "zone": 1
-        },
-        {
-          "type": "WORK",
-          "label": "172s@108bpm",
-          "duration_secs": 175,
-          "avg_hr": 102,
-          "max_hr": 111,
-          "zone": 1
-        },
-        {
-          "type": "WORK",
-          "label": "172s@108bpm",
-          "duration_secs": 168,
-          "avg_hr": 113,
-          "max_hr": 131,
-          "zone": 1
-        },
-        {
-          "type": "WORK",
-          "label": "179s@128bpm",
-          "duration_secs": 179,
-          "avg_hr": 128,
-          "max_hr": 135,
-          "zone": 2
-        },
-        {
-          "type": "WORK",
-          "label": "166s@138bpm",
-          "duration_secs": 159,
-          "avg_hr": 132,
-          "max_hr": 147,
-          "zone": 2
-        },
-        {
-          "type": "WORK",
-          "label": "166s@138bpm",
-          "duration_secs": 172,
-          "avg_hr": 143,
-          "max_hr": 151,
-          "zone": 2
-        },
-        {
-          "type": "WORK",
-          "label": "10455s@137bpm",
-          "duration_secs": 10455,
-          "avg_hr": 137,
-          "max_hr": 155,
-          "zone": 2
-        },
-        {
-          "type": "WORK",
-          "label": "1528s@136bpm",
-          "duration_secs": 1528,
-          "avg_hr": 136,
-          "max_hr": 164,
-          "zone": 2
-        }
-      ]
-    },
     {
       "activity_id": "i151300737",
       "date": "2026-05-25",
