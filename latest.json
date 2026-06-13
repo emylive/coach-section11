@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-06-13T10:42:27.154550",
+    "last_updated": "2026-06-13T12:14:04.354305",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -199,10 +199,10 @@
   },
   "current_status": {
     "fitness": {
-      "ctl": 67.8,
-      "atl": 104.72,
-      "tsb": -36.92,
-      "ramp_rate": 7.87,
+      "ctl": 65.83,
+      "atl": 93.53,
+      "tsb": -27.7,
+      "ramp_rate": 5.89,
       "fitness_source": "From Intervals.icu API (reflects completed workouts)"
     },
     "thresholds": {
@@ -278,7 +278,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 218,
+      "steps": 16954,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -655,7 +655,7 @@
     "p_max": 550,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-06-13T10:42:27.153454",
+    "calculation_timestamp": "2026-06-13T12:14:04.353480",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -673,7 +673,7 @@
       "id": "i156868874",
       "date": "2026-06-13T08:39:39",
       "type": "TrailRun",
-      "name": "Morning Trail",
+      "name": "Trail Plaisir entre amis",
       "duration_hours": 2.64,
       "distance_km": 12.07,
       "tss": 191,
@@ -2480,7 +2480,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 218,
+      "steps": 16954,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
