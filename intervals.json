@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-14T02:41:43.503020",
+  "generated_at": "2026-06-14T07:08:57.162506",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -2033,6 +2033,43 @@
           "max_hr": 160,
           "avg_cadence": 75.10526,
           "zone": 2
+        }
+      ]
+    },
+    {
+      "activity_id": "i157094542",
+      "date": "2026-06-14",
+      "type": "Ride",
+      "name": "Sortie V\u00e9lo Endurance Z2",
+      "interval_summary": [
+        "1x 15m2s 118bpm",
+        "1x 1h29m 91bpm",
+        "1x 15m 86bpm"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "902s@118bpm",
+          "duration_secs": 902,
+          "avg_hr": 118,
+          "max_hr": 143,
+          "zone": 1
+        },
+        {
+          "type": "WORK",
+          "label": "5399s@91bpm",
+          "duration_secs": 5399,
+          "avg_hr": 91,
+          "max_hr": 129,
+          "zone": 1
+        },
+        {
+          "type": "WORK",
+          "label": "900s@86bpm",
+          "duration_secs": 900,
+          "avg_hr": 86,
+          "max_hr": 97,
+          "zone": 1
         }
       ]
     }
