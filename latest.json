@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-06-19T19:07:57.481414",
+    "last_updated": "2026-06-19T20:45:04.565003",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -607,7 +607,7 @@
           "hard_sessions_planned": 0,
           "race_proximity": null,
           "next_week_load": null,
-          "plan_coverage_current_week": 0.0,
+          "plan_coverage_current_week": 0.2,
           "plan_coverage_next_week": 0.0
         },
         "data_quality": "good",
@@ -643,7 +643,7 @@
     "p_max": 550,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-06-19T19:07:57.480241",
+    "calculation_timestamp": "2026-06-19T20:45:04.563837",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -2633,14 +2633,29 @@
       "readiness": null
     }
   ],
-  "planned_workouts": [],
+  "planned_workouts": [
+    {
+      "id": 117325225,
+      "date": "2026-06-20",
+      "name": "Run - Endurance Zone 2",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": null,
+      "duration_hours": 0.92,
+      "duration_formatted": "55m",
+      "workout_summary": null,
+      "has_terrain": false,
+      "start_time": "16:00",
+      "description": "- Warmup 10m 130-143bpm\n- Endurance 40m 143-150bpm\n- Cooldown 5m 130-140bpm"
+    }
+  ],
   "workout_summary_stats": {
-    "attempted": 0,
+    "attempted": 1,
     "success": 0,
     "patternA": 0,
     "patternB": 0,
     "bail_no_workout_doc": 0,
-    "bail_no_match": 0
+    "bail_no_match": 1
   },
   "weekly_summary": {
     "total_training_hours": 10.72,
