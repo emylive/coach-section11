@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-06-20T16:58:43.549036",
+    "last_updated": "2026-06-20T18:11:08.552808",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -94,7 +94,7 @@
       },
       "sleep": {
         "status": "green",
-        "hours": 8.03,
+        "hours": 8.05,
         "quality": 2
       },
       "acwr": {
@@ -235,8 +235,8 @@
       "resting_hr": 52,
       "hrv": 40.0,
       "sleep_quality": 2,
-      "sleep_hours": 8.03,
-      "sleep_formatted": "8h2m",
+      "sleep_hours": 8.05,
+      "sleep_formatted": "8h3m",
       "sleep_score": 86.0,
       "fatigue": null,
       "soreness": null,
@@ -254,7 +254,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 2240,
+      "steps": 2307,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -634,7 +634,7 @@
     "p_max": 550,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-06-20T16:58:43.547865",
+    "calculation_timestamp": "2026-06-20T18:11:08.551630",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -678,8 +678,8 @@
       "efficiency_factor": null,
       "hrrc": null,
       "elevation_m": 14.0,
-      "feel": null,
-      "rpe": null,
+      "feel": 2,
+      "rpe": 4,
       "zone_distribution": {
         "hr_zones": {
           "z1_time": 110,
@@ -721,8 +721,8 @@
       "efficiency_factor": null,
       "hrrc": null,
       "elevation_m": null,
-      "feel": null,
-      "rpe": null,
+      "feel": 2,
+      "rpe": 6,
       "zone_distribution": {
         "hr_zones": {
           "z1_time": 921,
@@ -764,8 +764,8 @@
       "efficiency_factor": null,
       "hrrc": null,
       "elevation_m": null,
-      "feel": null,
-      "rpe": null,
+      "feel": 2,
+      "rpe": 6,
       "zone_distribution": {
         "hr_zones": {
           "z1_time": 1802,
@@ -807,8 +807,8 @@
       "efficiency_factor": null,
       "hrrc": null,
       "elevation_m": 3.0,
-      "feel": null,
-      "rpe": null,
+      "feel": 2,
+      "rpe": 3,
       "zone_distribution": {
         "hr_zones": {
           "z1_time": 75,
@@ -850,8 +850,8 @@
       "efficiency_factor": null,
       "hrrc": null,
       "elevation_m": null,
-      "feel": null,
-      "rpe": null,
+      "feel": 2,
+      "rpe": 6,
       "zone_distribution": {
         "hr_zones": {
           "z1_time": 1675,
@@ -2762,8 +2762,8 @@
       "resting_hr": 52,
       "hrv_rmssd": 40.0,
       "hrv_sdnn": null,
-      "sleep_hours": 8.03,
-      "sleep_formatted": "8h2m",
+      "sleep_hours": 8.05,
+      "sleep_formatted": "8h3m",
       "sleep_quality": 2,
       "sleep_score": 86.0,
       "mental_energy": null,
@@ -2785,7 +2785,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 2240,
+      "steps": 2307,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -2798,18 +2798,18 @@
   ],
   "planned_workouts": [
     {
-      "id": 117325225,
+      "id": 117438541,
       "date": "2026-06-20",
-      "name": "Run - Endurance Zone 2",
+      "name": "V\u00e9lo - Sortie Club",
       "type": "WORKOUT",
-      "sport_type": "Run",
+      "sport_type": "Ride",
       "planned_tss": null,
-      "duration_hours": 0.92,
-      "duration_formatted": "55m",
+      "duration_hours": 2.0,
+      "duration_formatted": "2h",
       "workout_summary": null,
       "has_terrain": false,
-      "start_time": "16:00",
-      "description": "- Warmup 10m 130-143bpm\n- Endurance 40m 143-150bpm\n- Cooldown 5m 130-140bpm"
+      "start_time": "09:00",
+      "description": "- Warmup 20m 130-145bpm\n- Endurance Club 90m 140-155bpm\n- Cooldown 10m 120-130bpm"
     }
   ],
   "workout_summary_stats": {
