@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-20T09:57:17.704268",
+  "generated_at": "2026-06-20T11:53:44.956841",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -2437,6 +2437,62 @@
           "zone": 1,
           "training_load": 13.670355,
           "decoupling": -16.098772
+        }
+      ]
+    },
+    {
+      "activity_id": "i158864014",
+      "date": "2026-06-20",
+      "type": "Ride",
+      "name": "Lunch Cyclisme",
+      "interval_summary": [
+        "1x 6m 114bpm",
+        "1x 3m16s 132bpm"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "360s@114bpm",
+          "duration_secs": 360,
+          "avg_hr": 114,
+          "max_hr": 132,
+          "zone": 1
+        },
+        {
+          "type": "WORK",
+          "label": "196s@132bpm",
+          "duration_secs": 196,
+          "avg_hr": 132,
+          "max_hr": 144,
+          "zone": 2
+        }
+      ]
+    },
+    {
+      "activity_id": "i158864008",
+      "date": "2026-06-20",
+      "type": "Ride",
+      "name": "Morning Cyclisme",
+      "interval_summary": [
+        "1x 2m53s 123bpm",
+        "1x 88s 130bpm"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "173s@123bpm",
+          "duration_secs": 173,
+          "avg_hr": 123,
+          "max_hr": 138,
+          "zone": 2
+        },
+        {
+          "type": "WORK",
+          "label": "88s@130bpm",
+          "duration_secs": 88,
+          "avg_hr": 130,
+          "max_hr": 134,
+          "zone": 2
         }
       ]
     }
