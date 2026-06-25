@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-25T17:22:41.200060",
+  "generated_at": "2026-06-25T19:21:16.929256",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -2284,6 +2284,70 @@
           "zone": 2,
           "training_load": 11.1258335,
           "decoupling": 0.9218928
+        }
+      ]
+    },
+    {
+      "activity_id": "i160312925",
+      "date": "2026-06-25",
+      "type": "Run",
+      "name": "Evening Course \u00e0 pied",
+      "interval_summary": [
+        "3x 7m9s 7:01",
+        "1x 6m29s 7:56"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "429s@108w83rpm",
+          "duration_secs": 402,
+          "avg_power": 108,
+          "max_power": 170,
+          "avg_hr": 143,
+          "max_hr": 152,
+          "avg_cadence": 83.079605,
+          "zone": 2,
+          "training_load": 7.4241815,
+          "decoupling": 7.849419
+        },
+        {
+          "type": "WORK",
+          "label": "429s@108w83rpm",
+          "duration_secs": 434,
+          "avg_power": 108,
+          "max_power": 108,
+          "avg_hr": 144,
+          "max_hr": 149,
+          "avg_cadence": 83.31336,
+          "zone": 3,
+          "training_load": 8.320474,
+          "decoupling": -0.1789652
+        },
+        {
+          "type": "WORK",
+          "label": "429s@108w83rpm",
+          "duration_secs": 451,
+          "avg_power": 108,
+          "max_power": 108,
+          "avg_hr": 142,
+          "max_hr": 145,
+          "avg_cadence": 82.880264,
+          "zone": 2,
+          "training_load": 8.646391,
+          "decoupling": 0.68446016
+        },
+        {
+          "type": "WORK",
+          "label": "389s@137w83rpm",
+          "duration_secs": 389,
+          "avg_power": 137,
+          "max_power": 177,
+          "avg_hr": 142,
+          "max_hr": 146,
+          "avg_cadence": 82.90231,
+          "zone": 2,
+          "training_load": 13.629066,
+          "decoupling": -57.93223
         }
       ]
     }
