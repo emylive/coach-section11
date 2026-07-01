@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-01T08:50:34.480101",
+  "generated_at": "2026-07-01T11:50:56.150185",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -1316,6 +1316,97 @@
           "zone": 2,
           "training_load": 0.31,
           "decoupling": 0.1487965
+        }
+      ]
+    },
+    {
+      "activity_id": "i161719510",
+      "date": "2026-07-01",
+      "type": "Run",
+      "name": "Footing 135 cardio",
+      "interval_summary": [
+        "1x 8m22s 8:37",
+        "4x 9m4s 9:08",
+        "1x 36s 9:52"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "502s@54w82rpm",
+          "duration_secs": 502,
+          "avg_power": 54,
+          "max_power": 159,
+          "avg_hr": 127,
+          "max_hr": 137,
+          "avg_cadence": 82.324,
+          "zone": 1,
+          "training_load": 4.8628716,
+          "decoupling": -35.632687
+        },
+        {
+          "type": "WORK",
+          "label": "544s@160w81rpm",
+          "duration_secs": 540,
+          "avg_power": 160,
+          "max_power": 210,
+          "avg_hr": 134,
+          "max_hr": 138,
+          "avg_cadence": 81.95185,
+          "zone": 2,
+          "training_load": 23.006805,
+          "decoupling": 3.6257918
+        },
+        {
+          "type": "WORK",
+          "label": "544s@160w81rpm",
+          "duration_secs": 546,
+          "avg_power": 159,
+          "max_power": 211,
+          "avg_hr": 134,
+          "max_hr": 139,
+          "avg_cadence": 81.40476,
+          "zone": 2,
+          "training_load": 23.262436,
+          "decoupling": 7.2055054
+        },
+        {
+          "type": "WORK",
+          "label": "544s@160w81rpm",
+          "duration_secs": 548,
+          "avg_power": 158,
+          "max_power": 201,
+          "avg_hr": 135,
+          "max_hr": 140,
+          "avg_cadence": 81.149635,
+          "zone": 2,
+          "training_load": 22.771183,
+          "decoupling": -3.465105
+        },
+        {
+          "type": "WORK",
+          "label": "544s@160w81rpm",
+          "duration_secs": 541,
+          "avg_power": 162,
+          "max_power": 206,
+          "avg_hr": 136,
+          "max_hr": 139,
+          "avg_cadence": 81.37523,
+          "zone": 2,
+          "training_load": 23.625624,
+          "decoupling": 3.0084012
+        },
+        {
+          "type": "WORK",
+          "label": "36s@146w80rpm",
+          "duration_secs": 36,
+          "avg_power": 146,
+          "max_power": 160,
+          "avg_hr": 136,
+          "max_hr": 139,
+          "avg_cadence": 80.27778,
+          "zone": 2,
+          "training_load": 1.3671006,
+          "decoupling": 4.9962797
         }
       ]
     }
