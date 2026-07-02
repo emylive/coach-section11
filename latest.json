@@ -65,12 +65,12 @@
       "total_training_hours": 4.12,
       "total_training_formatted": "4h7m",
       "total_activities": 6,
-      "total_tss": 210
+      "total_tss": 212
     }
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-07-02T10:28:24.669744",
+    "last_updated": "2026-07-02T12:28:00.535430",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -108,7 +108,7 @@
       },
       "tsb": {
         "status": "green",
-        "value": 9.1
+        "value": 9.0
       }
     },
     "signal_summary": {
@@ -147,17 +147,17 @@
         "tss": 75,
         "distance_km": 27.0
       },
+      "Rowing": {
+        "duration_decimal_hours": 0.92,
+        "count": 2,
+        "tss": 14,
+        "distance_km": 3.9
+      },
       "Run": {
         "duration_decimal_hours": 1.96,
         "count": 2,
         "tss": 120,
         "distance_km": 14.1
-      },
-      "VirtualRow": {
-        "duration_decimal_hours": 0.92,
-        "count": 2,
-        "tss": 12,
-        "distance_km": 3.9
       },
       "Walk": {
         "duration_decimal_hours": 0.06,
@@ -169,10 +169,10 @@
   },
   "current_status": {
     "fitness": {
-      "ctl": 63.28,
-      "atl": 54.2,
-      "tsb": 9.08,
-      "ramp_rate": -5.81,
+      "ctl": 63.32,
+      "atl": 54.33,
+      "tsb": 8.99,
+      "ramp_rate": -5.77,
       "fitness_source": "From Intervals.icu API (reflects completed workouts)"
     },
     "thresholds": {
@@ -180,7 +180,7 @@
       "w_prime": 11950,
       "w_prime_kj": 12.0,
       "p_max": 547,
-      "vo2max": null,
+      "vo2max": 45.0,
       "sports": {
         "cycling": {
           "lthr": 175,
@@ -248,7 +248,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 48,
+      "steps": 410,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -270,21 +270,21 @@
     "latest_rhr": 52,
     "acwr": 0.41,
     "acwr_interpretation": "undertraining",
-    "monotony": 0.84,
+    "monotony": 0.86,
     "monotony_interpretation": "normal",
     "primary_sport": "run",
     "primary_sport_monotony": null,
     "primary_sport_tss_7d": 120.0,
-    "effective_monotony": 0.84,
+    "effective_monotony": 0.86,
     "multi_sport_detected": true,
-    "strain": 176.0,
+    "strain": 182.0,
     "stress_tolerance": 2.1,
     "load_recovery_ratio": 2.2,
-    "tss_7d_total": 210.0,
-    "tss_28d_total": 2045.0,
+    "tss_7d_total": 212.0,
+    "tss_28d_total": 2047.0,
     "zone_distribution_7d": {
-      "z1_hours": 1.62,
-      "z2_hours": 1.36,
+      "z1_hours": 1.66,
+      "z2_hours": 1.31,
       "z3_hours": 0.21,
       "z4_plus_hours": 0.92,
       "total_hours": 4.12,
@@ -463,6 +463,53 @@
         },
         "weight_kg": 62.2,
         "weight_source": "wellness_recent",
+        "rowing": {
+          "anchors": {
+            "60s": {
+              "actual_watts": 256,
+              "actual_wpkg": 4.12,
+              "actual_hr": 185,
+              "pct_lthr": null,
+              "source": "observed"
+            },
+            "120s": {
+              "actual_watts": 225,
+              "actual_wpkg": 3.62,
+              "actual_hr": 183,
+              "pct_lthr": null,
+              "source": "observed"
+            },
+            "300s": {
+              "actual_watts": 194,
+              "actual_wpkg": 3.12,
+              "actual_hr": 180,
+              "pct_lthr": null,
+              "source": "observed"
+            },
+            "600s": {
+              "actual_watts": 184,
+              "actual_wpkg": 2.96,
+              "actual_hr": 179,
+              "pct_lthr": null,
+              "source": "observed"
+            },
+            "1200s": {
+              "actual_watts": 170,
+              "actual_wpkg": 2.73,
+              "actual_hr": 178,
+              "pct_lthr": null,
+              "source": "observed"
+            },
+            "1800s": {
+              "actual_watts": 166,
+              "actual_wpkg": 2.67,
+              "actual_hr": 174,
+              "pct_lthr": null,
+              "source": "observed"
+            }
+          },
+          "coverage_ratio": 1.0
+        },
         "cycling": {
           "anchors": {
             "300s": {
@@ -619,8 +666,8 @@
     "w_prime_kj": 12.0,
     "p_max": 547,
     "power_model_source": "wellness.sportInfo",
-    "vo2max": null,
-    "calculation_timestamp": "2026-07-02T10:28:24.668640",
+    "vo2max": 45.0,
+    "calculation_timestamp": "2026-07-02T12:28:00.534197",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -664,8 +711,8 @@
       "efficiency_factor": 0.8701299,
       "hrrc": 21,
       "elevation_m": 349.0,
-      "feel": null,
-      "rpe": null,
+      "feel": 3,
+      "rpe": 7,
       "zone_distribution": {
         "hr_zones": {
           "z1_time": 108,
@@ -839,12 +886,12 @@
     {
       "id": "i160802953",
       "date": "2026-06-27T21:02:02",
-      "type": "VirtualRow",
-      "name": "Night Virtual Row",
+      "type": "Rowing",
+      "name": "Night  Row coupe su soleil",
       "duration_hours": 0.48,
       "distance_km": 1.98,
-      "tss": 7,
-      "intensity_factor": 30.205667,
+      "tss": 8,
+      "intensity_factor": 32.291218,
       "avg_power": null,
       "normalized_power": null,
       "avg_hr": 92,
@@ -866,15 +913,17 @@
       "efficiency_factor": null,
       "hrrc": null,
       "elevation_m": 9.0,
-      "feel": null,
-      "rpe": null,
+      "feel": 2,
+      "rpe": 5,
       "zone_distribution": {
         "hr_zones": {
-          "z1_time": 1633,
-          "z2_time": 101,
+          "z1_time": 1734,
+          "z2_time": 0,
           "z3_time": 0,
           "z4_time": 0,
-          "z5_time": 0
+          "z5_time": 0,
+          "z6_time": 0,
+          "z7_time": 0
         }
       },
       "has_intervals": false
@@ -882,12 +931,12 @@
     {
       "id": "i160778175",
       "date": "2026-06-27T18:45:35",
-      "type": "VirtualRow",
-      "name": "Evening Virtual Row",
+      "type": "Rowing",
+      "name": "Evening  Row Coupe du soleil",
       "duration_hours": 0.43,
       "distance_km": 1.88,
-      "tss": 5,
-      "intensity_factor": 31.066822,
+      "tss": 6,
+      "intensity_factor": 34.031998,
       "avg_power": null,
       "normalized_power": null,
       "avg_hr": 89,
@@ -909,15 +958,17 @@
       "efficiency_factor": null,
       "hrrc": null,
       "elevation_m": 0.0,
-      "feel": null,
-      "rpe": null,
+      "feel": 2,
+      "rpe": 5,
       "zone_distribution": {
         "hr_zones": {
-          "z1_time": 1514,
-          "z2_time": 50,
+          "z1_time": 1564,
+          "z2_time": 0,
           "z3_time": 0,
           "z4_time": 0,
-          "z5_time": 0
+          "z5_time": 0,
+          "z6_time": 0,
+          "z7_time": 0
         }
       },
       "has_intervals": false
@@ -2682,7 +2733,7 @@
       "sleep_score": 75.0,
       "mental_energy": null,
       "avg_sleeping_hr": null,
-      "vo2max": null,
+      "vo2max": 45.0,
       "fatigue": null,
       "soreness": null,
       "stress": null,
@@ -2699,7 +2750,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 48,
+      "steps": 410,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -2722,7 +2773,7 @@
   "weekly_summary": {
     "total_training_hours": 4.12,
     "total_training_formatted": "4h7m",
-    "total_tss": 210,
+    "total_tss": 212,
     "activities_count": 6,
     "avg_hrv": 36.4,
     "avg_resting_hr": 51.9
