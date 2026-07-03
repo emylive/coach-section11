@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-07-03T07:37:49.878490",
+    "last_updated": "2026-07-03T10:16:54.106889",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -623,7 +623,7 @@
       "phase": "Deload",
       "confidence": "medium",
       "reason_codes": [
-        "PLAN_GAP_NEXT_WEEK"
+        "BUILD_HISTORY_REDUCED_LOAD"
       ],
       "basis": {
         "stream_1": {
@@ -636,9 +636,9 @@
           "planned_tss_delta": null,
           "hard_sessions_planned": 0,
           "race_proximity": null,
-          "next_week_load": null,
+          "next_week_load": 0.51,
           "plan_coverage_current_week": 0.0,
-          "plan_coverage_next_week": 0.0
+          "plan_coverage_next_week": 0.6
         },
         "data_quality": "good",
         "stream_agreement": null
@@ -650,7 +650,7 @@
     },
     "phase_detected": "Deload",
     "phase_triggers": [
-      "PLAN_GAP_NEXT_WEEK"
+      "BUILD_HISTORY_REDUCED_LOAD"
     ],
     "seasonal_context": "Peak Race Season",
     "benchmark_indoor": {
@@ -673,7 +673,7 @@
     "p_max": 547,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-07-03T07:37:49.877351",
+    "calculation_timestamp": "2026-07-03T10:16:54.105741",
     "data_quality": {
       "hrv_data_points": 6,
       "rhr_data_points": 6,
@@ -2925,14 +2925,129 @@
       "readiness": null
     }
   ],
-  "planned_workouts": [],
+  "planned_workouts": [
+    {
+      "id": 120308920,
+      "date": "2026-07-06",
+      "name": "Footing facile - base a\u00e9robie",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": 34,
+      "duration_hours": 0.58,
+      "duration_formatted": "35m",
+      "workout_summary": null,
+      "has_terrain": false,
+      "description": "- 35m Z2 HR"
+    },
+    {
+      "id": 120308921,
+      "date": "2026-07-08",
+      "name": "C\u00f4tes courtes x6 - travail du souffle",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": 27,
+      "duration_hours": 0.63,
+      "duration_formatted": "38m",
+      "workout_summary": "10m | 6\u00d71m / 2m rec | 10m",
+      "has_terrain": false,
+      "description": "- Warmup 10m Z1-Z2 HR\n\n6x\n- 1m Z3 HR\n- 2m Z1 HR\n\n- Cooldown 10m Z1 HR"
+    },
+    {
+      "id": 120308922,
+      "date": "2026-07-10",
+      "name": "Footing tr\u00e8s facile - r\u00e9cup",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": 20,
+      "duration_hours": 0.5,
+      "duration_formatted": "30m",
+      "workout_summary": null,
+      "has_terrain": false,
+      "description": "- 30m Z1-Z2 HR"
+    },
+    {
+      "id": 120308924,
+      "date": "2026-07-13",
+      "name": "Footing facile + lignes droites",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": 38,
+      "duration_hours": 0.75,
+      "duration_formatted": "45m",
+      "workout_summary": "35m | 5\u00d720s / 1m40s rec",
+      "has_terrain": false
+    },
+    {
+      "id": 120308923,
+      "date": "2026-07-15",
+      "name": "C\u00f4tes x8 - progression",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": 41,
+      "duration_hours": 0.87,
+      "duration_formatted": "52m",
+      "workout_summary": "10m | 8\u00d71m30s / 2m30s rec | 10m",
+      "has_terrain": false
+    },
+    {
+      "id": 120308925,
+      "date": "2026-07-17",
+      "name": "Footing facile - r\u00e9cup",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": 20,
+      "duration_hours": 0.5,
+      "duration_formatted": "30m",
+      "workout_summary": null,
+      "has_terrain": false,
+      "description_preview": "- 30m Z1-Z2 HR"
+    },
+    {
+      "id": 120308926,
+      "date": "2026-07-20",
+      "name": "Footing facile",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": 38,
+      "duration_hours": 0.67,
+      "duration_formatted": "40m",
+      "workout_summary": null,
+      "has_terrain": false,
+      "description_preview": "- 40m Z2 HR"
+    },
+    {
+      "id": 120308928,
+      "date": "2026-07-22",
+      "name": "Seuil vallonn\u00e9 3x8min",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": 57,
+      "duration_hours": 0.97,
+      "duration_formatted": "58m",
+      "workout_summary": "15m | 3\u00d78m / 3m rec | 10m",
+      "has_terrain": false
+    },
+    {
+      "id": 120308929,
+      "date": "2026-07-24",
+      "name": "Footing tr\u00e8s facile - avant trail",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": 14,
+      "duration_hours": 0.42,
+      "duration_formatted": "25m",
+      "workout_summary": null,
+      "has_terrain": false,
+      "description_preview": "- 25m Z1 HR"
+    }
+  ],
   "workout_summary_stats": {
-    "attempted": 0,
-    "success": 0,
-    "patternA": 0,
+    "attempted": 9,
+    "success": 4,
+    "patternA": 4,
     "patternB": 0,
     "bail_no_workout_doc": 0,
-    "bail_no_match": 0
+    "bail_no_match": 5
   },
   "weekly_summary": {
     "total_training_hours": 5.42,
