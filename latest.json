@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-07-11T09:54:58.429187",
+    "last_updated": "2026-07-11T10:54:42.319783",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -108,7 +108,7 @@
       },
       "tsb": {
         "status": "green",
-        "value": 8.7
+        "value": 10.5
       }
     },
     "signal_summary": {
@@ -118,14 +118,14 @@
       "unavailable": 0
     },
     "phase_context": {
-      "phase": "Deload",
+      "phase": "Build",
       "phase_week": 1,
-      "amber_threshold": 2,
-      "modifier_applied": "default"
+      "amber_threshold": 3,
+      "modifier_applied": "build_loosened"
     },
     "race_week_defers": false,
     "modification": null,
-    "reason": "P3 green light. 6 green, 0 amber (threshold 2), 0 red.",
+    "reason": "P3 green light. 6 green, 0 amber (threshold 3), 0 red.",
     "alarm_refs": []
   },
   "history": {
@@ -163,11 +163,11 @@
   },
   "current_status": {
     "fitness": {
-      "ctl": 62.81,
-      "atl": 54.15,
-      "tsb": 8.66,
-      "ramp_rate": -3.15,
-      "fitness_source": "From Intervals.icu API (reflects completed workouts)"
+      "ctl": 62.35,
+      "atl": 51.84,
+      "tsb": 10.51,
+      "ramp_rate": 0.09,
+      "fitness_source": "Decayed from yesterday (today's planned workouts not yet completed)"
     },
     "thresholds": {
       "eftp": 151.3,
@@ -457,53 +457,6 @@
         },
         "weight_kg": 62.1,
         "weight_source": "wellness_recent",
-        "rowing": {
-          "anchors": {
-            "60s": {
-              "actual_watts": 256,
-              "actual_wpkg": 4.12,
-              "actual_hr": 185,
-              "pct_lthr": null,
-              "source": "observed"
-            },
-            "120s": {
-              "actual_watts": 225,
-              "actual_wpkg": 3.62,
-              "actual_hr": 183,
-              "pct_lthr": null,
-              "source": "observed"
-            },
-            "300s": {
-              "actual_watts": 199,
-              "actual_wpkg": 3.2,
-              "actual_hr": 180,
-              "pct_lthr": null,
-              "source": "observed"
-            },
-            "600s": {
-              "actual_watts": 184,
-              "actual_wpkg": 2.96,
-              "actual_hr": 179,
-              "pct_lthr": null,
-              "source": "observed"
-            },
-            "1200s": {
-              "actual_watts": 170,
-              "actual_wpkg": 2.74,
-              "actual_hr": 178,
-              "pct_lthr": null,
-              "source": "observed"
-            },
-            "1800s": {
-              "actual_watts": 160,
-              "actual_wpkg": 2.58,
-              "actual_hr": 174,
-              "pct_lthr": null,
-              "source": "observed"
-            }
-          },
-          "coverage_ratio": 1.0
-        },
         "cycling": {
           "anchors": {
             "300s": {
@@ -596,6 +549,53 @@
           "w_prime_used": 11903,
           "ftp_staleness_days": 113,
           "model_trust_note": "CP/W' model (P=CP+W'/t) is primary for durations \u226420min where W' contribution is meaningful. Coggan duration factors (Allen & Coggan, 3rd ed.) are the established reference for \u226560min. 30min is the crossover zone where both apply. model_divergence_pct = (actual - CP_model) / CP_model \u00d7 100. Positive divergence at short durations may indicate strong anaerobic capacity or stale W' value. Indoor MMP is typically 3-5% lower than outdoor (cooling, motivation) \u2014 source flag indicates which environment produced each anchor."
+        },
+        "rowing": {
+          "anchors": {
+            "60s": {
+              "actual_watts": 256,
+              "actual_wpkg": 4.12,
+              "actual_hr": 185,
+              "pct_lthr": null,
+              "source": "observed"
+            },
+            "120s": {
+              "actual_watts": 225,
+              "actual_wpkg": 3.62,
+              "actual_hr": 183,
+              "pct_lthr": null,
+              "source": "observed"
+            },
+            "300s": {
+              "actual_watts": 199,
+              "actual_wpkg": 3.2,
+              "actual_hr": 180,
+              "pct_lthr": null,
+              "source": "observed"
+            },
+            "600s": {
+              "actual_watts": 184,
+              "actual_wpkg": 2.96,
+              "actual_hr": 179,
+              "pct_lthr": null,
+              "source": "observed"
+            },
+            "1200s": {
+              "actual_watts": 170,
+              "actual_wpkg": 2.74,
+              "actual_hr": 178,
+              "pct_lthr": null,
+              "source": "observed"
+            },
+            "1800s": {
+              "actual_watts": 160,
+              "actual_wpkg": 2.58,
+              "actual_hr": 174,
+              "pct_lthr": null,
+              "source": "observed"
+            }
+          },
+          "coverage_ratio": 1.0
         }
       },
       "dfa_a1_profile": null
@@ -608,16 +608,14 @@
       "planned_dates": [
         "2026-07-06",
         "2026-07-08",
-        "2026-07-10"
+        "2026-07-11"
       ],
       "completed_dates": []
     },
     "phase_detection": {
-      "phase": "Deload",
+      "phase": "Build",
       "confidence": "medium",
-      "reason_codes": [
-        "BUILD_HISTORY_REDUCED_LOAD"
-      ],
+      "reason_codes": [],
       "basis": {
         "stream_1": {
           "ctl_slope": null,
@@ -626,11 +624,11 @@
           "weeks_available": 4
         },
         "stream_2": {
-          "planned_tss_delta": null,
+          "planned_tss_delta": 0.38,
           "hard_sessions_planned": 0,
           "race_proximity": null,
           "next_week_load": 0.43,
-          "plan_coverage_current_week": 0.0,
+          "plan_coverage_current_week": 0.2,
           "plan_coverage_next_week": 0.6
         },
         "data_quality": "good",
@@ -641,10 +639,8 @@
       "dossier_declared": null,
       "dossier_agreement": null
     },
-    "phase_detected": "Deload",
-    "phase_triggers": [
-      "BUILD_HISTORY_REDUCED_LOAD"
-    ],
+    "phase_detected": "Build",
+    "phase_triggers": [],
     "seasonal_context": "Peak Race Season",
     "benchmark_indoor": {
       "current_ftp": 177,
@@ -666,7 +662,7 @@
     "p_max": 545,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-07-11T09:54:58.428078",
+    "calculation_timestamp": "2026-07-11T10:54:42.318697",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -2663,6 +2659,19 @@
   ],
   "planned_workouts": [
     {
+      "id": 120308922,
+      "date": "2026-07-11",
+      "name": "Footing tr\u00e8s facile - r\u00e9cup",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": 20,
+      "duration_hours": 0.5,
+      "duration_formatted": "30m",
+      "workout_summary": null,
+      "has_terrain": false,
+      "description": "- 30m Z1-Z2 HR"
+    },
+    {
       "id": 120308924,
       "date": "2026-07-13",
       "name": "Footing facile + lignes droites",
@@ -2742,12 +2751,12 @@
     }
   ],
   "workout_summary_stats": {
-    "attempted": 6,
+    "attempted": 7,
     "success": 1,
     "patternA": 1,
     "patternB": 0,
     "bail_no_workout_doc": 0,
-    "bail_no_match": 5
+    "bail_no_match": 6
   },
   "weekly_summary": {
     "total_training_hours": 6.94,
