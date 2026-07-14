@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-14T15:01:40.057208",
+  "generated_at": "2026-07-14T16:36:09.732523",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -1068,6 +1068,32 @@
           "max_hr": 167,
           "avg_cadence": 61.746723,
           "zone": 4
+        }
+      ]
+    },
+    {
+      "activity_id": "i165683615",
+      "date": "2026-07-14",
+      "type": "Ride",
+      "name": "La Seyne-sur-Mer Cyclisme sur route",
+      "interval_summary": [
+        "1x 3m6s 118bpm"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "186s@118bpm",
+          "duration_secs": 186,
+          "avg_hr": 118,
+          "max_hr": 135,
+          "zone": 1
+        },
+        {
+          "type": "RECOVERY",
+          "duration_secs": 1,
+          "avg_hr": 112,
+          "max_hr": 112,
+          "zone": 1
         }
       ]
     }
