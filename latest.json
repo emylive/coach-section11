@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-07-14T22:29:16.750106",
+    "last_updated": "2026-07-14T23:24:54.605166",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -676,7 +676,7 @@
     "p_max": 544,
     "power_model_source": "wellness.sportInfo",
     "vo2max": 45.0,
-    "calculation_timestamp": "2026-07-14T22:29:16.748991",
+    "calculation_timestamp": "2026-07-14T23:24:54.604086",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -720,7 +720,7 @@
       "efficiency_factor": 0.8,
       "hrrc": 16,
       "elevation_m": 809.0,
-      "feel": 3,
+      "feel": 4,
       "rpe": 8,
       "zone_distribution": {
         "hr_zones": {
@@ -741,7 +741,7 @@
         }
       },
       "has_intervals": true,
-      "description": "\ud83d\udeb4 Tracked by LeCoach.app\n\u23f1 225 min \u00b7 Load 189\n\ud83d\udcc8 Fitness improving"
+      "description": "CoachWatts Workout Analysis\n\nQuelle belle sortie longue de 225 minutes ! Vous avez fait preuve d'une excellente r\u00e9silience malgr\u00e9 la chaleur, en int\u00e9grant des variations d'intensit\u00e9 dynamiques qui t\u00e9moignent d'un bel engagement sur le v\u00e9lo.\n\n\ud83d\udd17 https://CoachWatts.com - AI Endurance Coaching\n\n\ud83d\udeb4 Tracked by LeCoach.app\n\u23f1 225 min \u00b7 Load 189\n\ud83d\udcc8 Fitness improving"
     },
     {
       "id": "i165683615",
