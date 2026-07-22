@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-22T19:40:20.432694",
+  "generated_at": "2026-07-22T20:42:24.810217",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -2270,6 +2270,94 @@
           "avg_hr": 113,
           "max_hr": 142,
           "zone": 1
+        }
+      ]
+    },
+    {
+      "activity_id": "i168199097",
+      "date": "2026-07-22",
+      "type": "Run",
+      "name": "Footing facile",
+      "interval_summary": [
+        "1x 1h 1:08:46",
+        "1x 24m54s 8:44"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "3637s@146w74rpm",
+          "duration_secs": 3637,
+          "avg_power": 146,
+          "max_power": 269,
+          "avg_hr": 124,
+          "max_hr": 138,
+          "avg_cadence": 73.97948,
+          "zone": 1,
+          "training_load": 29.454445
+        },
+        {
+          "type": "WORK",
+          "label": "1494s@159w78rpm",
+          "duration_secs": 1494,
+          "avg_power": 159,
+          "max_power": 263,
+          "avg_hr": 138,
+          "max_hr": 149,
+          "avg_cadence": 78.45192,
+          "zone": 2,
+          "training_load": 68.96854,
+          "decoupling": 22.427025
+        }
+      ]
+    },
+    {
+      "activity_id": "i168199112",
+      "date": "2026-07-22",
+      "type": "Run",
+      "name": "Evening Course \u00e0 pied",
+      "interval_summary": [
+        "2x 7m25s 10:23",
+        "1x 8m42s 8:34"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "445s@90w78rpm",
+          "duration_secs": 450,
+          "avg_power": 87,
+          "max_power": 174,
+          "avg_hr": 130,
+          "max_hr": 140,
+          "avg_cadence": 84.27679,
+          "zone": 1,
+          "training_load": 5.6896253,
+          "decoupling": 6.1351123
+        },
+        {
+          "type": "WORK",
+          "label": "522s@111w82rpm",
+          "duration_secs": 522,
+          "avg_power": 111,
+          "max_power": 229,
+          "avg_hr": 141,
+          "max_hr": 148,
+          "avg_cadence": 82.01887,
+          "zone": 2,
+          "training_load": 17.114183,
+          "decoupling": -108.0154
+        },
+        {
+          "type": "WORK",
+          "label": "445s@90w78rpm",
+          "duration_secs": 439,
+          "avg_power": 93,
+          "max_power": 236,
+          "avg_hr": 128,
+          "max_hr": 149,
+          "avg_cadence": 71.38152,
+          "zone": 1,
+          "training_load": 15.469954,
+          "decoupling": 72.044235
         }
       ]
     }
