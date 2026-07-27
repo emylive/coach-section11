@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-07-27T21:02:32.789184",
+    "last_updated": "2026-07-27T22:16:02.744449",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -260,7 +260,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 9026,
+      "steps": 9650,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -638,7 +638,7 @@
     "p_max": 568,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-07-27T21:02:32.788397",
+    "calculation_timestamp": "2026-07-27T22:16:02.743567",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -2584,7 +2584,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 9026,
+      "steps": 9650,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -2615,12 +2615,12 @@
       "name": "C\u00f4tes courtes x6",
       "type": "WORKOUT",
       "sport_type": "Run",
-      "planned_tss": 29,
-      "duration_hours": 0.63,
-      "duration_formatted": "38m",
-      "workout_summary": "10m | 6\u00d71m / 2m rec | 10m",
+      "planned_tss": 31,
+      "duration_hours": 0.72,
+      "duration_formatted": "43m",
+      "workout_summary": "10m | 6\u00d71m / 2m rec | 10m | 5m",
       "has_terrain": false,
-      "description": "- Warmup 10m Z1-Z2 HR\n\n6x\n- 1m Z3 HR\n- 2m Z1 HR\n\n- Cooldown 10m Z1 HR"
+      "description": "- Warmup 10m Z1-Z2 HR\n\n6x\n- 1m Z3 HR\n- 2m Z1 HR\n\n- Cooldown 10m Z1 HR\n\n- Press lap 5m Z1 HR"
     },
     {
       "id": 124554089,
