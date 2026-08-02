@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-08-02T15:53:09.518730",
+    "last_updated": "2026-08-02T16:47:13.124241",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -248,7 +248,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 29,
+      "steps": 1542,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -590,7 +590,7 @@
           "race_proximity": null,
           "next_week_load": null,
           "plan_coverage_current_week": 0.0,
-          "plan_coverage_next_week": 0.6
+          "plan_coverage_next_week": 0.8
         },
         "data_quality": "good",
         "stream_agreement": null
@@ -623,7 +623,7 @@
     "p_max": 568,
     "power_model_source": "wellness.sportInfo",
     "vo2max": 46.0,
-    "calculation_timestamp": "2026-08-02T15:53:09.517576",
+    "calculation_timestamp": "2026-08-02T16:47:13.123183",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -667,8 +667,8 @@
       "efficiency_factor": null,
       "hrrc": null,
       "elevation_m": null,
-      "feel": null,
-      "rpe": null,
+      "feel": 2,
+      "rpe": 6,
       "zone_distribution": {
         "hr_zones": {
           "z1_time": 1688,
@@ -2677,7 +2677,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 29,
+      "steps": 1542,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -2705,15 +2705,15 @@
     {
       "id": 124554091,
       "date": "2026-08-05",
-      "name": "C\u00f4tes x8",
+      "name": "Footing + lignes droites",
       "type": "WORKOUT",
       "sport_type": "Run",
-      "planned_tss": 45,
-      "duration_hours": 0.87,
-      "duration_formatted": "52m",
-      "workout_summary": "10m | 8\u00d71m30s / 2m30s rec | 10m",
+      "planned_tss": 30,
+      "duration_hours": 0.75,
+      "duration_formatted": "45m",
+      "workout_summary": "35m | 5\u00d720s / 1m40s rec",
       "has_terrain": false,
-      "description": "- Warmup 10m Z1-Z2 HR\n\n8x\n- 1m30 Z3-Z4 HR\n- 2m30 Z1 HR\n\n- Cooldown 10m Z1 HR"
+      "description": "- 35m Z1-Z2 HR\n\n5x\n- 20s freeride\n- 1m40s Z1 HR"
     },
     {
       "id": 124554092,
@@ -2727,6 +2727,19 @@
       "workout_summary": null,
       "has_terrain": false,
       "description": "- 35m Z1-Z2 HR"
+    },
+    {
+      "id": 126789901,
+      "date": "2026-08-09",
+      "name": "Footing facile - vacances",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": 22,
+      "duration_hours": 0.5,
+      "duration_formatted": "30m",
+      "workout_summary": null,
+      "has_terrain": false,
+      "description": "- 30m Z1-Z2 HR"
     },
     {
       "id": 124554093,
@@ -2744,14 +2757,28 @@
     {
       "id": 124554094,
       "date": "2026-08-12",
-      "name": "Seuil vallonn\u00e9 3x8min",
+      "name": "Footing facile - long du groupe",
       "type": "WORKOUT",
       "sport_type": "Run",
-      "planned_tss": 62,
-      "duration_hours": 0.97,
-      "duration_formatted": "58m",
-      "workout_summary": "15m | 3\u00d78m / 3m rec | 10m",
-      "has_terrain": false
+      "planned_tss": 32,
+      "duration_hours": 0.75,
+      "duration_formatted": "45m",
+      "workout_summary": null,
+      "has_terrain": false,
+      "description_preview": "- 45m Z1-Z2 HR"
+    },
+    {
+      "id": 126789902,
+      "date": "2026-08-13",
+      "name": "Footing facile - vacances",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": 22,
+      "duration_hours": 0.5,
+      "duration_formatted": "30m",
+      "workout_summary": null,
+      "has_terrain": false,
+      "description_preview": "- 30m Z1-Z2 HR"
     },
     {
       "id": 124554095,
@@ -2768,12 +2795,12 @@
     }
   ],
   "workout_summary_stats": {
-    "attempted": 6,
-    "success": 2,
-    "patternA": 2,
+    "attempted": 8,
+    "success": 1,
+    "patternA": 1,
     "patternB": 0,
     "bail_no_workout_doc": 0,
-    "bail_no_match": 4
+    "bail_no_match": 7
   },
   "weekly_summary": {
     "total_training_hours": 17.68,
