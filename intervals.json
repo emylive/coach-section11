@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-07T16:31:31.963828",
+  "generated_at": "2026-08-07T17:31:04.261846",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -2628,6 +2628,41 @@
           "zone": 3,
           "training_load": 0.10182775,
           "decoupling": 5.625
+        }
+      ]
+    },
+    {
+      "activity_id": "i173473618",
+      "date": "2026-08-07",
+      "type": "Ride",
+      "name": "Ch\u00e2teauneuf-sur-Loire Cyclisme",
+      "interval_summary": [
+        "1x 3h12m 150bpm",
+        "1x 48m42s 157bpm"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "11555s@150bpm",
+          "duration_secs": 11555,
+          "avg_hr": 150,
+          "max_hr": 169,
+          "zone": 3
+        },
+        {
+          "type": "WORK",
+          "label": "2922s@157bpm",
+          "duration_secs": 2922,
+          "avg_hr": 157,
+          "max_hr": 170,
+          "zone": 3
+        },
+        {
+          "type": "RECOVERY",
+          "duration_secs": 2,
+          "avg_hr": 166,
+          "max_hr": 166,
+          "zone": 4
         }
       ]
     }
