@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-08-10T12:31:33.859201",
+    "last_updated": "2026-08-10T14:03:59.608419",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -603,7 +603,7 @@
           "weeks_available": 4
         },
         "stream_2": {
-          "planned_tss_delta": 1.18,
+          "planned_tss_delta": 1.03,
           "hard_sessions_planned": 0,
           "race_proximity": null,
           "next_week_load": null,
@@ -641,7 +641,7 @@
     "p_max": 564,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-08-10T12:31:33.858116",
+    "calculation_timestamp": "2026-08-10T14:03:59.607276",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -3071,17 +3071,17 @@
       "description": "- 45m Z2 HR"
     },
     {
-      "id": 124554094,
+      "id": 128437309,
       "date": "2026-08-12",
-      "name": "Footing facile - long du groupe",
+      "name": "Test 20min - allure seuil actuelle",
       "type": "WORKOUT",
       "sport_type": "Run",
-      "planned_tss": 32,
+      "planned_tss": 16,
       "duration_hours": 0.75,
       "duration_formatted": "45m",
       "workout_summary": null,
       "has_terrain": false,
-      "description": "- 45m Z1-Z2 HR"
+      "description": "- 15m Z1-Z2 HR\n\n- 20m freeride\n\n- 10m Z1 HR"
     },
     {
       "id": 126789902,
