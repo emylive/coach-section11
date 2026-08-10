@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-08-10T11:43:42.121930",
+    "last_updated": "2026-08-10T12:31:33.859201",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -104,7 +104,7 @@
       },
       "sleep": {
         "status": "amber",
-        "hours": 6.05,
+        "hours": 6.08,
         "quality": 3
       },
       "acwr": {
@@ -245,8 +245,8 @@
       "resting_hr": 57,
       "hrv": 32.0,
       "sleep_quality": 3,
-      "sleep_hours": 6.05,
-      "sleep_formatted": "6h3m",
+      "sleep_hours": 6.08,
+      "sleep_formatted": "6h5m",
       "sleep_score": 61.0,
       "fatigue": null,
       "soreness": null,
@@ -264,7 +264,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 63,
+      "steps": 13921,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -641,7 +641,7 @@
     "p_max": 564,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-08-10T11:43:42.121112",
+    "calculation_timestamp": "2026-08-10T12:31:33.858116",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -659,7 +659,7 @@
       "id": "i174332839",
       "date": "2026-08-10T12:07:59",
       "type": "Run",
-      "name": "Lunch Course \u00e0 pied",
+      "name": "Retour musculation ",
       "duration_hours": 0.34,
       "distance_km": 2.31,
       "tss": 29,
@@ -685,8 +685,8 @@
       "efficiency_factor": 1.0974026,
       "hrrc": 20,
       "elevation_m": 26.0,
-      "feel": null,
-      "rpe": null,
+      "feel": 2,
+      "rpe": 6,
       "zone_distribution": {
         "hr_zones": {
           "z1_time": 0,
@@ -737,8 +737,8 @@
       "efficiency_factor": null,
       "hrrc": null,
       "elevation_m": null,
-      "feel": null,
-      "rpe": null,
+      "feel": 2,
+      "rpe": 6,
       "zone_distribution": {
         "hr_zones": {
           "z1_time": 5,
@@ -754,7 +754,7 @@
       "id": "i174319007",
       "date": "2026-08-10T11:25:06",
       "type": "Run",
-      "name": "Lunch Course \u00e0 pied",
+      "name": "Allez musculation apr\u00e8s entra\u00eenement CAP",
       "duration_hours": 0.15,
       "distance_km": 1.13,
       "tss": 10,
@@ -780,8 +780,8 @@
       "efficiency_factor": 0.8551724,
       "hrrc": null,
       "elevation_m": 3.0,
-      "feel": null,
-      "rpe": null,
+      "feel": 2,
+      "rpe": 4,
       "zone_distribution": {
         "hr_zones": {
           "z1_time": 26,
@@ -832,8 +832,8 @@
       "efficiency_factor": 1.112676,
       "hrrc": null,
       "elevation_m": 29.0,
-      "feel": null,
-      "rpe": null,
+      "feel": 2,
+      "rpe": 4,
       "zone_distribution": {
         "hr_zones": {
           "z1_time": 89,
@@ -3022,8 +3022,8 @@
       "resting_hr": 57,
       "hrv_rmssd": 32.0,
       "hrv_sdnn": null,
-      "sleep_hours": 6.05,
-      "sleep_formatted": "6h3m",
+      "sleep_hours": 6.08,
+      "sleep_formatted": "6h5m",
       "sleep_quality": 3,
       "sleep_score": 61.0,
       "mental_energy": null,
@@ -3045,7 +3045,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 63,
+      "steps": 13921,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
