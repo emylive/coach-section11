@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-08-15T07:04:21.091623",
+    "last_updated": "2026-08-15T07:40:57.413443",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -118,14 +118,14 @@
       "unavailable": 4
     },
     "phase_context": {
-      "phase": "Deload",
+      "phase": "Build",
       "phase_week": 1,
-      "amber_threshold": 2,
-      "modifier_applied": "default"
+      "amber_threshold": 3,
+      "modifier_applied": "build_loosened"
     },
     "race_week_defers": false,
     "modification": null,
-    "reason": "P3 green light. 2 green, 0 amber (threshold 2), 0 red. Note: 4 signals unavailable \u2014 limited data.",
+    "reason": "P3 green light. 2 green, 0 amber (threshold 3), 0 red. Note: 4 signals unavailable \u2014 limited data.",
     "alarm_refs": []
   },
   "history": {
@@ -167,7 +167,7 @@
       "atl": 30.53,
       "tsb": 23.11,
       "ramp_rate": -6.79,
-      "fitness_source": "From Intervals.icu API (reflects completed workouts)"
+      "fitness_source": "Decayed from yesterday (today's planned workouts not yet completed)"
     },
     "thresholds": {
       "eftp": 147.0,
@@ -561,18 +561,16 @@
       "planned_dates": [
         "2026-08-09",
         "2026-08-10",
-        "2026-08-12",
         "2026-08-13",
-        "2026-08-14"
+        "2026-08-14",
+        "2026-08-15"
       ],
       "completed_dates": []
     },
     "phase_detection": {
-      "phase": "Deload",
+      "phase": "Build",
       "confidence": "medium",
-      "reason_codes": [
-        "PLAN_GAP_NEXT_WEEK"
-      ],
+      "reason_codes": [],
       "basis": {
         "stream_1": {
           "ctl_slope": null,
@@ -581,11 +579,11 @@
           "weeks_available": 4
         },
         "stream_2": {
-          "planned_tss_delta": null,
+          "planned_tss_delta": 0.53,
           "hard_sessions_planned": 0,
           "race_proximity": null,
           "next_week_load": null,
-          "plan_coverage_current_week": 0.0,
+          "plan_coverage_current_week": 0.2,
           "plan_coverage_next_week": 0.0
         },
         "data_quality": "good",
@@ -596,10 +594,8 @@
       "dossier_declared": null,
       "dossier_agreement": null
     },
-    "phase_detected": "Deload",
-    "phase_triggers": [
-      "PLAN_GAP_NEXT_WEEK"
-    ],
+    "phase_detected": "Build",
+    "phase_triggers": [],
     "seasonal_context": "Peak Race Season",
     "benchmark_indoor": {
       "current_ftp": 177,
@@ -621,7 +617,7 @@
     "p_max": 561,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-08-15T07:04:21.090500",
+    "calculation_timestamp": "2026-08-15T07:40:57.412271",
     "data_quality": {
       "hrv_data_points": 6,
       "rhr_data_points": 6,
@@ -2880,14 +2876,28 @@
       "readiness": null
     }
   ],
-  "planned_workouts": [],
+  "planned_workouts": [
+    {
+      "id": 128437309,
+      "date": "2026-08-15",
+      "name": "Test 20min - allure seuil actuelle",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": 16,
+      "duration_hours": 0.75,
+      "duration_formatted": "45m",
+      "workout_summary": null,
+      "has_terrain": false,
+      "description": "- 15m Z1-Z2 HR\n\n- 20m freeride\n\n- 10m Z1 HR"
+    }
+  ],
   "workout_summary_stats": {
-    "attempted": 0,
+    "attempted": 1,
     "success": 0,
     "patternA": 0,
     "patternB": 0,
     "bail_no_workout_doc": 0,
-    "bail_no_match": 0
+    "bail_no_match": 1
   },
   "weekly_summary": {
     "total_training_hours": 1.97,
