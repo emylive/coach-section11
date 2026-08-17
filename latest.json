@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-08-17T10:53:50.349134",
+    "last_updated": "2026-08-17T11:16:17.584652",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -636,7 +636,7 @@
     "p_max": 560,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-08-17T10:53:50.348040",
+    "calculation_timestamp": "2026-08-17T11:16:17.583577",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -654,7 +654,7 @@
       "id": "i176683882",
       "date": "2026-08-17T10:28:53",
       "type": "Walk",
-      "name": "Morning Marche",
+      "name": "RETOUR Marche",
       "duration_hours": 0.07,
       "distance_km": 0.36,
       "tss": 3,
@@ -680,8 +680,8 @@
       "efficiency_factor": null,
       "hrrc": null,
       "elevation_m": 8.0,
-      "feel": null,
-      "rpe": null,
+      "feel": 2,
+      "rpe": 3,
       "zone_distribution": {
         "hr_zones": {
           "z1_time": 180,
@@ -725,8 +725,8 @@
       "efficiency_factor": 1.0206896,
       "hrrc": null,
       "elevation_m": 20.0,
-      "feel": null,
-      "rpe": null,
+      "feel": 2,
+      "rpe": 4,
       "zone_distribution": {
         "hr_zones": {
           "z1_time": 99,
@@ -745,7 +745,8 @@
           "z7_time": 70
         }
       },
-      "has_intervals": true
+      "has_intervals": true,
+      "description": "\ud83d\udcc8 \ud835\udde0\ud835\ude06 \ud835\uddd8\ud835\uddfb\ud835\uddf1\ud835\ude02\ud835\uddff\ud835\uddee\ud835\ude04 \ud835\udde5\ud835\uddf2\ud835\uddfd\ud835\uddfc\ud835\uddff\ud835\ude01 \ud83d\udcc8\n\ud83c\udfc5 At this pace, marathon time: 5h32min (36% of Kipchoge's pace)\nAdjusted Pace: \ud835\udff3:\ud835\udfef\ud835\udff0/km\n\ud83c\udfdd\ufe0f Elevation (0.4% avg) helped you by \ud835\udfec'\ud835\udfec\ud835\udfed\"/km.\n\ud83d\ude0e Heat (26.7\u00b0C) cost you \ud835\udfec'\ud835\udfed\ud835\udff0\"/km.\n\ud83c\udf43 Wind (5.7km/h) cost you \ud835\udfec'\ud835\udfec\ud835\udff2\"/km.\n\ud83d\udc4c The altitude didn't affect your run.\n\u23f1 Under standard conditions, you would have gained \ud835\udfed'\ud835\udfef\ud835\udff3\".\n\ud83d\udd25 Estimated energy cost: 308-376 kcal.\n\ud83d\udca7 Estimated fluid loss: 0.2-0.4L (0.5L/h sweat rate)"
     },
     {
       "id": "i176501885",
