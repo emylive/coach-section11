@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-08-18T11:02:33.500415",
+    "last_updated": "2026-08-18T11:36:43.841180",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -624,7 +624,7 @@
     "p_max": 559,
     "power_model_source": "wellness.sportInfo",
     "vo2max": 46.0,
-    "calculation_timestamp": "2026-08-18T11:02:33.499469",
+    "calculation_timestamp": "2026-08-18T11:36:43.840111",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -689,7 +689,7 @@
         }
       },
       "has_intervals": true,
-      "description": "\ud83d\udcc8 \ud835\udde0\ud835\ude06 \ud835\uddd8\ud835\uddfb\ud835\uddf1\ud835\ude02\ud835\uddff\ud835\uddee\ud835\ude04 \ud835\udde5\ud835\uddf2\ud835\uddfd\ud835\uddfc\ud835\uddff\ud835\ude01 \ud83d\udcc8\n\n\ud83c\udf0a The average altitude was \ud835\udfed\ud835\udfec\ud835\udfecm\n\ud83d\ude0e The average temperature was \ud835\udfee\ud835\udff2.\ud835\udfef\u00b0C\n\ud83c\udf43 The average wind was \ud835\udff1.\ud835\udff4km/h\nWIP - A group of 4 riders in fair relays would have gone 2' faster than a lone cyclist.\n\nTry it now \ud83d\udc49 https://dashboard.enduraw-data.com/"
+      "description": "CoachWatts Workout Analysis\n\nBravo pour cette belle sortie dynamique ! Vous avez montr\u00e9 une belle capacit\u00e9 \u00e0 produire des efforts intenses tout en g\u00e9rant les temps de r\u00e9cup\u00e9ration avec souplesse, ce qui est tr\u00e8s encourageant pour votre progression globale.\n\n\ud83d\udd17 https://CoachWatts.com - AI Endurance Coaching\n\n\ud83d\udcc8 \ud835\udde0\ud835\ude06 \ud835\uddd8\ud835\uddfb\ud835\uddf1\ud835\ude02\ud835\uddff\ud835\uddee\ud835\ude04 \ud835\udde5\ud835\uddf2\ud835\uddfd\ud835\uddfc\ud835\uddff\ud835\ude01 \ud83d\udcc8\n\n\ud83c\udf0a The average altitude was \ud835\udfed\ud835\udfec\ud835\udfecm\n\ud83d\ude0e The average temperature was \ud835\udfee\ud835\udff2.\ud835\udfef\u00b0C\n\ud83c\udf43 The average wind was \ud835\udff1.\ud835\udff4km/h\nWIP - A group of 4 riders in fair relays would have gone 2' faster than a lone cyclist.\n\nTry it now \ud83d\udc49 https://dashboard.enduraw-data.com/"
     },
     {
       "id": "i176683882",
