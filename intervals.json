@@ -1,57 +1,10 @@
 {
-  "generated_at": "2026-08-18T23:55:59.050547",
+  "generated_at": "2026-08-19T00:46:20.439404",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
   "retention_days": 14,
   "activities": [
-    {
-      "activity_id": "i172256573",
-      "date": "2026-08-04",
-      "type": "Run",
-      "name": "Footing facile",
-      "interval_summary": [
-        "1x 50s 9:12"
-      ],
-      "intervals": [
-        {
-          "type": "RECOVERY",
-          "duration_secs": 2371,
-          "avg_power": 14,
-          "max_power": 66,
-          "avg_hr": 142,
-          "max_hr": 150,
-          "avg_cadence": 84.25953,
-          "zone": 2,
-          "training_load": 0.76190007,
-          "decoupling": 4.3850393
-        },
-        {
-          "type": "WORK",
-          "label": "50s@154w82rpm",
-          "duration_secs": 50,
-          "avg_power": 154,
-          "max_power": 168,
-          "avg_hr": 145,
-          "max_hr": 148,
-          "avg_cadence": 82.12,
-          "zone": 2,
-          "training_load": 1.4319527,
-          "decoupling": -3.6997976
-        },
-        {
-          "type": "RECOVERY",
-          "duration_secs": 1,
-          "avg_power": 167,
-          "max_power": 167,
-          "avg_hr": 145,
-          "max_hr": 145,
-          "avg_cadence": 82.0,
-          "zone": 2,
-          "training_load": 0.040514465
-        }
-      ]
-    },
     {
       "activity_id": "i173014783",
       "date": "2026-08-06",
