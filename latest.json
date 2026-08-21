@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-08-21T11:49:16.930887",
+    "last_updated": "2026-08-21T12:25:34.652192",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -634,7 +634,7 @@
     "p_max": 558,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-08-21T11:49:16.929742",
+    "calculation_timestamp": "2026-08-21T12:25:34.651022",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -652,7 +652,7 @@
       "id": "i178222801",
       "date": "2026-08-21T11:56:50",
       "type": "Walk",
-      "name": "Lunch Marche",
+      "name": "Retour course a pied",
       "duration_hours": 0.07,
       "distance_km": 0.41,
       "tss": 3,
@@ -678,8 +678,8 @@
       "efficiency_factor": null,
       "hrrc": null,
       "elevation_m": 10.0,
-      "feel": null,
-      "rpe": null,
+      "feel": 2,
+      "rpe": 3,
       "zone_distribution": {
         "hr_zones": {
           "z1_time": 238,
@@ -723,8 +723,8 @@
       "efficiency_factor": 0.92086333,
       "hrrc": null,
       "elevation_m": 41.0,
-      "feel": null,
-      "rpe": null,
+      "feel": 2,
+      "rpe": 3,
       "zone_distribution": {
         "hr_zones": {
           "z1_time": 378,
@@ -743,7 +743,8 @@
           "z7_time": 68
         }
       },
-      "has_intervals": true
+      "has_intervals": true,
+      "description": "\ud83d\ude33 Heat (24.2\u00b0C) cost you \ud835\udfec'\ud835\udfed\ud835\udfec\"/km.\n\ud83c\udf2c\ufe0f Wind (21.2km/h) cost you \ud835\udfec'\ud835\udfee\ud835\udff3\"/km"
     },
     {
       "id": "i177455875",
