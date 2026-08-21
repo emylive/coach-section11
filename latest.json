@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-08-21T12:25:34.652192",
+    "last_updated": "2026-08-21T13:24:17.931441",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -599,7 +599,7 @@
           "planned_tss_delta": 0.57,
           "hard_sessions_planned": 0,
           "race_proximity": 43,
-          "next_week_load": 0.86,
+          "next_week_load": 0.92,
           "plan_coverage_current_week": 0.2,
           "plan_coverage_next_week": 0.6
         },
@@ -634,7 +634,7 @@
     "p_max": 558,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-08-21T12:25:34.651022",
+    "calculation_timestamp": "2026-08-21T13:24:17.930601",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -2922,12 +2922,12 @@
       "name": "Tempo 20min continu",
       "type": "WORKOUT",
       "sport_type": "Run",
-      "planned_tss": 46,
-      "duration_hours": 0.67,
-      "duration_formatted": "40m",
+      "planned_tss": 55,
+      "duration_hours": 0.76,
+      "duration_formatted": "45m20s",
       "workout_summary": null,
       "has_terrain": false,
-      "description": "- Warmup 10m Z1-Z2 HR\n\n- 20m Z3-Z4 HR\n\n- Cooldown 10m Z1 HR"
+      "description": "- Warmup 10m Z1-Z2 HR\n\n- \"allure 5'20\" 20m Z3-Z4 HR\n\n\n- Cooldown 10m Z1 HR"
     },
     {
       "id": 129404582,
