@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-08-23T20:36:47.610265",
+    "last_updated": "2026-08-23T20:57:00.371444",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -639,7 +639,7 @@
     "p_max": 557,
     "power_model_source": "wellness.sportInfo",
     "vo2max": 45.0,
-    "calculation_timestamp": "2026-08-23T20:36:47.609081",
+    "calculation_timestamp": "2026-08-23T20:57:00.370347",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -704,7 +704,7 @@
         }
       },
       "has_intervals": true,
-      "description": "\ud83d\udcc8 \ud835\udde0\ud835\ude06 \ud835\uddd8\ud835\uddfb\ud835\uddf1\ud835\ude02\ud835\uddff\ud835\uddee\ud835\ude04 \ud835\udde5\ud835\uddf2\ud835\uddfd\ud835\uddfc\ud835\uddff\ud835\ude01 \ud83d\udcc8\n\n\ud83c\uddee\ud83c\uddf9 That's 30% of Milan\u2013San Remo!\n\ud83c\udf0a The average altitude was \ud835\udff0\ud835\udff5m\n\ud83d\ude33 The average temperature was \ud835\udfee\ud835\udfed.\ud835\udff4\u00b0C\n\ud83c\udf43 The average wind was \ud835\udfed.\ud835\udff4km/h\nWIP - A group of 4 riders in fair relays would have gone 8' faster than a lone cyclist.\n\nTry it now \ud83d\udc49 https://dashboard.enduraw-data.com/\n\n\ud83d\udeb4 Tracked by LeCoach.app\n\u23f1 219 min \u00b7 Load 130\n\ud83d\udcc8 Fitness improving"
+      "description": "CoachWatts Workout Analysis\n\nBravo pour cette longue sortie ! C'est impressionnant de maintenir cet engagement sur 219 minutes, surtout pour une reprise en solo, ce qui t\u00e9moigne d'une belle d\u00e9termination et d'une excellente base de travail pour la suite.\n\n\ud83d\udd17 https://CoachWatts.com - AI Endurance Coaching\n\n\ud83d\udcc8 \ud835\udde0\ud835\ude06 \ud835\uddd8\ud835\uddfb\ud835\uddf1\ud835\ude02\ud835\uddff\ud835\uddee\ud835\ude04 \ud835\udde5\ud835\uddf2\ud835\uddfd\ud835\uddfc\ud835\uddff\ud835\ude01 \ud83d\udcc8\n\n\ud83c\uddee\ud83c\uddf9 That's 30% of Milan\u2013San Remo!\n\ud83c\udf0a The average altitude was \ud835\udff0\ud835\udff5m\n\ud83d\ude33 The average temperature was \ud835\udfee\ud835\udfed.\ud835\udff4\u00b0C\n\ud83c\udf43 The average wind was \ud835\udfed.\ud835\udff4km/h\nWIP - A group of 4 riders in fair relays would have gone 8' faster than a lone cyclist.\n\nTry it now \ud83d\udc49 https://dashboard.enduraw-data.com/\n\n\ud83d\udeb4 Tracked by LeCoach.app\n\u23f1 219 min \u00b7 Load 130\n\ud83d\udcc8 Fitness improving"
     },
     {
       "id": "i178628726",
