@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26T08:08:26.712244",
+  "generated_at": "2026-08-26T08:59:22.924024",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -1107,6 +1107,58 @@
           "zone": 3,
           "training_load": 0.9573225,
           "decoupling": -35.290314
+        }
+      ]
+    },
+    {
+      "activity_id": "i179938882",
+      "date": "2026-08-26",
+      "type": "Run",
+      "name": "Tempo 20min continu echec",
+      "interval_summary": [
+        "1x 10m2s 8:38",
+        "1x 25m21s 7:08",
+        "1x 78s 7:22"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "602s@8w85rpm",
+          "duration_secs": 602,
+          "avg_power": 8,
+          "max_power": 210,
+          "avg_hr": 137,
+          "max_hr": 150,
+          "avg_cadence": 85.12646,
+          "zone": 2,
+          "training_load": 3.0978568,
+          "decoupling": "-Infinity"
+        },
+        {
+          "type": "WORK",
+          "label": "1521s@146w87rpm",
+          "duration_secs": 1521,
+          "avg_power": 146,
+          "max_power": 254,
+          "avg_hr": 168,
+          "max_hr": 183,
+          "avg_cadence": 86.730835,
+          "zone": 4,
+          "training_load": 57.674557,
+          "decoupling": 27.26681
+        },
+        {
+          "type": "WORK",
+          "label": "78s@144w85rpm",
+          "duration_secs": 78,
+          "avg_power": 144,
+          "max_power": 144,
+          "avg_hr": 171,
+          "max_hr": 172,
+          "avg_cadence": 85.32258,
+          "zone": 4,
+          "training_load": 2.6584616,
+          "decoupling": -0.7309166
         }
       ]
     }
