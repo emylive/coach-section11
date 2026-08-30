@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-08-30T19:34:20.520130",
+    "last_updated": "2026-08-30T22:04:07.850574",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -258,7 +258,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 5740,
+      "steps": 6495,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -633,7 +633,7 @@
     "p_max": 528,
     "power_model_source": "wellness.sportInfo",
     "vo2max": 46.0,
-    "calculation_timestamp": "2026-08-30T19:34:20.518922",
+    "calculation_timestamp": "2026-08-30T22:04:07.849320",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 6,
@@ -2754,7 +2754,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 5740,
+      "steps": 6495,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -2843,6 +2843,19 @@
       "workout_summary": null,
       "has_terrain": false,
       "description_preview": "- 40m Z2 HR"
+    },
+    {
+      "id": 132753748,
+      "date": "2026-09-13",
+      "name": "Triathlon M - Hyeres",
+      "type": "WORKOUT",
+      "sport_type": "Other",
+      "planned_tss": null,
+      "duration_hours": 4.0,
+      "duration_formatted": "4h",
+      "workout_summary": null,
+      "has_terrain": false,
+      "description_preview": "Triathlon format M - Hyeres. 1,5km nat / 40km velo / 10km course.\nObjectif : gestion, pas performance. Puissance velo plafonnee 100-120W (max ponctuel 140W dans les cotes). Nutrition : ~35-40g glucides/h + hydratation genereuse (comme le 30/08 avec Laurent).\nA 3 semaines du 10km du 03/10 - seance test grandeur nature pour l'Ironman, pas un objectif chrono."
     },
     {
       "id": 129404589,
@@ -2991,7 +3004,7 @@
     "success": 4,
     "patternA": 4,
     "patternB": 0,
-    "bail_no_workout_doc": 1,
+    "bail_no_workout_doc": 2,
     "bail_no_match": 11
   },
   "weekly_summary": {
