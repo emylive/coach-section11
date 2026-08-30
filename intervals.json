@@ -1,62 +1,10 @@
 {
-  "generated_at": "2026-08-29T23:27:37.066784",
+  "generated_at": "2026-08-30T01:25:24.757876",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
   "retention_days": 14,
   "activities": [
-    {
-      "activity_id": "i176171982",
-      "date": "2026-08-15",
-      "type": "Run",
-      "name": "Evening Course \u00e0 pied",
-      "interval_summary": [
-        "1x 15m2s 8:27",
-        "1x 19m59s 5:37",
-        "1x 10m1s 10:24"
-      ],
-      "intervals": [
-        {
-          "type": "WORK",
-          "label": "902s@32w84rpm",
-          "duration_secs": 902,
-          "avg_power": 32,
-          "max_power": 98,
-          "avg_hr": 138,
-          "max_hr": 146,
-          "avg_cadence": 83.59822,
-          "zone": 2,
-          "training_load": 1.516476,
-          "decoupling": 6.6741934
-        },
-        {
-          "type": "WORK",
-          "label": "1199s@32w87rpm",
-          "duration_secs": 1199,
-          "avg_power": 32,
-          "max_power": 32,
-          "avg_hr": 168,
-          "max_hr": 176,
-          "avg_cadence": 86.817345,
-          "zone": 4,
-          "training_load": 2.0180407,
-          "decoupling": 4.339116
-        },
-        {
-          "type": "WORK",
-          "label": "601s@109w63rpm",
-          "duration_secs": 601,
-          "avg_power": 109,
-          "max_power": 138,
-          "avg_hr": 143,
-          "max_hr": 175,
-          "avg_cadence": 62.63727,
-          "zone": 2,
-          "training_load": 12.61369,
-          "decoupling": -23.446198
-        }
-      ]
-    },
     {
       "activity_id": "i176682326",
       "date": "2026-08-17",
