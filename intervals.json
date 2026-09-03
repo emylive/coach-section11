@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-03T13:32:45.452387",
+  "generated_at": "2026-09-03T17:12:04.441042",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -2355,6 +2355,44 @@
           "avg_cadence": 81.0,
           "zone": 3,
           "training_load": 0.035517752
+        }
+      ]
+    },
+    {
+      "activity_id": "i182894912",
+      "date": "2026-09-03",
+      "type": "Ride",
+      "name": "Le mai",
+      "interval_summary": [
+        "1x 38m41s 95w",
+        "1x 26m38s 85w"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "2321s@95w78rpm",
+          "duration_secs": 2321,
+          "avg_power": 95,
+          "max_power": 222,
+          "avg_hr": 142,
+          "max_hr": 166,
+          "avg_cadence": 77.51986,
+          "zone": 2,
+          "training_load": 36.735077,
+          "decoupling": 12.691815
+        },
+        {
+          "type": "WORK",
+          "label": "1598s@85w73rpm",
+          "duration_secs": 1598,
+          "avg_power": 85,
+          "max_power": 484,
+          "avg_hr": 148,
+          "max_hr": 166,
+          "avg_cadence": 73.39487,
+          "zone": 1,
+          "training_load": 22.32813,
+          "decoupling": 14.113963
         }
       ]
     }
