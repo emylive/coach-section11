@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T12:06:53.080746",
+  "generated_at": "2026-09-04T16:18:09.265582",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -2393,6 +2393,62 @@
           "zone": 1,
           "training_load": 22.32813,
           "decoupling": 14.113963
+        }
+      ]
+    },
+    {
+      "activity_id": "i183315033",
+      "date": "2026-09-04",
+      "type": "Ride",
+      "name": "Afternoon Cyclisme",
+      "interval_summary": [
+        "1x 3m55s 98bpm",
+        "1x 3m36s 119bpm"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "235s@98bpm",
+          "duration_secs": 235,
+          "avg_hr": 98,
+          "max_hr": 109,
+          "zone": 1
+        },
+        {
+          "type": "WORK",
+          "label": "216s@119bpm",
+          "duration_secs": 216,
+          "avg_hr": 119,
+          "max_hr": 133,
+          "zone": 2
+        }
+      ]
+    },
+    {
+      "activity_id": "i183303594",
+      "date": "2026-09-04",
+      "type": "Ride",
+      "name": "Afternoon Cyclisme",
+      "interval_summary": [
+        "1x 3m46s 103bpm",
+        "1x 2m58s 119bpm"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "226s@103bpm",
+          "duration_secs": 226,
+          "avg_hr": 103,
+          "max_hr": 117,
+          "zone": 1
+        },
+        {
+          "type": "WORK",
+          "label": "178s@119bpm",
+          "duration_secs": 178,
+          "avg_hr": 119,
+          "max_hr": 125,
+          "zone": 2
         }
       ]
     }
