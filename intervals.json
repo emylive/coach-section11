@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T17:36:53.482504",
+  "generated_at": "2026-09-05T19:28:13.085183",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -2555,6 +2555,52 @@
           "zone": 1,
           "training_load": 10.313798,
           "decoupling": 3.2068698
+        }
+      ]
+    },
+    {
+      "activity_id": "i183663719",
+      "date": "2026-09-05",
+      "type": "Ride",
+      "name": "Evening Cyclisme",
+      "interval_summary": [
+        "1x 13m23s 99bpm",
+        "1x 9m41s 102bpm",
+        "1x 3m59s 95bpm",
+        "1x 3m12s 114bpm"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "803s@99bpm",
+          "duration_secs": 803,
+          "avg_hr": 99,
+          "max_hr": 119,
+          "zone": 1
+        },
+        {
+          "type": "WORK",
+          "label": "581s@102bpm",
+          "duration_secs": 581,
+          "avg_hr": 102,
+          "max_hr": 125,
+          "zone": 1
+        },
+        {
+          "type": "WORK",
+          "label": "239s@95bpm",
+          "duration_secs": 239,
+          "avg_hr": 95,
+          "max_hr": 112,
+          "zone": 1
+        },
+        {
+          "type": "WORK",
+          "label": "192s@114bpm",
+          "duration_secs": 192,
+          "avg_hr": 114,
+          "max_hr": 126,
+          "zone": 1
         }
       ]
     }
