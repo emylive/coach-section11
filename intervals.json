@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T06:21:32.967842",
+  "generated_at": "2026-09-11T11:36:22.043231",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -2614,6 +2614,140 @@
           "zone": 3,
           "training_load": 29.21351,
           "decoupling": -9.197593
+        }
+      ]
+    },
+    {
+      "activity_id": "i185535645",
+      "date": "2026-09-11",
+      "type": "TrailRun",
+      "name": "Les favieres avec Lucie",
+      "interval_summary": [
+        "1x 8m21s 8:54",
+        "5x 9m7s 9:30",
+        "1x 14m56s 15:54",
+        "1x 20m36s 23:44",
+        "3x 11m46s 13:00",
+        "1x 12m14s 13:58",
+        "1x 49s 7:38"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "501s@117bpm82rpm",
+          "duration_secs": 501,
+          "avg_hr": 117,
+          "max_hr": 137,
+          "avg_cadence": 81.57526,
+          "zone": 1
+        },
+        {
+          "type": "WORK",
+          "label": "547s@149bpm78rpm",
+          "duration_secs": 630,
+          "avg_hr": 130,
+          "max_hr": 139,
+          "avg_cadence": 75.87829,
+          "zone": 1
+        },
+        {
+          "type": "WORK",
+          "label": "896s@152bpm66rpm",
+          "duration_secs": 896,
+          "avg_hr": 152,
+          "max_hr": 165,
+          "avg_cadence": 65.64878,
+          "zone": 3
+        },
+        {
+          "type": "WORK",
+          "label": "1236s@147bpm58rpm",
+          "duration_secs": 1236,
+          "avg_hr": 147,
+          "max_hr": 170,
+          "avg_cadence": 58.279198,
+          "zone": 3
+        },
+        {
+          "type": "WORK",
+          "label": "547s@149bpm78rpm",
+          "duration_secs": 522,
+          "avg_hr": 162,
+          "max_hr": 177,
+          "avg_cadence": 77.389435,
+          "zone": 4
+        },
+        {
+          "type": "WORK",
+          "label": "706s@148bpm72rpm",
+          "duration_secs": 725,
+          "avg_hr": 139,
+          "max_hr": 161,
+          "avg_cadence": 71.47813,
+          "zone": 2
+        },
+        {
+          "type": "WORK",
+          "label": "734s@124bpm68rpm",
+          "duration_secs": 734,
+          "avg_hr": 124,
+          "max_hr": 152,
+          "avg_cadence": 67.791664,
+          "zone": 1
+        },
+        {
+          "type": "WORK",
+          "label": "706s@148bpm72rpm",
+          "duration_secs": 690,
+          "avg_hr": 149,
+          "max_hr": 167,
+          "avg_cadence": 74.048096,
+          "zone": 3
+        },
+        {
+          "type": "WORK",
+          "label": "706s@148bpm72rpm",
+          "duration_secs": 703,
+          "avg_hr": 157,
+          "max_hr": 179,
+          "avg_cadence": 70.53991,
+          "zone": 3
+        },
+        {
+          "type": "WORK",
+          "label": "547s@149bpm78rpm",
+          "duration_secs": 528,
+          "avg_hr": 157,
+          "max_hr": 176,
+          "avg_cadence": 78.496895,
+          "zone": 3
+        },
+        {
+          "type": "WORK",
+          "label": "547s@149bpm78rpm",
+          "duration_secs": 585,
+          "avg_hr": 143,
+          "max_hr": 162,
+          "avg_cadence": 74.69708,
+          "zone": 2
+        },
+        {
+          "type": "WORK",
+          "label": "547s@149bpm78rpm",
+          "duration_secs": 471,
+          "avg_hr": 154,
+          "max_hr": 162,
+          "avg_cadence": 81.250534,
+          "zone": 3
+        },
+        {
+          "type": "WORK",
+          "label": "49s@155bpm80rpm",
+          "duration_secs": 49,
+          "avg_hr": 155,
+          "max_hr": 163,
+          "avg_cadence": 79.69388,
+          "zone": 3
         }
       ]
     }
