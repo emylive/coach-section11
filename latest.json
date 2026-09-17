@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-09-17T11:54:41.666023",
+    "last_updated": "2026-09-17T15:53:09.358802",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -638,7 +638,7 @@
     "p_max": 527,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-09-17T11:54:41.665123",
+    "calculation_timestamp": "2026-09-17T15:53:09.357577",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -656,7 +656,7 @@
       "id": "i187596797",
       "date": "2026-09-17T12:12:17",
       "type": "TrailRun",
-      "name": "Lunch Trail",
+      "name": "Tours au fort Napol\u00e9on avec Laurent ",
       "duration_hours": 1.33,
       "distance_km": 8.56,
       "tss": 97,
@@ -682,8 +682,8 @@
       "efficiency_factor": null,
       "hrrc": null,
       "elevation_m": 318.0,
-      "feel": null,
-      "rpe": null,
+      "feel": 3,
+      "rpe": 6,
       "zone_distribution": {
         "hr_zones": {
           "z1_time": 301,
@@ -693,8 +693,7 @@
           "z5_time": 0
         }
       },
-      "has_intervals": true,
-      "description": "\ud83c\udfc3 Tracked by LeCoach.app\n\u23f1 80 min \u00b7 Load 97\n\ud83d\udcc8 Fitness improving"
+      "has_intervals": true
     },
     {
       "id": "i187244255",
