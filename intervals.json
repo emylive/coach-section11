@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-23T14:32:00.648113",
+  "generated_at": "2026-09-23T18:36:58.388424",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -1294,6 +1294,72 @@
           "avg_hr": 106,
           "max_hr": 122,
           "zone": 1
+        }
+      ]
+    },
+    {
+      "activity_id": "i189639134",
+      "date": "2026-09-23",
+      "type": "Run",
+      "name": "Evening Course \u00e0 pied",
+      "interval_summary": [
+        "1x 7m27s 8:20",
+        "1x 7m15s 7:12",
+        "1x 7m34s 8:31",
+        "1x 8m3s 8:47"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "447s@71w86rpm",
+          "duration_secs": 447,
+          "avg_power": 71,
+          "max_power": 204,
+          "avg_hr": 131,
+          "max_hr": 150,
+          "avg_cadence": 86.3985,
+          "zone": 1,
+          "training_load": 3.2976956,
+          "decoupling": -28.491987
+        },
+        {
+          "type": "WORK",
+          "label": "435s@105w87rpm",
+          "duration_secs": 435,
+          "avg_power": 105,
+          "max_power": 229,
+          "avg_hr": 135,
+          "max_hr": 145,
+          "avg_cadence": 86.56782,
+          "zone": 2,
+          "training_load": 16.30249,
+          "decoupling": -132.65984
+        },
+        {
+          "type": "WORK",
+          "label": "454s@160w86rpm",
+          "duration_secs": 454,
+          "avg_power": 160,
+          "max_power": 220,
+          "avg_hr": 131,
+          "max_hr": 138,
+          "avg_cadence": 86.142136,
+          "zone": 1,
+          "training_load": 17.98115,
+          "decoupling": 15.633271
+        },
+        {
+          "type": "WORK",
+          "label": "483s@185w84rpm",
+          "duration_secs": 483,
+          "avg_power": 185,
+          "max_power": 248,
+          "avg_hr": 133,
+          "max_hr": 144,
+          "avg_cadence": 84.25821,
+          "zone": 2,
+          "training_load": 29.87868,
+          "decoupling": -6.4273353
         }
       ]
     }
