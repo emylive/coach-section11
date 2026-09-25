@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-09-24T21:42:20.597372",
+    "last_updated": "2026-09-25T00:00:04.376549",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -108,7 +108,7 @@
       },
       "tsb": {
         "status": "green",
-        "value": -7.2
+        "value": -1.5
       }
     },
     "signal_summary": {
@@ -181,10 +181,10 @@
   },
   "current_status": {
     "fitness": {
-      "ctl": 64.83,
-      "atl": 71.98,
-      "tsb": -7.15,
-      "ramp_rate": 2.09,
+      "ctl": 63.82,
+      "atl": 65.33,
+      "tsb": -1.51,
+      "ramp_rate": 2.25,
       "fitness_source": "From Intervals.icu API (reflects completed workouts)"
     },
     "thresholds": {
@@ -282,18 +282,18 @@
     "latest_rhr": 55,
     "acwr": 1.07,
     "acwr_interpretation": "optimal",
-    "monotony": 1.14,
+    "monotony": 1.08,
     "monotony_interpretation": "normal",
     "primary_sport": "cycling",
     "primary_sport_monotony": null,
     "primary_sport_tss_7d": 241.0,
-    "effective_monotony": 1.14,
+    "effective_monotony": 1.08,
     "multi_sport_detected": true,
-    "strain": 612.0,
-    "stress_tolerance": 5.4,
-    "load_recovery_ratio": 5.4,
-    "tss_7d_total": 537.0,
-    "tss_28d_total": 2011.0,
+    "strain": 566.0,
+    "stress_tolerance": 5.2,
+    "load_recovery_ratio": 5.2,
+    "tss_7d_total": 524.0,
+    "tss_28d_total": 1961.0,
     "zone_distribution_7d": {
       "z1_hours": 4.49,
       "z2_hours": 2.04,
@@ -395,12 +395,12 @@
       "power_curve_delta": {
         "window_days": 28,
         "current_window": {
-          "start": "2026-08-28",
+          "start": "2026-08-29",
           "end": "2026-09-24"
         },
         "previous_window": {
-          "start": "2026-07-31",
-          "end": "2026-08-27"
+          "start": "2026-08-01",
+          "end": "2026-08-28"
         },
         "anchors": {
           "5s": {
@@ -435,12 +435,12 @@
       "hr_curve_delta": {
         "window_days": 28,
         "current_window": {
-          "start": "2026-08-28",
+          "start": "2026-08-29",
           "end": "2026-09-24"
         },
         "previous_window": {
-          "start": "2026-07-31",
-          "end": "2026-08-27"
+          "start": "2026-08-01",
+          "end": "2026-08-28"
         },
         "anchors": {
           "60s": {
@@ -470,7 +470,7 @@
       "sustainability_profile": {
         "window": {
           "days": 42,
-          "start": "2026-08-14",
+          "start": "2026-08-15",
           "end": "2026-09-24"
         },
         "weight_kg": 61.5,
@@ -571,13 +571,12 @@
       },
       "dfa_a1_profile": null
     },
-    "consistency_index": 0.33,
+    "consistency_index": 0.5,
     "consistency_details": {
-      "planned_days": 3,
+      "planned_days": 2,
       "completed_days": 2,
       "matched_days": 1,
       "planned_dates": [
-        "2026-09-18",
         "2026-09-21",
         "2026-09-24"
       ],
@@ -592,17 +591,17 @@
       "reason_codes": [],
       "basis": {
         "stream_1": {
-          "ctl_slope": 0.65,
+          "ctl_slope": 0.15,
           "acwr_trend": "falling",
           "hard_day_pattern": 3.2,
           "weeks_available": 4
         },
         "stream_2": {
           "planned_tss_delta": null,
-          "hard_sessions_planned": 1,
+          "hard_sessions_planned": 0,
           "race_proximity": 9,
           "next_week_load": null,
-          "plan_coverage_current_week": 0.4,
+          "plan_coverage_current_week": 0.2,
           "plan_coverage_next_week": 1.0
         },
         "data_quality": "good",
@@ -636,16 +635,16 @@
     "p_max": 526,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-09-24T21:42:20.596494",
+    "calculation_timestamp": "2026-09-25T00:00:04.375369",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
       "activities_7d": 11,
       "activities_28d": 40,
-      "planned_workouts_7d": 3,
+      "planned_workouts_7d": 2,
       "ftp_history_days": {
-        "indoor": 188,
-        "outdoor": 188
+        "indoor": 189,
+        "outdoor": 189
       }
     }
   },
