@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-26T13:57:55.396230",
+  "generated_at": "2026-09-26T17:36:01.212961",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -1319,6 +1319,80 @@
           "avg_cadence": 83.0,
           "zone": 3,
           "training_load": 0.040514465
+        }
+      ]
+    },
+    {
+      "activity_id": "i190575335",
+      "date": "2026-09-26",
+      "type": "Ride",
+      "name": "Afternoon Cyclisme",
+      "interval_summary": [
+        "1x 3m6s 128bpm",
+        "1x 3m51s 123bpm",
+        "1x 15s 117bpm"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "186s@128bpm",
+          "duration_secs": 186,
+          "avg_hr": 128,
+          "max_hr": 146,
+          "zone": 2
+        },
+        {
+          "type": "WORK",
+          "label": "231s@123bpm",
+          "duration_secs": 231,
+          "avg_hr": 123,
+          "max_hr": 141,
+          "zone": 2
+        },
+        {
+          "type": "WORK",
+          "label": "15s@117bpm",
+          "duration_secs": 15,
+          "avg_hr": 117,
+          "max_hr": 119,
+          "zone": 2
+        }
+      ]
+    },
+    {
+      "activity_id": "i190575328",
+      "date": "2026-09-26",
+      "type": "Ride",
+      "name": "Afternoon Cyclisme",
+      "interval_summary": [
+        "1x 3m5s 99bpm",
+        "1x 2m44s 117bpm",
+        "1x 2m5s 126bpm"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "185s@99bpm",
+          "duration_secs": 185,
+          "avg_hr": 99,
+          "max_hr": 109,
+          "zone": 1
+        },
+        {
+          "type": "WORK",
+          "label": "164s@117bpm",
+          "duration_secs": 164,
+          "avg_hr": 117,
+          "max_hr": 135,
+          "zone": 2
+        },
+        {
+          "type": "WORK",
+          "label": "125s@126bpm",
+          "duration_secs": 125,
+          "avg_hr": 126,
+          "max_hr": 144,
+          "zone": 2
         }
       ]
     }
