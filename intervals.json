@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T13:32:57.135474",
+  "generated_at": "2026-09-29T18:52:07.188258",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -1617,6 +1617,53 @@
           "avg_hr": 115,
           "max_hr": 131,
           "zone": 1
+        }
+      ]
+    },
+    {
+      "activity_id": "i191535793",
+      "date": "2026-09-29",
+      "type": "Ride",
+      "name": "La Seyne-sur-Mer Cyclisme",
+      "interval_summary": [
+        "1x 25m52s 76w",
+        "1x 18m43s 107w"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "1552s@76w70rpm",
+          "duration_secs": 1552,
+          "avg_power": 76,
+          "max_power": 494,
+          "avg_hr": 134,
+          "max_hr": 160,
+          "avg_cadence": 70.41572,
+          "zone": 1,
+          "training_load": 19.48874,
+          "decoupling": 1.7052342
+        },
+        {
+          "type": "WORK",
+          "label": "1123s@107w72rpm",
+          "duration_secs": 1123,
+          "avg_power": 107,
+          "max_power": 470,
+          "avg_hr": 150,
+          "max_hr": 166,
+          "avg_cadence": 72.3871,
+          "zone": 2,
+          "training_load": 24.528866,
+          "decoupling": 6.9478893
+        },
+        {
+          "type": "RECOVERY",
+          "duration_secs": 2,
+          "avg_hr": 139,
+          "max_hr": 140,
+          "avg_cadence": 25.0,
+          "zone": 1,
+          "decoupling": "NaN"
         }
       ]
     }
