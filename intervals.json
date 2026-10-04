@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-04T05:46:24.694228",
+  "generated_at": "2026-10-04T11:31:04.233095",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -1539,6 +1539,80 @@
           "zone": 4,
           "training_load": 4.08,
           "decoupling": 0.83632016
+        }
+      ]
+    },
+    {
+      "activity_id": "i193303707",
+      "date": "2026-10-04",
+      "type": "Ride",
+      "name": "La Seyne-sur-Mer Cyclisme",
+      "interval_summary": [
+        "1x 2m26s 145w",
+        "1x 64s 173w"
+      ],
+      "intervals": [
+        {
+          "type": "RECOVERY",
+          "duration_secs": 1592,
+          "avg_power": 94,
+          "max_power": 505,
+          "avg_hr": 133,
+          "max_hr": 154,
+          "avg_cadence": 75.10678,
+          "zone": 2,
+          "training_load": 21.07389,
+          "decoupling": 0.30584738
+        },
+        {
+          "type": "WORK",
+          "label": "146s@145w72rpm",
+          "duration_secs": 146,
+          "avg_power": 145,
+          "max_power": 190,
+          "avg_hr": 152,
+          "max_hr": 157,
+          "avg_cadence": 71.70548,
+          "zone": 4,
+          "training_load": 3.598261,
+          "decoupling": -3.1549466
+        },
+        {
+          "type": "RECOVERY",
+          "duration_secs": 3907,
+          "avg_power": 89,
+          "max_power": 399,
+          "avg_hr": 138,
+          "max_hr": 164,
+          "avg_cadence": 69.859406,
+          "zone": 2,
+          "training_load": 55.727795,
+          "decoupling": -7.422064
+        },
+        {
+          "type": "WORK",
+          "label": "64s@173w72rpm",
+          "duration_secs": 64,
+          "avg_power": 173,
+          "max_power": 213,
+          "avg_hr": 149,
+          "max_hr": 156,
+          "avg_cadence": 72.40625,
+          "zone": 5,
+          "training_load": 2.014568,
+          "decoupling": -12.570949
+        },
+        {
+          "type": "RECOVERY",
+          "duration_secs": 1747,
+          "avg_power": 80,
+          "max_power": 399,
+          "avg_hr": 134,
+          "max_hr": 157,
+          "avg_cadence": 65.31411,
+          "zone": 1,
+          "training_load": 18.75314,
+          "decoupling": -1.4948287
         }
       ]
     }
