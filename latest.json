@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-10-04T11:31:04.740055",
+    "last_updated": "2026-10-04T15:58:30.772998",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -236,7 +236,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 42,
+      "steps": 703,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -567,7 +567,7 @@
       "phase": "Deload",
       "confidence": "medium",
       "reason_codes": [
-        "PLAN_GAP_NEXT_WEEK"
+        "BUILD_HISTORY_REDUCED_LOAD"
       ],
       "basis": {
         "stream_1": {
@@ -580,9 +580,9 @@
           "planned_tss_delta": null,
           "hard_sessions_planned": 0,
           "race_proximity": null,
-          "next_week_load": null,
+          "next_week_load": 0.37,
           "plan_coverage_current_week": 0.0,
-          "plan_coverage_next_week": 0.0
+          "plan_coverage_next_week": 1.0
         },
         "data_quality": "good",
         "stream_agreement": null
@@ -594,7 +594,7 @@
     },
     "phase_detected": "Deload",
     "phase_triggers": [
-      "PLAN_GAP_NEXT_WEEK"
+      "BUILD_HISTORY_REDUCED_LOAD"
     ],
     "seasonal_context": "Late Season / Transition",
     "benchmark_indoor": {
@@ -617,7 +617,7 @@
     "p_max": 522,
     "power_model_source": "wellness.sportInfo",
     "vo2max": 45.0,
-    "calculation_timestamp": "2026-10-04T11:31:04.738949",
+    "calculation_timestamp": "2026-10-04T15:58:30.771727",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -635,7 +635,7 @@
       "id": "i193303707",
       "date": "2026-10-04T08:28:25",
       "type": "Ride",
-      "name": "La Seyne-sur-Mer Cyclisme",
+      "name": "Solo col de garde",
       "duration_hours": 1.92,
       "distance_km": 40.2,
       "tss": 102,
@@ -681,8 +681,7 @@
           "z7_time": 35
         }
       },
-      "has_intervals": true,
-      "description": "\ud83d\udeb4 Tracked by LeCoach.app\n\u23f1 115 min \u00b7 Load 102"
+      "has_intervals": true
     },
     {
       "id": "i192936833",
@@ -2329,7 +2328,7 @@
       "respiration": null,
       "body_fat_pct": null,
       "abdomen_cm": null,
-      "steps": 42,
+      "steps": 703,
       "hydration_volume_l": null,
       "kcal_consumed": null,
       "carbohydrates_g": null,
@@ -2340,14 +2339,80 @@
       "readiness": null
     }
   ],
-  "planned_workouts": [],
+  "planned_workouts": [
+    {
+      "id": 141317104,
+      "date": "2026-10-05",
+      "name": "Velo facile",
+      "type": "WORKOUT",
+      "sport_type": "Ride",
+      "planned_tss": 22,
+      "duration_hours": 0.75,
+      "duration_formatted": "45m",
+      "workout_summary": null,
+      "has_terrain": false,
+      "description": "- 45m Z1-Z2 HR"
+    },
+    {
+      "id": 141317106,
+      "date": "2026-10-06",
+      "name": "Natation",
+      "type": "WORKOUT",
+      "sport_type": "Swim",
+      "planned_tss": null,
+      "duration_hours": 0.58,
+      "duration_formatted": "35m",
+      "workout_summary": null,
+      "has_terrain": false,
+      "description": "Natation tranquille, crawl privilegie, 30 a 40 minutes."
+    },
+    {
+      "id": 141317107,
+      "date": "2026-10-07",
+      "name": "Velo modere",
+      "type": "WORKOUT",
+      "sport_type": "Ride",
+      "planned_tss": 50,
+      "duration_hours": 1.0,
+      "duration_formatted": "1h",
+      "workout_summary": null,
+      "has_terrain": false,
+      "description": "- 1h Z2-Z3 HR (velo plaisir, pas de forcing)"
+    },
+    {
+      "id": 141317109,
+      "date": "2026-10-08",
+      "name": "Natation legere ou repos actif",
+      "type": "WORKOUT",
+      "sport_type": "Swim",
+      "planned_tss": null,
+      "duration_hours": 0.5,
+      "duration_formatted": "30m",
+      "workout_summary": null,
+      "has_terrain": false,
+      "description": "Seance legere ou repos selon l'envie du jour."
+    },
+    {
+      "id": 141317111,
+      "date": "2026-10-10",
+      "name": "Course qualitative - prudente",
+      "type": "WORKOUT",
+      "sport_type": "Run",
+      "planned_tss": null,
+      "duration_hours": 0.67,
+      "duration_formatted": "40m",
+      "workout_summary": null,
+      "has_terrain": false,
+      "description": "Course a pied qualitative mais PRUDENTE : 10m echauffement Z1-Z2, puis 20-25min allure progressive (jamais au-dela de l'aisance respiratoire confortable), quelques relances courtes de 20-30s si ca se sent bien. ARRET immediat si essoufflement anormal, palpitations ou vertige. Marche autorisee a tout moment sans culpabiliser."
+    }
+  ],
   "workout_summary_stats": {
-    "attempted": 0,
+    "attempted": 2,
     "success": 0,
     "patternA": 0,
     "patternB": 0,
-    "bail_no_workout_doc": 0,
-    "bail_no_match": 0
+    "bail_no_workout_doc": 3,
+    "bail_no_match": 2
   },
   "weekly_summary": {
     "total_training_hours": 3.74,
