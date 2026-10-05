@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05T06:58:38.011733",
+  "generated_at": "2026-10-05T15:34:45.789115",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -1513,6 +1513,79 @@
           "zone": 1,
           "training_load": 18.75314,
           "decoupling": -1.4948287
+        }
+      ]
+    },
+    {
+      "activity_id": "i193854250",
+      "date": "2026-10-05",
+      "type": "Ride",
+      "name": "Afternoon Cyclisme",
+      "interval_summary": [
+        "2x 3m11s 121bpm",
+        "1x 12s 115bpm"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "191s@121bpm",
+          "duration_secs": 196,
+          "avg_hr": 118,
+          "max_hr": 139,
+          "zone": 2
+        },
+        {
+          "type": "WORK",
+          "label": "191s@121bpm",
+          "duration_secs": 186,
+          "avg_hr": 124,
+          "max_hr": 136,
+          "zone": 2
+        },
+        {
+          "type": "WORK",
+          "label": "12s@115bpm",
+          "duration_secs": 12,
+          "avg_hr": 115,
+          "max_hr": 116,
+          "zone": 1
+        }
+      ]
+    },
+    {
+      "activity_id": "i193854248",
+      "date": "2026-10-05",
+      "type": "Ride",
+      "name": "Velo facile",
+      "interval_summary": [
+        "1x 2m49s 123bpm",
+        "1x 2m52s 139bpm",
+        "1x 43s 126bpm"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "169s@123bpm",
+          "duration_secs": 169,
+          "avg_hr": 123,
+          "max_hr": 151,
+          "zone": 2
+        },
+        {
+          "type": "WORK",
+          "label": "172s@139bpm",
+          "duration_secs": 172,
+          "avg_hr": 139,
+          "max_hr": 146,
+          "zone": 2
+        },
+        {
+          "type": "WORK",
+          "label": "43s@126bpm",
+          "duration_secs": 43,
+          "avg_hr": 126,
+          "max_hr": 130,
+          "zone": 2
         }
       ]
     }
