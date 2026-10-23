@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-10-23T14:25:30.040410",
+    "last_updated": "2026-10-23T18:32:20.325536",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.99"
@@ -647,7 +647,7 @@
     "p_max": 514,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-10-23T14:25:30.039551",
+    "calculation_timestamp": "2026-10-23T18:32:20.324721",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -665,7 +665,7 @@
       "id": "i200666813",
       "date": "2026-10-23T10:53:39",
       "type": "VirtualRide",
-      "name": "Morning Cyclisme virtuel",
+      "name": "Reprise v\u00e9lo ",
       "duration_hours": 0.51,
       "distance_km": 0.0,
       "tss": 38,
@@ -691,8 +691,8 @@
       "efficiency_factor": null,
       "hrrc": null,
       "elevation_m": null,
-      "feel": null,
-      "rpe": null,
+      "feel": 2,
+      "rpe": 5,
       "zone_distribution": {
         "hr_zones": {
           "z1_time": 199,
