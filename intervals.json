@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-15T07:10:13.117921",
+  "generated_at": "2026-11-15T14:42:39.028781",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -116,6 +116,36 @@
           "avg_hr": 165,
           "max_hr": 172,
           "avg_cadence": 87.38824,
+          "zone": 4
+        }
+      ]
+    },
+    {
+      "activity_id": "i210298934",
+      "date": "2026-11-15",
+      "type": "TrailRun",
+      "name": "Morning Trail",
+      "interval_summary": [
+        "1x 46m20s 7:51",
+        "1x 1h15m 9:16"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "2780s@157bpm83rpm",
+          "duration_secs": 2780,
+          "avg_hr": 157,
+          "max_hr": 171,
+          "avg_cadence": 83.3959,
+          "zone": 3
+        },
+        {
+          "type": "WORK",
+          "label": "4534s@162bpm80rpm",
+          "duration_secs": 4534,
+          "avg_hr": 162,
+          "max_hr": 174,
+          "avg_cadence": 79.917656,
           "zone": 4
         }
       ]
