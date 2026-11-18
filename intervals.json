@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T10:42:38.076553",
+  "generated_at": "2026-11-18T19:03:21.371004",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -147,6 +147,27 @@
           "max_hr": 174,
           "avg_cadence": 79.917656,
           "zone": 4
+        }
+      ]
+    },
+    {
+      "activity_id": "i211683081",
+      "date": "2026-11-18",
+      "type": "Run",
+      "name": "Footing facile (marche autorisee)",
+      "interval_summary": null,
+      "intervals": [
+        {
+          "type": "RECOVERY",
+          "duration_secs": 1801,
+          "avg_power": 5,
+          "max_power": 53,
+          "avg_hr": 139,
+          "max_hr": 149,
+          "avg_cadence": 87.31344,
+          "zone": 2,
+          "training_load": 0.073635764,
+          "decoupling": 8.07203
         }
       ]
     }
