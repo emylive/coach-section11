@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T09:59:09.799780",
+  "generated_at": "2026-11-22T17:38:39.749698",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -462,6 +462,36 @@
           "zone": 1,
           "training_load": 1.1058897,
           "decoupling": 60.23273
+        }
+      ]
+    },
+    {
+      "activity_id": "i213303762",
+      "date": "2026-11-22",
+      "type": "TrailRun",
+      "name": "Sortie avec Laurent ",
+      "interval_summary": [
+        "1x 2h5m 9:02",
+        "1x 5m39s 7:39"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "7552s@152bpm79rpm",
+          "duration_secs": 7552,
+          "avg_hr": 152,
+          "max_hr": 168,
+          "avg_cadence": 79.46282,
+          "zone": 3
+        },
+        {
+          "type": "WORK",
+          "label": "339s@159bpm86rpm",
+          "duration_secs": 339,
+          "avg_hr": 159,
+          "max_hr": 164,
+          "avg_cadence": 85.55162,
+          "zone": 3
         }
       ]
     }
