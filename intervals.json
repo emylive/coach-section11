@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T10:52:48.076422",
+  "generated_at": "2026-11-24T20:56:15.187687",
   "version": "3.99",
   "script_hash": "dde0281c8875",
   "scan_hours": 72,
@@ -377,6 +377,32 @@
           "max_hr": 164,
           "avg_cadence": 85.55162,
           "zone": 3
+        }
+      ]
+    },
+    {
+      "activity_id": "i214188199",
+      "date": "2026-11-24",
+      "type": "TrailRun",
+      "name": "Evening Trail",
+      "interval_summary": [
+        "1x 79s 65bpm"
+      ],
+      "intervals": [
+        {
+          "type": "WORK",
+          "label": "79s@65bpm",
+          "duration_secs": 79,
+          "avg_hr": 65,
+          "max_hr": 73,
+          "zone": 1
+        },
+        {
+          "type": "RECOVERY",
+          "duration_secs": 1,
+          "avg_hr": 74,
+          "max_hr": 74,
+          "zone": 1
         }
       ]
     }
